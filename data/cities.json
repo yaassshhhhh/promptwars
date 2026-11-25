@@ -1,0 +1,327 @@
+{
+  "cities": [
+    {
+      "id": "delhi",
+      "name": "Delhi NCR",
+      "country": "India",
+      "region": "Northern Plains",
+      "aqi": 348,
+      "category": "Hazardous",
+      "primary_pollutant": "PM2.5",
+      "pm25": 298.4,
+      "pm10": 420.1,
+      "no2": 68.2,
+      "so2": 24.5,
+      "co": 3.8,
+      "o3": 35.1,
+      "temp_c": 14,
+      "humidity": 78,
+      "wind_speed_kmh": 4.2,
+      "inversion_alert": "Severe ground-level thermal inversion active until 11:30 AM. Pollutants trapped under cold air blanket.",
+      "safe_ventilation_window": "1:30 PM - 3:30 PM",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 380, "inversion": "Critical"},
+        {"hour": "08:00", "aqi": 395, "inversion": "Critical"},
+        {"hour": "10:00", "aqi": 360, "inversion": "High"},
+        {"hour": "12:00", "aqi": 315, "inversion": "Moderate"},
+        {"hour": "14:00", "aqi": 270, "inversion": "Low (Best Window)"},
+        {"hour": "16:00", "aqi": 295, "inversion": "Moderate"},
+        {"hour": "18:00", "aqi": 340, "inversion": "High"},
+        {"hour": "20:00", "aqi": 375, "inversion": "Critical"},
+        {"hour": "22:00", "aqi": 390, "inversion": "Critical"}
+      ]
+    },
+    {
+      "id": "lahore",
+      "name": "Lahore",
+      "country": "Pakistan",
+      "region": "Punjab",
+      "aqi": 362,
+      "category": "Hazardous",
+      "primary_pollutant": "PM2.5",
+      "pm25": 312.0,
+      "pm10": 445.8,
+      "no2": 72.0,
+      "so2": 31.0,
+      "co": 4.1,
+      "o3": 38.0,
+      "temp_c": 13,
+      "humidity": 82,
+      "wind_speed_kmh": 3.8,
+      "inversion_alert": "Dense winter smog fog (smog). Cold surface layer trapping particulate matter.",
+      "safe_ventilation_window": "2:00 PM - 3:45 PM",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 390, "inversion": "Critical"},
+        {"hour": "08:00", "aqi": 410, "inversion": "Critical"},
+        {"hour": "10:00", "aqi": 380, "inversion": "High"},
+        {"hour": "12:00", "aqi": 330, "inversion": "Moderate"},
+        {"hour": "14:00", "aqi": 285, "inversion": "Low (Best Window)"},
+        {"hour": "16:00", "aqi": 310, "inversion": "Moderate"},
+        {"hour": "18:00", "aqi": 355, "inversion": "High"},
+        {"hour": "20:00", "aqi": 395, "inversion": "Critical"},
+        {"hour": "22:00", "aqi": 405, "inversion": "Critical"}
+      ]
+    },
+    {
+      "id": "mumbai",
+      "name": "Mumbai",
+      "country": "India",
+      "region": "Coastal West",
+      "aqi": 184,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 118.5,
+      "pm10": 195.0,
+      "no2": 45.1,
+      "so2": 18.2,
+      "co": 2.1,
+      "o3": 42.0,
+      "temp_c": 24,
+      "humidity": 65,
+      "wind_speed_kmh": 8.5,
+      "inversion_alert": "Coastal sea breeze moderates inversion in afternoon; morning vehicular spike.",
+      "safe_ventilation_window": "11:00 AM - 4:00 PM",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 210, "inversion": "Moderate"},
+        {"hour": "08:00", "aqi": 225, "inversion": "High"},
+        {"hour": "10:00", "aqi": 195, "inversion": "Moderate"},
+        {"hour": "12:00", "aqi": 165, "inversion": "Low"},
+        {"hour": "14:00", "aqi": 150, "inversion": "Low"},
+        {"hour": "16:00", "aqi": 160, "inversion": "Low"},
+        {"hour": "18:00", "aqi": 190, "inversion": "Moderate"},
+        {"hour": "20:00", "aqi": 205, "inversion": "Moderate"},
+        {"hour": "22:00", "aqi": 195, "inversion": "Moderate"}
+      ]
+    },
+    {
+      "id": "beijing",
+      "name": "Beijing",
+      "country": "China",
+      "region": "Northern China",
+      "aqi": 168,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 88.0,
+      "pm10": 135.0,
+      "no2": 52.0,
+      "so2": 12.0,
+      "co": 1.9,
+      "o3": 30.0,
+      "temp_c": 2,
+      "humidity": 45,
+      "wind_speed_kmh": 11.2,
+      "inversion_alert": "Winter heating season smog wave. Strong north wind expected tomorrow to clear basin.",
+      "safe_ventilation_window": "12:00 PM - 3:00 PM",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 190, "inversion": "Moderate"},
+        {"hour": "08:00", "aqi": 205, "inversion": "High"},
+        {"hour": "10:00", "aqi": 180, "inversion": "Moderate"},
+        {"hour": "12:00", "aqi": 150, "inversion": "Low"},
+        {"hour": "14:00", "aqi": 140, "inversion": "Low"},
+        {"hour": "16:00", "aqi": 155, "inversion": "Moderate"},
+        {"hour": "18:00", "aqi": 175, "inversion": "Moderate"},
+        {"hour": "20:00", "aqi": 185, "inversion": "Moderate"},
+        {"hour": "22:00", "aqi": 180, "inversion": "Moderate"}
+      ]
+    },
+    {
+      "id": "saltlakecity",
+      "name": "Salt Lake City",
+      "country": "United States",
+      "region": "Utah Valley Basin",
+      "aqi": 142,
+      "category": "Unhealthy for Sensitive Groups",
+      "primary_pollutant": "PM2.5",
+      "pm25": 52.4,
+      "pm10": 78.0,
+      "no2": 38.0,
+      "so2": 6.2,
+      "co": 1.2,
+      "o3": 32.0,
+      "temp_c": -1,
+      "humidity": 68,
+      "wind_speed_kmh": 3.2,
+      "inversion_alert": "Valley basin temperature inversion trapping wood smoke and vehicle exhaust.",
+      "safe_ventilation_window": "1:00 PM - 3:30 PM",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 155, "inversion": "High"},
+        {"hour": "08:00", "aqi": 168, "inversion": "High"},
+        {"hour": "10:00", "aqi": 150, "inversion": "Moderate"},
+        {"hour": "12:00", "aqi": 130, "inversion": "Low"},
+        {"hour": "14:00", "aqi": 115, "inversion": "Low"},
+        {"hour": "16:00", "aqi": 128, "inversion": "Moderate"},
+        {"hour": "18:00", "aqi": 145, "inversion": "High"},
+        {"hour": "20:00", "aqi": 158, "inversion": "High"},
+        {"hour": "22:00", "aqi": 160, "inversion": "High"}
+      ]
+    },
+    {
+      "id": "milan",
+      "name": "Milan",
+      "country": "Italy",
+      "region": "Po Valley",
+      "aqi": 156,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 65.0,
+      "pm10": 98.0,
+      "no2": 58.0,
+      "so2": 8.0,
+      "co": 1.5,
+      "o3": 25.0,
+      "temp_c": 5,
+      "humidity": 85,
+      "wind_speed_kmh": 2.5,
+      "inversion_alert": "Po Valley stagnation event with persistent ground fog and low vertical mixing.",
+      "safe_ventilation_window": "1:00 PM - 3:00 PM",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 165, "inversion": "High"},
+        {"hour": "08:00", "aqi": 180, "inversion": "High"},
+        {"hour": "10:00", "aqi": 162, "inversion": "Moderate"},
+        {"hour": "12:00", "aqi": 142, "inversion": "Low"},
+        {"hour": "14:00", "aqi": 130, "inversion": "Low"},
+        {"hour": "16:00", "aqi": 145, "inversion": "Moderate"},
+        {"hour": "18:00", "aqi": 168, "inversion": "High"},
+        {"hour": "20:00", "aqi": 178, "inversion": "High"},
+        {"hour": "22:00", "aqi": 172, "inversion": "High"}
+      ]
+    },
+    {
+      "id": "london",
+      "name": "London",
+      "country": "United Kingdom",
+      "region": "Greater London",
+      "aqi": 78,
+      "category": "Moderate",
+      "primary_pollutant": "NO2",
+      "pm25": 21.0,
+      "pm10": 34.0,
+      "no2": 42.0,
+      "so2": 5.0,
+      "co": 0.8,
+      "o3": 28.0,
+      "temp_c": 8,
+      "humidity": 75,
+      "wind_speed_kmh": 14.0,
+      "inversion_alert": "Light morning thermal layer clearing rapidly due to brisk Atlantic westerly breeze.",
+      "safe_ventilation_window": "10:00 AM - 5:00 PM",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 85, "inversion": "Low"},
+        {"hour": "08:00", "aqi": 98, "inversion": "Moderate"},
+        {"hour": "10:00", "aqi": 80, "inversion": "Low"},
+        {"hour": "12:00", "aqi": 68, "inversion": "None"},
+        {"hour": "14:00", "aqi": 65, "inversion": "None"},
+        {"hour": "16:00", "aqi": 75, "inversion": "Low"},
+        {"hour": "18:00", "aqi": 88, "inversion": "Moderate"},
+        {"hour": "20:00", "aqi": 82, "inversion": "Low"},
+        {"hour": "22:00", "aqi": 74, "inversion": "Low"}
+      ]
+    }
+  ],
+  "hacks": [
+    {
+      "id": "corsi-rosenthal",
+      "title": "DIY Corsi-Rosenthal Air Purifier Box",
+      "subtitle": "High-Efficiency Low-Cost HEPA Alternative",
+      "category": "Filtration",
+      "cost_tier": "$ (Under $50 vs $300 commercial)",
+      "efficacy": "Cuts indoor PM2.5 by 85-92% within 30 minutes",
+      "supplies": [
+        "1x 20-inch Box Fan ($20)",
+        "4x MERV 13 furnace filters (20x20x1 or 20x20x2)",
+        "Duct tape / Painter's tape",
+        "1x Cardboard shroud cutout for fan corners"
+      ],
+      "steps": [
+        "Create a cube using the four MERV 13 filters with arrows pointing inward toward the center.",
+        "Duct-tape all joints and corner seams tightly to prevent unpurified air bypass.",
+        "Tape cardboard sheet as the solid bottom base.",
+        "Place the 20-inch box fan on top, blowing air UPWARD into the room.",
+        "Cut a circular cardboard shroud around the fan blade circumference (increases airflow efficiency by 40%).",
+        "Run on low-medium speed for whisper-quiet continuous filtration."
+      ],
+      "impact": "Delivers 400+ CADR (Clean Air Delivery Rate), matching expensive commercial hospital-grade purifiers at 1/6th the cost."
+    },
+    {
+      "id": "inversion-ventilation",
+      "title": "Solar-Thermal Ventilation Timing Protocol",
+      "subtitle": "When to Open vs Seal Windows during Winter Smog",
+      "category": "Ventilation",
+      "cost_tier": "Free ($0)",
+      "efficacy": "Reduces indoor PM2.5 infiltration spikes by up to 60%",
+      "supplies": [
+        "Window seals / foam draft stoppers",
+        "Wet mop / damp cloth"
+      ],
+      "steps": [
+        "NEVER ventilate between 5:30 AM and 10:30 AM: Cold air traps heavy pollutants at ground level during morning inversion.",
+        "Open opposite windows strictly between 1:00 PM and 3:30 PM: Solar heating breaks the inversion layer, dispersing particulates higher into the troposphere.",
+        "Execute 'Flash Ventilation' (5 to 10 minutes maximum) to exchange stale CO2 without freezing the house.",
+        "Damp mop hard floors immediately after to trap settled micro-particulates without resuspending dust.",
+        "Seal windows tightly before sunset (4:30 PM) as ground cools and smog layer falls back down."
+      ],
+      "impact": "Keeps indoor CO2 below 900 ppm while avoiding peak toxic outdoor PM2.5 intrusion."
+    },
+    {
+      "id": "cooking-voc-shield",
+      "title": "Indoor Cooking & Combustion Emissions Shield",
+      "subtitle": "Stop Indoor Smog Multipliers",
+      "category": "Source Control",
+      "cost_tier": "Free to Low Cost",
+      "efficacy": "Prevents indoor AQI from surging beyond 500+ inside the kitchen",
+      "supplies": [
+        "Exhaust hood or kitchen exhaust fan",
+        "Lids for pots and pans",
+        "Electric kettle / Induction plate"
+      ],
+      "steps": [
+        "Always turn on exhaust fans 2 minutes BEFORE lighting a gas burner and leave running 5 minutes after.",
+        "Cover pots with tight-fitting lids; switch from high-heat deep frying to boiling/steaming during severe smog days.",
+        "Eliminate indoor combustion: zero incense sticks (agarbatti), zero scented paraffin candles, and zero wood-burning hearths.",
+        "Use electric kettle or induction plate when possible to avoid NO2 and formaldehyde byproducts from methane combustion."
+      ],
+      "impact": "Avoids creating an indoor pollution hotspot that can be 4x more toxic than outdoor air."
+    },
+    {
+      "id": "phyto-purifiers",
+      "title": "Bio-Filtration with Top NASA Houseplants",
+      "subtitle": "Natural Oxygenation & VOC Absorption",
+      "category": "Bio-filtration",
+      "cost_tier": "$ (Modest)",
+      "efficacy": "Absorbs formaldehyde, benzene, and replenishes indoor oxygen safely",
+      "supplies": [
+        "Snake Plant (Sansevieria)",
+        "Spider Plant (Chlorophytum comosum)",
+        "Areca Palm",
+        "Peace Lily"
+      ],
+      "steps": [
+        "Place Snake Plants in bedrooms: unlike most plants, they release oxygen at night (Crassulacean Acid Metabolism).",
+        "Keep Areca Palms in living rooms for natural humidity buffering in dry winter heated air.",
+        "Wipe plant leaves monthly with a damp cloth so leaf stomata remain unblocked by micro-dust.",
+        "Note: Keep Peace Lily out of reach of curious cats and dogs (non-pet friendly); Spider Plants are 100% pet-safe."
+      ],
+      "impact": "Improves indoor air feel, psychological well-being, and bio-filters trace organic compounds."
+    },
+    {
+      "id": "respiratory-seal",
+      "title": "Personal Exposure Defenses & Fit Testing",
+      "subtitle": "N95/FFP2 Optimization & Draft Elimination",
+      "category": "Personal Protection",
+      "cost_tier": "$ (Low)",
+      "efficacy": "Cuts inhaled PM2.5 by 95% on commutes",
+      "supplies": [
+        "Certified N95 / FFP2 / KF94 respirators (headband preferred over earloops)",
+        "Self-adhesive foam weatherstripping tape ($5)",
+        "Door bottom draft sweep"
+      ],
+      "steps": [
+        "Ensure respirator creates an airtight seal: perform positive/negative seal check with each wearing.",
+        "Cloth masks and surgical masks DO NOT filter sub-2.5 micron particles (they allow 70%+ particulate bypass).",
+        "Apply weatherstrip tape along loose door jambs and exterior window crevices.",
+        "Place rolled towel or silicone sweep along bedroom doors facing main stairwells or outdoor balconies."
+      ],
+      "impact": "Directly safeguards vulnerable pulmonary alveoli from micro-soot penetration."
+    }
+  ]
+}

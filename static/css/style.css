@@ -1,0 +1,130 @@
+/* Custom styling for Urban Air Quality Assistant */
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #091712;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #193e30;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #255d48;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Phone Frame Reproduction (Faithfully mirroring Challenge 06 phone mockup) */
+.phone-frame {
+  width: 375px;
+  height: 750px;
+  background: #18181b;
+  border: 10px solid #27272a;
+  border-radius: 48px;
+  overflow: hidden;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(16, 185, 129, 0.15);
+  display: flex;
+  flex-direction: column;
+}
+
+.phone-notch {
+  width: 100%;
+  height: 28px;
+  background: #071611;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+.notch-island {
+  width: 110px;
+  height: 20px;
+  background: #000;
+  border-radius: 20px;
+}
+
+.phone-screen {
+  flex: 1;
+  background: #071611;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.phone-nav {
+  height: 58px;
+}
+
+/* Chat bubble markdown typography */
+.prose-dark {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #e2e8f0;
+}
+
+.prose-dark h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose-dark h4 {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #34d399;
+  margin-top: 0.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.prose-dark p {
+  margin-bottom: 0.5rem;
+}
+
+.prose-dark ul {
+  list-style-type: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose-dark li {
+  margin-bottom: 0.25rem;
+}
+
+.prose-dark strong {
+  color: #ffffff;
+}
+
+.prose-dark hr {
+  border-color: #1e3a2f;
+  margin: 0.75rem 0;
+}
+
+/* Pulse animation for high hazard AQI */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(225, 29, 72, 0.75);
+  }
+}
+
+.glow-hazard {
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
