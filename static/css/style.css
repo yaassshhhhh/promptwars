@@ -1,4 +1,32 @@
-/* Custom styling for Urban Air Quality Assistant */
+/* Japanese Zen Shrine & Urban Air Quality Assistant Theme */
+
+/* Import Japanese Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+
+:root {
+  --torii-vermilion: #e11d48;
+  --torii-dark: #881337;
+  --shrine-gold: #f59e0b;
+  --zen-emerald: #10b981;
+  --lacquer-black: #080d0a;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--lacquer-black);
+  /* Subtle Japanese Asanoha / Seigaiha wave inspired background */
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.08) 0%, transparent 60%),
+    radial-gradient(circle at 100% 50%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
+    linear-gradient(rgba(10, 20, 15, 0.96), rgba(8, 13, 10, 0.98)),
+    radial-gradient(#16382b 0.75px, transparent 0.75px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+  background-attachment: fixed;
+}
+
+.font-kanji {
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+}
 
 /* Scrollbar styles */
 ::-webkit-scrollbar {
@@ -7,16 +35,16 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #091712;
+  background: #080d0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #193e30;
+  background: #1b4334;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #255d48;
+  background: #e11d48;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -27,15 +55,72 @@
   scrollbar-width: none;
 }
 
-/* Phone Frame Reproduction (Faithfully mirroring Challenge 06 phone mockup) */
+/* Japanese Shrine Torii Archway Banner Header */
+.shrine-hero {
+  position: relative;
+  background: linear-gradient(135deg, rgba(16, 37, 28, 0.9) 0%, rgba(10, 22, 17, 0.95) 50%, rgba(20, 10, 15, 0.9) 100%);
+  border: 1px solid rgba(225, 29, 72, 0.3);
+  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(225, 29, 72, 0.12);
+}
+
+.shrine-hero::before {
+  content: "清気守護";
+  position: absolute;
+  right: 2%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Shippori Mincho', serif;
+  font-size: 8rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.025);
+  pointer-events: none;
+  letter-spacing: 0.5rem;
+  writing-mode: vertical-rl;
+  line-height: 1;
+}
+
+/* Floating Lantern Glow Animation */
+@keyframes lanternGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.3);
+    border-color: rgba(245, 158, 11, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 28px rgba(245, 158, 11, 0.75), inset 0 0 14px rgba(245, 158, 11, 0.5);
+    border-color: rgba(245, 158, 11, 0.9);
+  }
+}
+
+.lantern-glow {
+  animation: lanternGlow 3s infinite ease-in-out;
+}
+
+/* Torii Vermilion Border Glow */
+.torii-border {
+  border-top: 3px solid #e11d48;
+  position: relative;
+}
+
+.torii-border::after {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: 15%;
+  right: 15%;
+  height: 3px;
+  background: #f59e0b;
+  box-shadow: 0 0 8px #f59e0b;
+}
+
+/* Phone Frame Reproduction with Japanese Zen Crest */
 .phone-frame {
   width: 375px;
   height: 750px;
-  background: #18181b;
-  border: 10px solid #27272a;
+  background: #0f1713;
+  border: 10px solid #202b25;
   border-radius: 48px;
   overflow: hidden;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.8), 0 0 40px rgba(16, 185, 129, 0.15);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(225, 29, 72, 0.2);
   display: flex;
   flex-direction: column;
 }
@@ -43,7 +128,7 @@
 .phone-notch {
   width: 100%;
   height: 28px;
-  background: #071611;
+  background: #080d0a;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -59,7 +144,7 @@
 
 .phone-screen {
   flex: 1;
-  background: #071611;
+  background: #080e0b;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -69,23 +154,27 @@
   height: 58px;
 }
 
-/* Chat bubble markdown typography */
+/* Chat bubble typography */
 .prose-dark {
   font-size: 0.875rem;
-  line-height: 1.5;
+  line-height: 1.55;
   color: #e2e8f0;
 }
 
 .prose-dark h3 {
-  font-size: 1rem;
+  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+  font-size: 1.05rem;
   font-weight: 700;
   color: #ffffff;
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
 }
 
 .prose-dark h4 {
-  font-size: 0.9rem;
+  font-size: 0.925rem;
   font-weight: 600;
   color: #34d399;
   margin-top: 0.5rem;
@@ -121,10 +210,15 @@
     box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
   }
   50% {
-    box-shadow: 0 0 30px rgba(225, 29, 72, 0.75);
+    box-shadow: 0 0 30px rgba(225, 29, 72, 0.85);
   }
 }
 
 .glow-hazard {
   animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Torii gate SVG decoration */
+.torii-icon {
+  filter: drop-shadow(0 2px 8px rgba(225, 29, 72, 0.5));
 }

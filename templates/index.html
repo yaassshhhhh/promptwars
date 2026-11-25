@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Urban Air Quality Assistant | GenAI Winter Smog & Community Guide</title>
+  <title>清気守護 • Urban Air Quality Assistant | Japanese Zen & GenAI Winter Smog Sanctuary</title>
+  
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -12,23 +13,33 @@
       theme: {
         extend: {
           colors: {
+            torii: {
+              DEFAULT: '#e11d48',
+              dark: '#9f1239',
+              light: '#fb7185',
+            },
             forest: {
-              900: '#071611',
-              800: '#0d281e',
-              700: '#16382b',
-              600: '#1e4d3a',
+              950: '#060f0b',
+              900: '#0a1a13',
+              800: '#0e291e',
+              700: '#173d2d',
+              600: '#1f523c',
               500: '#10b981',
               400: '#34d399',
             },
-            hazard: {
-              red: '#881337',
-              redLight: '#be123c',
-              orange: '#9a3412',
-              yellow: '#854d0e',
+            gold: {
+              DEFAULT: '#f59e0b',
+              glow: '#fbbf24',
+              soft: '#fef3c7',
+            },
+            sakura: {
+              DEFAULT: '#f472b6',
+              light: '#fbcfe8',
             }
           },
           fontFamily: {
-            sans: ['Inter', 'system-ui', '-apple-system', 'Segoe UI', 'Roboto', 'sans-serif'],
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            kanji: ['Shippori Mincho', 'Noto Serif JP', 'serif'],
           }
         }
       }
@@ -43,23 +54,35 @@
   <link rel="stylesheet" href="/static/css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 </head>
-<body class="bg-[#08120e] text-slate-100 font-sans min-h-screen antialiased selection:bg-emerald-500 selection:text-black">
+<body class="text-slate-100 font-sans min-h-screen antialiased selection:bg-rose-500 selection:text-white relative overflow-x-hidden">
 
-  <!-- Top Announcement Bar -->
-  <header class="border-b border-emerald-950/60 bg-[#0a1813]/90 backdrop-blur sticky top-0 z-50">
+  <!-- Top Announcement Bar (Japanese Shrine Sanctuary Header) -->
+  <header class="border-b border-emerald-950/80 bg-[#07130e]/95 backdrop-blur-md sticky top-0 z-40 relative">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      
+      <!-- Brand & Torii Shrine Symbol -->
       <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center shadow-lg shadow-emerald-900/30">
-          <i data-lucide="leaf" class="w-6 h-6 text-[#071611]"></i>
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-500 flex items-center justify-center shadow-lg shadow-rose-950/50 relative border border-rose-400/40">
+          <!-- Torii Gate Mini Icon -->
+          <svg class="w-6 h-6 text-white drop-shadow-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 5h20M4 8h16M7 5v15M17 5v15M6 13h12" />
+          </svg>
+          <span class="absolute -top-1 -right-1 w-2.5 h-2.5 rounded-full bg-amber-400 animate-ping"></span>
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-extrabold text-lg tracking-tight font-['Plus_Jakarta_Sans'] text-white">Urban Air Quality Assistant</span>
-            <span class="inline-flex items-center px-2 py-0.5 rounded text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">Challenge 06</span>
+            <span class="font-extrabold text-lg tracking-tight font-kanji text-white flex items-center gap-1.5">
+              <span>清気守護</span>
+              <span class="text-xs font-sans text-rose-400 font-normal">|</span>
+              <span class="font-sans text-base text-slate-100">Urban Air Quality</span>
+            </span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/40">
+              試練 06 • Challenge 06
+            </span>
           </div>
-          <p class="text-xs text-slate-400 hidden sm:block">Winter Smog Navigation &bull; Low-Emission Routines &bull; Community Action</p>
+          <p class="text-[11px] text-slate-400 hidden sm:block">Japanese Zen Sanctuary &bull; Winter Smog Navigation &bull; Low-Emission Routines</p>
         </div>
       </div>
 
@@ -67,27 +90,27 @@
       <div class="flex items-center gap-3">
         <!-- City Selector -->
         <div class="relative flex items-center">
-          <i data-lucide="map-pin" class="w-4 h-4 text-emerald-400 absolute left-3 pointer-events-none"></i>
-          <select id="citySelect" class="bg-[#12271f] text-slate-200 text-sm font-medium rounded-lg pl-9 pr-8 py-2 border border-emerald-800/60 focus:outline-none focus:ring-2 focus:ring-emerald-500 appearance-none cursor-pointer hover:border-emerald-600 transition">
+          <i data-lucide="map-pin" class="w-4 h-4 text-rose-400 absolute left-3 pointer-events-none"></i>
+          <select id="citySelect" class="bg-[#10241b] text-slate-200 text-sm font-medium rounded-xl pl-9 pr-8 py-2 border border-emerald-800/80 focus:outline-none focus:ring-2 focus:ring-rose-500 appearance-none cursor-pointer hover:border-rose-500 transition shadow-sm">
             <!-- Populated via JS -->
           </select>
           <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-2.5 pointer-events-none"></i>
         </div>
 
         <!-- Phone vs Dashboard View Toggle -->
-        <div class="bg-[#12271f] p-1 rounded-lg border border-emerald-800/60 hidden md:flex items-center">
-          <button id="viewDashboardBtn" class="px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 bg-emerald-600 text-white shadow-sm transition">
+        <div class="bg-[#10241b] p-1 rounded-xl border border-emerald-800/60 hidden md:flex items-center">
+          <button id="viewDashboardBtn" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 bg-rose-600 text-white shadow-sm transition">
             <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i>
             <span>Dashboard</span>
           </button>
-          <button id="viewPhoneBtn" class="px-3 py-1.5 rounded-md text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white transition">
+          <button id="viewPhoneBtn" class="px-3 py-1.5 rounded-lg text-xs font-semibold flex items-center gap-1.5 text-slate-400 hover:text-white transition">
             <i data-lucide="smartphone" class="w-3.5 h-3.5"></i>
             <span>App Preview</span>
           </button>
         </div>
 
         <!-- Settings / Key Modal Trigger -->
-        <button id="openSettingsBtn" class="p-2 rounded-lg bg-[#12271f] text-slate-300 hover:text-white border border-emerald-800/60 transition" title="Assistant Settings & API Key">
+        <button id="openSettingsBtn" class="p-2 rounded-xl bg-[#10241b] text-slate-300 hover:text-white border border-emerald-800/60 hover:border-rose-500 transition" title="Assistant Settings & API Key">
           <i data-lucide="sliders-horizontal" class="w-5 h-5"></i>
         </button>
       </div>
@@ -95,32 +118,66 @@
   </header>
 
   <!-- Main Container -->
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 relative z-10">
 
-    <!-- Challenge Banner (Inspired by Prompt Wars Graphic) -->
-    <div class="relative overflow-hidden rounded-2xl bg-gradient-to-r from-emerald-950/80 via-[#0f2a20] to-[#0c1f18] border border-emerald-800/40 p-6 mb-8 shadow-xl">
-      <div class="absolute -right-16 -top-16 w-64 h-64 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
-      <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 relative z-10">
+    <!-- Japanese Shrine Hero Banner (Torii Gate & Cherry Blossoms) -->
+    <div class="shrine-hero rounded-3xl p-6 sm:p-8 mb-8 relative overflow-hidden torii-border">
+      
+      <!-- Torii Gate Silhouette Backdrop Graphic -->
+      <div class="absolute right-6 -bottom-6 opacity-15 pointer-events-none hidden md:block">
+        <svg class="w-80 h-80 text-rose-500" viewBox="0 0 100 100" fill="currentColor">
+          <path d="M5 20 Q 50 15, 95 20 L 93 25 Q 50 21, 7 25 Z" />
+          <path d="M12 28 L 88 28 L 86 33 L 14 33 Z" />
+          <rect x="24" y="24" width="7" height="76" rx="1" />
+          <rect x="69" y="24" width="7" height="76" rx="1" />
+          <rect x="18" y="48" width="64" height="6" rx="1" />
+          <rect x="47" y="28" width="6" height="20" rx="1" />
+        </svg>
+      </div>
+
+      <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10">
         <div class="max-w-2xl">
-          <div class="flex items-center gap-2 mb-2">
-            <span class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider bg-blue-500/20 text-blue-300 border border-blue-500/30">Challenge 06</span>
-            <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-400 border border-emerald-500/30">
-              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Active Session
+          <div class="flex flex-wrap items-center gap-2 mb-3">
+            <span class="px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/40 flex items-center gap-1.5 shadow-sm">
+              <span class="w-2 h-2 rounded-full bg-rose-400 animate-ping"></span>
+              鳥居 • Sacred Clean Air Sanctuary
+            </span>
+            <span class="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-500/20 text-emerald-300 border border-emerald-500/40">
+              大気質守護 (Atmosphere Guardian)
             </span>
           </div>
-          <h1 class="text-2xl sm:text-3xl font-extrabold text-white font-['Plus_Jakarta_Sans'] tracking-tight">Urban Air Quality Assistant</h1>
-          <p class="text-slate-300 text-sm sm:text-base mt-2 leading-relaxed">
-            GenAI-powered defense against severe winter smog and urban air pollution. Suggesting low-emission daily routines, indoor air quality hacks, and sustainable alternatives tailored to your family's location and lifestyle — with quantified impact on your lungs and community.
+
+          <h1 class="text-3xl sm:text-4xl font-extrabold text-white font-kanji tracking-tight leading-tight">
+            Urban Air Quality Assistant <span class="text-rose-400 font-sans font-light text-2xl">| 呼吸の杜</span>
+          </h1>
+
+          <p class="text-slate-300 text-sm sm:text-base mt-2.5 leading-relaxed font-sans">
+            A GenAI-powered winter smog sanctuary inspired by Japanese environmental mindfulness (和 • 森林浴). Guiding families with low-emission daily routines, indoor air purification hacks (Corsi-Rosenthal boxes), and quantified impact on your lungs and community.
           </p>
+
+          <!-- Japanese Zen Values Badges -->
+          <div class="flex flex-wrap items-center gap-3 mt-4 text-xs text-emerald-300 font-medium">
+            <span class="flex items-center gap-1.5 bg-[#091a13]/80 px-2.5 py-1 rounded-lg border border-emerald-900/60">
+              <i data-lucide="wind" class="w-3.5 h-3.5 text-rose-400"></i> 風 (Kaze) AI Specialist
+            </span>
+            <span class="flex items-center gap-1.5 bg-[#091a13]/80 px-2.5 py-1 rounded-lg border border-emerald-900/60">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> 浄化 (Purification Hacks)
+            </span>
+            <span class="flex items-center gap-1.5 bg-[#091a13]/80 px-2.5 py-1 rounded-lg border border-emerald-900/60">
+              <i data-lucide="heart-pulse" class="w-3.5 h-3.5 text-sakura"></i> 功徳 (Health & CO₂ Sparing)
+            </span>
+          </div>
         </div>
-        <div class="flex flex-wrap items-center gap-3">
-          <button id="quickRoutineBtn" class="px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-sm shadow-lg shadow-emerald-900/40 flex items-center gap-2 transition transform active:scale-95">
-            <i data-lucide="sparkles" class="w-4 h-4"></i>
-            <span>Generate Today's Routine</span>
+
+        <!-- Quick Action Buttons with Shrine Gold & Vermilion Theme -->
+        <div class="flex flex-col sm:flex-row lg:flex-col gap-3 shrink-0">
+          <button id="quickRoutineBtn" class="px-5 py-3 rounded-xl bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-bold text-sm shadow-lg shadow-rose-950/60 flex items-center justify-center gap-2.5 transition transform active:scale-95 border border-rose-400/40">
+            <i data-lucide="sparkles" class="w-4 h-4 text-amber-200"></i>
+            <span>Generate Today's Routine (日課)</span>
           </button>
-          <button id="quickHacksBtn" class="px-4 py-2.5 rounded-xl bg-[#142e23] hover:bg-[#1a3a2d] text-emerald-300 border border-emerald-700/60 font-semibold text-sm flex items-center gap-2 transition">
-            <i data-lucide="shield-check" class="w-4 h-4"></i>
-            <span>Indoor Hacks & DIY Filter</span>
+          <button id="quickHacksBtn" class="px-5 py-3 rounded-xl bg-[#122c21] hover:bg-[#193a2c] text-emerald-300 border border-emerald-700/60 font-semibold text-sm flex items-center justify-center gap-2 transition">
+            <i data-lucide="shield-check" class="w-4 h-4 text-emerald-400"></i>
+            <span>DIY Purifier Blueprints (浄化法)</span>
           </button>
         </div>
       </div>
@@ -132,15 +189,21 @@
       <!-- Top Grid: Real-Time Air Quality & Winter Inversion Banner -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         
-        <!-- Live Air Quality Card (Prominent Card matching challenge style) -->
-        <div class="lg:col-span-5 rounded-2xl bg-gradient-to-b from-[#132820] to-[#0c1a14] border border-emerald-800/50 p-6 flex flex-col justify-between relative shadow-xl overflow-hidden">
+        <!-- Live Air Quality Card (Prominent Card matching challenge style with Japanese aesthetic) -->
+        <div class="lg:col-span-5 rounded-3xl bg-gradient-to-b from-[#132820] to-[#0a1611] border border-emerald-800/50 p-6 flex flex-col justify-between relative shadow-xl overflow-hidden">
+          
+          <!-- Background Kanji Watermark -->
+          <span class="absolute -right-3 -bottom-4 font-kanji text-7xl font-black text-white/[0.03] select-none pointer-events-none">大気</span>
+
           <div class="flex items-start justify-between">
             <div>
-              <p class="text-xs uppercase font-bold tracking-widest text-emerald-400">Current Ambient Status</p>
-              <h2 id="cardCityName" class="text-2xl font-bold text-white mt-1">Delhi NCR</h2>
+              <p class="text-xs uppercase font-bold tracking-widest text-emerald-400 flex items-center gap-1.5">
+                <span>大気状況</span> &bull; <span>Ambient Telemetry</span>
+              </p>
+              <h2 id="cardCityName" class="text-2xl font-bold text-white mt-1 font-kanji">Delhi NCR</h2>
               <p id="cardRegion" class="text-xs text-slate-400">Northern Plains &bull; Winter Smog Season</p>
             </div>
-            <div id="aqiBadge" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-hazard-red text-rose-100 border border-rose-500/40 flex items-center gap-1.5 shadow-lg shadow-rose-950/40">
+            <div id="aqiBadge" class="px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#881337] text-rose-100 border border-rose-500/40 flex items-center gap-1.5 shadow-lg shadow-rose-950/40 glow-hazard">
               <span class="w-2 h-2 rounded-full bg-rose-300 animate-ping"></span>
               <span id="aqiCategory">Hazardous</span>
             </div>
@@ -150,32 +213,32 @@
           <div class="my-6 flex items-baseline gap-4">
             <span id="cardAqiValue" class="text-6xl sm:text-7xl font-extrabold tracking-tighter text-white font-['Plus_Jakarta_Sans']">348</span>
             <div>
-              <span class="text-sm font-semibold text-rose-400 block">AQI Index</span>
+              <span class="text-sm font-semibold text-rose-400 block font-kanji">AQI 指標 (Index)</span>
               <span class="text-xs text-slate-400">Primary: <strong id="cardPrimaryPollutant" class="text-slate-200">PM2.5</strong></span>
             </div>
           </div>
 
           <!-- Pollutant Breakdown Grid -->
           <div class="grid grid-cols-3 gap-2.5 pt-4 border-t border-emerald-900/60">
-            <div class="bg-[#0b1712] p-2.5 rounded-xl border border-emerald-950">
-              <span class="text-[10px] text-slate-400 uppercase block font-semibold">PM2.5</span>
+            <div class="bg-[#091510] p-2.5 rounded-xl border border-emerald-950">
+              <span class="text-[10px] text-slate-400 uppercase block font-semibold">微小粒子 PM2.5</span>
               <span id="cardPm25" class="text-sm font-bold text-white">298.4 <span class="text-[10px] font-normal text-slate-400">µg/m³</span></span>
             </div>
-            <div class="bg-[#0b1712] p-2.5 rounded-xl border border-emerald-950">
-              <span class="text-[10px] text-slate-400 uppercase block font-semibold">PM10</span>
+            <div class="bg-[#091510] p-2.5 rounded-xl border border-emerald-950">
+              <span class="text-[10px] text-slate-400 uppercase block font-semibold">粒子状物質 PM10</span>
               <span id="cardPm10" class="text-sm font-bold text-white">420.1 <span class="text-[10px] font-normal text-slate-400">µg/m³</span></span>
             </div>
-            <div class="bg-[#0b1712] p-2.5 rounded-xl border border-emerald-950">
-              <span class="text-[10px] text-slate-400 uppercase block font-semibold">NO₂</span>
+            <div class="bg-[#091510] p-2.5 rounded-xl border border-emerald-950">
+              <span class="text-[10px] text-slate-400 uppercase block font-semibold">二酸化窒素 NO₂</span>
               <span id="cardNo2" class="text-sm font-bold text-white">68.2 <span class="text-[10px] font-normal text-slate-400">ppb</span></span>
             </div>
           </div>
 
-          <!-- Weather & Thermal Inversion Pill -->
-          <div class="mt-4 p-3 rounded-xl bg-hazard-red/20 border border-hazard-red/40 flex items-start gap-2.5">
+          <!-- Weather & Thermal Inversion Pill with Lantern Glow -->
+          <div class="mt-4 p-3 rounded-2xl bg-rose-950/40 border border-rose-500/40 flex items-start gap-2.5">
             <i data-lucide="cloud-fog" class="w-5 h-5 text-rose-400 shrink-0 mt-0.5"></i>
             <div>
-              <span class="text-xs font-bold text-rose-200 block">Winter Thermal Inversion Alert</span>
+              <span class="text-xs font-bold text-rose-200 block font-kanji">逆転層警報 (Thermal Inversion Alert)</span>
               <p id="cardInversionAlert" class="text-xs text-rose-100/80 mt-0.5 leading-snug">
                 Severe ground-level thermal inversion active until 11:30 AM. Pollutants trapped under cold air blanket.
               </p>
@@ -184,19 +247,19 @@
         </div>
 
         <!-- 24-Hour Winter Smog & Ventilation Curve Chart -->
-        <div class="lg:col-span-7 rounded-2xl bg-[#0e211a] border border-emerald-800/40 p-6 flex flex-col justify-between shadow-xl">
+        <div class="lg:col-span-7 rounded-3xl bg-[#0d2019] border border-emerald-800/40 p-6 flex flex-col justify-between shadow-xl">
           <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
             <div>
               <div class="flex items-center gap-2">
-                <h3 class="font-bold text-white text-base">Diurnal Smog Trajectory & Ventilation Window</h3>
+                <h3 class="font-bold text-white text-base font-kanji">24時間大気質・逆転層予測 (Diurnal Smog Trajectory)</h3>
                 <span class="px-2 py-0.5 rounded text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Inversion Forecast</span>
               </div>
               <p class="text-xs text-slate-400">Identifies safe flash-ventilation hours vs hazardous outdoor exposure periods</p>
             </div>
             <!-- Safe window pill -->
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
-              <i data-lucide="sun" class="w-4 h-4 text-emerald-400"></i>
-              <span>Safe Window: <strong id="safeVentWindow" class="text-white">1:30 PM - 3:30 PM</strong></span>
+            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/20 border border-emerald-500/30 text-emerald-300 text-xs font-semibold">
+              <i data-lucide="sun" class="w-4 h-4 text-amber-400"></i>
+              <span>清浄換気窓: <strong id="safeVentWindow" class="text-white">1:30 PM - 3:30 PM</strong></span>
             </div>
           </div>
 
@@ -207,19 +270,19 @@
 
           <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 text-center border-t border-emerald-950 pt-3">
             <div>
-              <span class="text-[10px] text-slate-400 block font-semibold">Morning Inversion</span>
+              <span class="text-[10px] text-slate-400 block font-semibold">朝の逆転層 (Morning)</span>
               <span class="text-xs font-bold text-rose-400">6:00 AM - 10:30 AM</span>
             </div>
             <div>
-              <span class="text-[10px] text-slate-400 block font-semibold">Solar Lift Window</span>
+              <span class="text-[10px] text-slate-400 block font-semibold">太陽光換気 (Solar Window)</span>
               <span class="text-xs font-bold text-emerald-400">1:30 PM - 3:30 PM</span>
             </div>
             <div>
-              <span class="text-[10px] text-slate-400 block font-semibold">Evening Stagnation</span>
+              <span class="text-[10px] text-slate-400 block font-semibold">夕方の停滞 (Evening)</span>
               <span class="text-xs font-bold text-amber-400">5:30 PM - 9:00 PM</span>
             </div>
             <div>
-              <span class="text-[10px] text-slate-400 block font-semibold">Optimal Purifier Mode</span>
+              <span class="text-[10px] text-slate-400 block font-semibold">清浄機稼働 (Purifier)</span>
               <span class="text-xs font-bold text-teal-300">Continuous 24h</span>
             </div>
           </div>
@@ -227,32 +290,32 @@
       </div>
 
       <!-- Vulnerable Household Profile Configurator -->
-      <div class="rounded-2xl bg-[#0f241c] border border-emerald-800/40 p-5 shadow-lg">
+      <div class="rounded-3xl bg-[#0e231b] border border-emerald-800/40 p-5 shadow-lg">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <h3 class="font-bold text-white text-base flex items-center gap-2">
-              <i data-lucide="users" class="w-5 h-5 text-emerald-400"></i>
-              <span>Family & Household Vulnerability Profile</span>
+            <h3 class="font-bold text-white text-base flex items-center gap-2 font-kanji">
+              <i data-lucide="shield" class="w-5 h-5 text-rose-400"></i>
+              <span>家族守護プロファイル (Family Vulnerability Safeguards)</span>
             </h3>
             <p class="text-xs text-slate-400 mt-0.5">Toggle vulnerable members to tailor GenAI recommendations, indoor thresholds, and daily alerts</p>
           </div>
           <!-- Toggle Checkboxes -->
           <div class="flex flex-wrap items-center gap-3">
-            <label class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#142e24] border border-emerald-700/40 cursor-pointer hover:border-emerald-500 transition text-xs font-medium">
-              <input type="checkbox" id="profileInfants" class="w-4 h-4 rounded text-emerald-600 focus:ring-0 cursor-pointer" checked>
-              <span>👶 Infants / Kids</span>
+            <label class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#132e23] border border-emerald-700/40 cursor-pointer hover:border-rose-500 transition text-xs font-medium">
+              <input type="checkbox" id="profileInfants" class="w-4 h-4 rounded text-rose-600 focus:ring-0 cursor-pointer" checked>
+              <span>👶 乳幼児 (Infants / Kids)</span>
             </label>
-            <label class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#142e24] border border-emerald-700/40 cursor-pointer hover:border-emerald-500 transition text-xs font-medium">
-              <input type="checkbox" id="profileElderly" class="w-4 h-4 rounded text-emerald-600 focus:ring-0 cursor-pointer">
-              <span>👵 Elderly (65+)</span>
+            <label class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#132e23] border border-emerald-700/40 cursor-pointer hover:border-rose-500 transition text-xs font-medium">
+              <input type="checkbox" id="profileElderly" class="w-4 h-4 rounded text-rose-600 focus:ring-0 cursor-pointer">
+              <span>👵 高齢者 (Elderly 65+)</span>
             </label>
-            <label class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#142e24] border border-emerald-700/40 cursor-pointer hover:border-emerald-500 transition text-xs font-medium">
-              <input type="checkbox" id="profileAsthma" class="w-4 h-4 rounded text-emerald-600 focus:ring-0 cursor-pointer" checked>
-              <span>🫁 Asthma / Allergies</span>
+            <label class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#132e23] border border-emerald-700/40 cursor-pointer hover:border-rose-500 transition text-xs font-medium">
+              <input type="checkbox" id="profileAsthma" class="w-4 h-4 rounded text-rose-600 focus:ring-0 cursor-pointer" checked>
+              <span>🫁 呼吸器系・喘息 (Asthma)</span>
             </label>
-            <label class="flex items-center gap-2 px-3 py-1.5 rounded-xl bg-[#142e24] border border-emerald-700/40 cursor-pointer hover:border-emerald-500 transition text-xs font-medium">
-              <input type="checkbox" id="profilePets" class="w-4 h-4 rounded text-emerald-600 focus:ring-0 cursor-pointer">
-              <span>🐾 Household Pets</span>
+            <label class="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-[#132e23] border border-emerald-700/40 cursor-pointer hover:border-rose-500 transition text-xs font-medium">
+              <input type="checkbox" id="profilePets" class="w-4 h-4 rounded text-rose-600 focus:ring-0 cursor-pointer">
+              <span>🐾 ペット (Household Pets)</span>
             </label>
           </div>
         </div>
@@ -261,21 +324,21 @@
       <!-- Main Two-Column Layout: GenAI Assistant & Lifestyle / Impact Dashboard -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
         
-        <!-- Left: Interactive GenAI Conversational Assistant -->
-        <div class="lg:col-span-7 flex flex-col rounded-2xl bg-[#0c1c16] border border-emerald-800/50 shadow-xl overflow-hidden h-[680px]">
+        <!-- Left: Interactive GenAI Conversational Assistant ("Aura • 風 (Kaze)") -->
+        <div class="lg:col-span-7 flex flex-col rounded-3xl bg-[#0a1813] border border-emerald-800/50 shadow-xl overflow-hidden h-[680px]">
           
-          <!-- Assistant Header -->
-          <div class="px-5 py-4 bg-[#11261e] border-b border-emerald-800/40 flex items-center justify-between">
+          <!-- Assistant Header with Japanese Shrine Emblem -->
+          <div class="px-5 py-4 bg-[#0f251d] border-b border-emerald-800/50 flex items-center justify-between">
             <div class="flex items-center gap-3">
               <div class="relative">
-                <div class="w-9 h-9 rounded-xl bg-gradient-to-tr from-emerald-500 to-teal-300 flex items-center justify-center text-[#071611] font-extrabold text-sm shadow-md">
-                  A
+                <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-400 flex items-center justify-center text-white font-extrabold text-sm shadow-md border border-rose-300/40">
+                  <span class="font-kanji">風</span>
                 </div>
-                <span class="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-400 border-2 border-[#11261e]"></span>
+                <span class="absolute -bottom-0.5 -right-0.5 w-3.5 h-3.5 rounded-full bg-emerald-400 border-2 border-[#0f251d]"></span>
               </div>
               <div>
                 <div class="flex items-center gap-2">
-                  <h4 class="font-bold text-white text-sm">Aura AI Assistant</h4>
+                  <h4 class="font-bold text-white text-sm font-kanji">Aura • 風 (Kaze) AI Specialist</h4>
                   <span id="aiProviderBadge" class="text-[10px] px-2 py-0.5 rounded font-medium bg-emerald-950 text-emerald-400 border border-emerald-800/60">
                     GenAI Reasoner
                   </span>
@@ -285,25 +348,25 @@
             </div>
             
             <div class="flex items-center gap-2">
-              <button id="clearChatBtn" class="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-[#1a382d] transition" title="Clear Chat">
+              <button id="clearChatBtn" class="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#18392d] transition" title="Clear Conversation">
                 <i data-lucide="trash-2" class="w-4 h-4"></i>
               </button>
             </div>
           </div>
 
           <!-- Quick Suggestion Pills -->
-          <div class="px-4 py-2.5 bg-[#0e2119] border-b border-emerald-900/40 flex items-center gap-2 overflow-x-auto no-scrollbar">
+          <div class="px-4 py-2.5 bg-[#0b1c15] border-b border-emerald-900/40 flex items-center gap-2 overflow-x-auto no-scrollbar">
             <span class="text-[11px] font-semibold text-slate-400 shrink-0">Try asking:</span>
-            <button class="quick-prompt-btn px-2.5 py-1 rounded-full bg-[#153125] hover:bg-emerald-700/40 text-emerald-300 text-xs whitespace-nowrap border border-emerald-800/40 transition">
+            <button class="quick-prompt-btn px-3 py-1 rounded-full bg-[#122e22] hover:bg-rose-700/40 text-emerald-300 text-xs whitespace-nowrap border border-emerald-800/50 transition">
               👶 Protect my toddler today
             </button>
-            <button class="quick-prompt-btn px-2.5 py-1 rounded-full bg-[#153125] hover:bg-emerald-700/40 text-emerald-300 text-xs whitespace-nowrap border border-emerald-800/40 transition">
+            <button class="quick-prompt-btn px-3 py-1 rounded-full bg-[#122e22] hover:bg-rose-700/40 text-emerald-300 text-xs whitespace-nowrap border border-emerald-800/50 transition">
               📅 Full low-emission routine
             </button>
-            <button class="quick-prompt-btn px-2.5 py-1 rounded-full bg-[#153125] hover:bg-emerald-700/40 text-emerald-300 text-xs whitespace-nowrap border border-emerald-800/40 transition">
+            <button class="quick-prompt-btn px-3 py-1 rounded-full bg-[#122e22] hover:bg-rose-700/40 text-emerald-300 text-xs whitespace-nowrap border border-emerald-800/50 transition">
               🌀 DIY Corsi-Rosenthal box
             </button>
-            <button class="quick-prompt-btn px-2.5 py-1 rounded-full bg-[#153125] hover:bg-emerald-700/40 text-emerald-300 text-xs whitespace-nowrap border border-emerald-800/40 transition">
+            <button class="quick-prompt-btn px-3 py-1 rounded-full bg-[#122e22] hover:bg-rose-700/40 text-emerald-300 text-xs whitespace-nowrap border border-emerald-800/50 transition">
               🪟 When to open windows?
             </button>
           </div>
@@ -314,19 +377,19 @@
           </div>
 
           <!-- Chat Input Bar -->
-          <div class="p-4 bg-[#11261e] border-t border-emerald-800/40">
+          <div class="p-4 bg-[#0f251d] border-t border-emerald-800/50">
             <form id="chatForm" class="flex items-center gap-2">
-              <button type="button" id="voiceInputBtn" class="p-2.5 rounded-xl bg-[#173429] text-emerald-300 hover:text-white hover:bg-emerald-700/50 transition border border-emerald-800/50" title="Voice Input">
+              <button type="button" id="voiceInputBtn" class="p-2.5 rounded-xl bg-[#143327] text-rose-300 hover:text-white hover:bg-rose-600 transition border border-emerald-800/60" title="Voice Input">
                 <i data-lucide="mic" class="w-5 h-5"></i>
               </button>
-              <input type="text" id="chatInput" placeholder="Ask Aura about routines, DIY purifiers, school runs, or smog impact..." class="flex-1 bg-[#091510] text-slate-100 placeholder-slate-500 text-sm rounded-xl px-4 py-2.5 border border-emerald-800/60 focus:outline-none focus:ring-2 focus:ring-emerald-500 transition">
-              <button type="submit" id="sendBtn" class="p-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold transition shadow-md shadow-emerald-950/60 flex items-center justify-center">
+              <input type="text" id="chatInput" placeholder="Ask Aura about routines, DIY purifiers, school runs, or smog impact..." class="flex-1 bg-[#07130e] text-slate-100 placeholder-slate-500 text-sm rounded-xl px-4 py-2.5 border border-emerald-800/60 focus:outline-none focus:ring-2 focus:ring-rose-500 transition">
+              <button type="submit" id="sendBtn" class="p-2.5 rounded-xl bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-semibold transition shadow-md shadow-rose-950/60 flex items-center justify-center">
                 <i data-lucide="send" class="w-5 h-5"></i>
               </button>
             </form>
             <div class="flex items-center justify-between text-[11px] text-slate-400 mt-2 px-1">
-              <span>Speaks your language &bull; Scientific aerosol guidance</span>
-              <span id="voiceStatus" class="text-emerald-400 hidden">Listening...</span>
+              <span>Scientific aerosol guidance &bull; Multi-language voice AI</span>
+              <span id="voiceStatus" class="text-rose-400 hidden font-bold">Listening...</span>
             </div>
           </div>
         </div>
@@ -335,41 +398,41 @@
         <div class="lg:col-span-5 space-y-6">
           
           <!-- Low-Emission Commute & Routine Optimizer Card -->
-          <div class="rounded-2xl bg-[#0f241c] border border-emerald-800/40 p-5 shadow-xl">
+          <div class="rounded-3xl bg-[#0e231b] border border-emerald-800/40 p-5 shadow-xl">
             <div class="flex items-center justify-between mb-4">
-              <h3 class="font-bold text-white text-base flex items-center gap-2">
+              <h3 class="font-bold text-white text-base flex items-center gap-2 font-kanji">
                 <i data-lucide="calendar-check" class="w-5 h-5 text-emerald-400"></i>
-                <span>Commute & Routine Configurator</span>
+                <span>日課設定 (Commute & Routine Configurator)</span>
               </h3>
-              <span class="text-xs text-emerald-400 font-semibold">Dynamic Impact</span>
+              <span class="text-xs text-rose-400 font-semibold">Dynamic Impact</span>
             </div>
 
             <!-- Transit Mode Selector -->
             <div class="space-y-4">
               <div>
-                <label class="text-xs text-slate-300 font-medium block mb-1.5">Your Daily Commute Mode</label>
+                <label class="text-xs text-slate-300 font-medium block mb-1.5 font-kanji">通勤・移動手段 (Commute Mode)</label>
                 <div class="grid grid-cols-3 gap-2" id="transitModeGroup">
-                  <button type="button" data-mode="metro" class="transit-btn active p-2 rounded-xl border border-emerald-500 bg-emerald-600/30 text-white text-xs font-semibold flex flex-col items-center gap-1">
-                    <i data-lucide="train" class="w-4 h-4 text-emerald-400"></i>
+                  <button type="button" data-mode="metro" class="transit-btn active p-2 rounded-xl border border-rose-500 bg-rose-600/30 text-white text-xs font-semibold flex flex-col items-center gap-1">
+                    <i data-lucide="train" class="w-4 h-4 text-rose-400"></i>
                     <span>Metro Rail</span>
                   </button>
-                  <button type="button" data-mode="carpool" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#142e23] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
+                  <button type="button" data-mode="carpool" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#132e22] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
                     <i data-lucide="users" class="w-4 h-4 text-emerald-400"></i>
                     <span>Carpool (3+)</span>
                   </button>
-                  <button type="button" data-mode="ev" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#142e23] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
+                  <button type="button" data-mode="ev" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#132e22] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
                     <i data-lucide="zap" class="w-4 h-4 text-emerald-400"></i>
                     <span>EV / E-Bus</span>
                   </button>
-                  <button type="button" data-mode="wfh" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#142e23] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
+                  <button type="button" data-mode="wfh" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#132e22] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
                     <i data-lucide="home" class="w-4 h-4 text-emerald-400"></i>
-                    <span>Work From Home</span>
+                    <span>Remote WFH</span>
                   </button>
-                  <button type="button" data-mode="solo_car" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#142e23] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
+                  <button type="button" data-mode="solo_car" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#132e22] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
                     <i data-lucide="car" class="w-4 h-4 text-rose-400"></i>
                     <span>Solo Petrol Car</span>
                   </button>
-                  <button type="button" data-mode="two_wheeler" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#142e23] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
+                  <button type="button" data-mode="two_wheeler" class="transit-btn p-2 rounded-xl border border-emerald-800/60 bg-[#132e22] text-slate-300 text-xs font-semibold flex flex-col items-center gap-1 hover:border-emerald-600">
                     <i data-lucide="bike" class="w-4 h-4 text-amber-400"></i>
                     <span>Motorcycle</span>
                   </button>
@@ -379,31 +442,32 @@
               <!-- Commute Distance Slider -->
               <div>
                 <div class="flex justify-between text-xs font-medium mb-1">
-                  <span class="text-slate-300">One-way Commute Distance</span>
+                  <span class="text-slate-300">通勤距離 (Commute Distance)</span>
                   <span id="commuteKmDisplay" class="text-emerald-400 font-bold">14 km</span>
                 </div>
-                <input type="range" id="commuteKmInput" min="2" max="45" value="14" step="1" class="w-full h-1.5 bg-[#17382b] rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                <input type="range" id="commuteKmInput" min="2" max="45" value="14" step="1" class="w-full h-1.5 bg-[#173a2c] rounded-lg appearance-none cursor-pointer accent-rose-500">
               </div>
 
               <!-- Air Purifier Runtime Slider -->
               <div>
                 <div class="flex justify-between text-xs font-medium mb-1">
-                  <span class="text-slate-300">Daily Indoor Air Purifier Hours</span>
+                  <span class="text-slate-300">空気清浄機稼働時間 (Purifier Runtime)</span>
                   <span id="purifierHoursDisplay" class="text-emerald-400 font-bold">10 hours</span>
                 </div>
-                <input type="range" id="purifierHoursInput" min="0" max="24" value="10" step="1" class="w-full h-1.5 bg-[#17382b] rounded-lg appearance-none cursor-pointer accent-emerald-500">
+                <input type="range" id="purifierHoursInput" min="0" max="24" value="10" step="1" class="w-full h-1.5 bg-[#173a2c] rounded-lg appearance-none cursor-pointer accent-emerald-500">
               </div>
             </div>
           </div>
 
           <!-- Direct Impact Card (Clearly explaining the direct impact of their choices) -->
-          <div class="rounded-2xl bg-gradient-to-br from-[#122b21] via-[#0d221a] to-[#091712] border border-emerald-700/50 p-5 shadow-xl">
+          <div class="rounded-3xl bg-gradient-to-br from-[#122b20] via-[#0e2119] to-[#07130e] border border-rose-500/40 p-5 shadow-xl relative overflow-hidden">
+            
             <div class="flex items-center justify-between mb-3">
-              <h3 class="font-bold text-white text-base flex items-center gap-2">
-                <i data-lucide="activity" class="w-5 h-5 text-emerald-400"></i>
-                <span>Direct Impact of Your Choices</span>
+              <h3 class="font-bold text-white text-base flex items-center gap-2 font-kanji">
+                <i data-lucide="activity" class="w-5 h-5 text-rose-400"></i>
+                <span>功徳・環境削減効果 (Direct Impact)</span>
               </h3>
-              <span class="px-2 py-0.5 rounded text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+              <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
                 Today's Savings
               </span>
             </div>
@@ -414,8 +478,8 @@
 
             <!-- Metrics Quad -->
             <div class="grid grid-cols-2 gap-3 mb-4">
-              <div class="p-3 rounded-xl bg-[#091712]/80 border border-emerald-900/60">
-                <span class="text-[10px] uppercase font-bold text-slate-400 block">Community CO₂ Saved</span>
+              <div class="p-3 rounded-2xl bg-[#08150f]/90 border border-emerald-900/60">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block font-kanji">CO₂ 削減量 (CO₂ Saved)</span>
                 <div class="flex items-baseline gap-1 mt-1">
                   <span id="impactCo2" class="text-2xl font-extrabold text-emerald-400 font-['Plus_Jakarta_Sans']">4.05</span>
                   <span class="text-xs font-semibold text-slate-400">kg</span>
@@ -423,38 +487,38 @@
                 <span class="text-[10px] text-emerald-300 mt-0.5 block">≈ 480 smartphone charges</span>
               </div>
 
-              <div class="p-3 rounded-xl bg-[#091712]/80 border border-emerald-900/60">
-                <span class="text-[10px] uppercase font-bold text-slate-400 block">PM2.5 Tailpipe Avoided</span>
+              <div class="p-3 rounded-2xl bg-[#08150f]/90 border border-emerald-900/60">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block font-kanji">排気煤塵回避 (PM2.5 Spared)</span>
                 <div class="flex items-baseline gap-1 mt-1">
                   <span id="impactPm25" class="text-2xl font-extrabold text-teal-300 font-['Plus_Jakarta_Sans']">1.06</span>
                   <span class="text-xs font-semibold text-slate-400">grams</span>
                 </div>
-                <span class="text-[10px] text-teal-400 mt-0.5 block">Soot spared from street level</span>
+                <span class="text-[10px] text-teal-400 mt-0.5 block">Soot spared from streets</span>
               </div>
 
-              <div class="p-3 rounded-xl bg-[#091712]/80 border border-emerald-900/60">
-                <span class="text-[10px] uppercase font-bold text-slate-400 block">Cigarettes Equivalent</span>
+              <div class="p-3 rounded-2xl bg-[#08150f]/90 border border-emerald-900/60">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block font-kanji">煙草換算吸入回避 (Cigarettes Eq.)</span>
                 <div class="flex items-baseline gap-1 mt-1">
                   <span id="impactCigs" class="text-2xl font-extrabold text-amber-400 font-['Plus_Jakarta_Sans']">8.7</span>
-                  <span class="text-xs font-semibold text-slate-400">cigs</span>
+                  <span class="text-xs font-semibold text-slate-400">本 (cigs)</span>
                 </div>
                 <span class="text-[10px] text-amber-300 mt-0.5 block">Toxicity shielded from lungs</span>
               </div>
 
-              <div class="p-3 rounded-xl bg-[#091712]/80 border border-emerald-900/60">
-                <span class="text-[10px] uppercase font-bold text-slate-400 block">Health Risk Reduction</span>
+              <div class="p-3 rounded-2xl bg-[#08150f]/90 border border-emerald-900/60">
+                <span class="text-[10px] uppercase font-bold text-slate-400 block font-kanji">健康リスク軽減 (Risk Drop)</span>
                 <div class="flex items-baseline gap-1 mt-1">
-                  <span id="impactRiskPct" class="text-2xl font-extrabold text-emerald-300 font-['Plus_Jakarta_Sans']">72%</span>
+                  <span id="impactRiskPct" class="text-2xl font-extrabold text-rose-300 font-['Plus_Jakarta_Sans']">72%</span>
                   <span class="text-xs font-semibold text-slate-400">lower</span>
                 </div>
-                <span class="text-[10px] text-emerald-400 mt-0.5 block">Bronchial stress index</span>
+                <span class="text-[10px] text-rose-400 mt-0.5 block">Bronchial stress index</span>
               </div>
             </div>
 
             <!-- Action Prompt -->
-            <button id="askImpactExplanationBtn" class="w-full py-2 rounded-xl bg-[#173a2d] hover:bg-emerald-700/40 text-emerald-300 border border-emerald-600/40 text-xs font-semibold flex items-center justify-center gap-2 transition">
-              <i data-lucide="help-circle" class="w-4 h-4"></i>
-              <span>Explain Scientific Calculations to Me</span>
+            <button id="askImpactExplanationBtn" class="w-full py-2.5 rounded-xl bg-[#143326] hover:bg-rose-700/40 text-emerald-300 border border-emerald-600/40 text-xs font-semibold flex items-center justify-center gap-2 transition">
+              <i data-lucide="help-circle" class="w-4 h-4 text-rose-400"></i>
+              <span>科学的算出根拠の解説 (Explain Scientific Math)</span>
             </button>
           </div>
 
@@ -465,13 +529,13 @@
       <section class="space-y-4 pt-4">
         <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
           <div>
-            <h3 class="text-xl font-bold text-white flex items-center gap-2">
-              <i data-lucide="wrench" class="w-5 h-5 text-emerald-400"></i>
-              <span>Indoor Air Quality Hacks & Sustainable Alternatives</span>
+            <h3 class="text-xl font-bold text-white flex items-center gap-2 font-kanji">
+              <i data-lucide="wrench" class="w-5 h-5 text-rose-400"></i>
+              <span>浄化の術 • Indoor Air Quality Hacks & Blueprints</span>
             </h3>
-            <p class="text-xs text-slate-400">Tested low-cost engineering interventions for high-smog episodes</p>
+            <p class="text-xs text-slate-400">Tested low-cost engineering interventions for severe winter smog episodes</p>
           </div>
-          <span class="text-xs text-emerald-400 font-medium">Click any hack for blueprints & step-by-step assembly</span>
+          <span class="text-xs text-rose-400 font-medium">Click any hack for blueprints & step-by-step assembly</span>
         </div>
 
         <div id="hacksGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -480,18 +544,18 @@
       </section>
 
       <!-- Community Smog Watch & Collaborative Reporting -->
-      <section class="rounded-2xl bg-[#0e221b] border border-emerald-800/40 p-6 shadow-xl space-y-6">
+      <section class="rounded-3xl bg-[#0c1f17] border border-emerald-800/40 p-6 shadow-xl space-y-6">
         <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
             <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">Community Watch</span>
-              <h3 class="text-lg font-bold text-white">Hyperlocal Smog Hotspots & Clean Air Actions</h3>
+              <span class="px-2.5 py-0.5 rounded text-xs font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30 font-kanji">共同体見守り</span>
+              <h3 class="text-lg font-bold text-white font-kanji">地域煤煙監視 (Hyperlocal Smog Hotspots & Clean Air Watch)</h3>
             </div>
             <p class="text-xs text-slate-400 mt-1">Crowdsourced reports of stubble/biomass burning, open trash fires, and localized diesel emissions</p>
           </div>
-          <button id="openReportModalBtn" class="px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-md shadow-amber-950/40">
+          <button id="openReportModalBtn" class="px-4 py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-semibold text-xs flex items-center gap-2 transition shadow-md shadow-amber-950/40">
             <i data-lucide="alert-triangle" class="w-4 h-4"></i>
-            <span>Report Emission Violation</span>
+            <span>Report Emission Violation (通報)</span>
           </button>
         </div>
 
@@ -502,7 +566,7 @@
 
     </div>
 
-    <!-- VIEW 2: PHONE PREVIEW VIEW (Faithfully reproducing Challenge 06 phone frame) -->
+    <!-- VIEW 2: PHONE PREVIEW VIEW (Faithfully reproducing Challenge 06 phone frame with Japanese touch) -->
     <div id="phoneView" class="hidden flex justify-center py-6">
       <div class="phone-frame shadow-2xl relative">
         
@@ -527,12 +591,14 @@
           <!-- App Header Inside Phone -->
           <div class="px-5 py-3 flex items-center justify-between">
             <div class="flex items-center gap-2.5">
-              <div class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center">
-                <i data-lucide="leaf" class="w-4 h-4 text-emerald-400"></i>
+              <div class="w-8 h-8 rounded-lg bg-rose-500/20 border border-rose-500/40 flex items-center justify-center">
+                <svg class="w-4 h-4 text-rose-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                  <path d="M2 5h20M4 8h16M7 5v15M17 5v15M6 13h12" />
+                </svg>
               </div>
-              <h2 class="text-base font-extrabold text-white tracking-tight">Urban Air<br><span class="text-emerald-400">Quality Assistant</span> 🌿</h2>
+              <h2 class="text-base font-extrabold text-white tracking-tight font-kanji">Urban Air<br><span class="text-rose-400">Quality Assistant</span> 🌿</h2>
             </div>
-            <span id="phoneCityPill" class="text-[11px] font-semibold px-2 py-1 rounded-full bg-[#18362b] text-emerald-300 border border-emerald-700/50">
+            <span id="phoneCityPill" class="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-[#142e22] text-emerald-300 border border-emerald-700/50">
               Delhi NCR
             </span>
           </div>
@@ -541,7 +607,7 @@
           <div class="px-5 py-2">
             <div id="phoneAqiCard" class="bg-gradient-to-r from-[#7a182b] to-[#911f35] rounded-2xl p-4 text-white shadow-lg cursor-pointer hover:opacity-95 transition flex items-center justify-between">
               <div>
-                <p class="text-xs uppercase font-medium text-rose-200 tracking-wider">Air Quality</p>
+                <p class="text-xs uppercase font-medium text-rose-200 tracking-wider">Air Quality (大気質)</p>
                 <h3 id="phoneAqiText" class="text-lg font-bold mt-0.5">Very Poor (AQI 312)</h3>
                 <p id="phonePrimaryText" class="text-[11px] text-rose-100/70 mt-0.5">PM2.5: 298.4 µg/m³ &bull; Inversion Alert</p>
               </div>
@@ -551,7 +617,7 @@
 
           <!-- Safe Window Banner -->
           <div class="px-5 py-2">
-            <div class="p-3 rounded-xl bg-[#132a21] border border-emerald-800/40 flex items-center gap-2.5 text-xs">
+            <div class="p-3 rounded-xl bg-[#10241b] border border-emerald-800/40 flex items-center gap-2.5 text-xs">
               <i data-lucide="sun" class="w-4 h-4 text-amber-400 shrink-0"></i>
               <div>
                 <span class="text-slate-300 font-medium">Safe Flash Ventilation Window:</span>
@@ -562,11 +628,11 @@
 
           <!-- Today's Suggestions Section (Exactly matching screenshot) -->
           <div class="px-5 py-3">
-            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Today's Suggestions</h4>
+            <h4 class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2 font-kanji">Today's Suggestions (本日の対策)</h4>
             <div class="space-y-2.5">
               
               <!-- Suggestion 1: Purifier (as in challenge screenshot) -->
-              <div class="p-3.5 rounded-xl bg-[#132b21] border border-emerald-800/40 hover:border-emerald-600 transition flex items-center justify-between cursor-pointer" onclick="handlePhoneSuggestion('purifier')">
+              <div class="p-3.5 rounded-xl bg-[#10251c] border border-emerald-800/40 hover:border-rose-500 transition flex items-center justify-between cursor-pointer" onclick="handlePhoneSuggestion('purifier')">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 rounded-lg bg-emerald-950 border border-emerald-700/50 flex items-center justify-center text-emerald-400">
                     <i data-lucide="air-vent" class="w-5 h-5"></i>
@@ -580,7 +646,7 @@
               </div>
 
               <!-- Suggestion 2: Low-emission commute -->
-              <div class="p-3.5 rounded-xl bg-[#132b21] border border-emerald-800/40 hover:border-emerald-600 transition flex items-center justify-between cursor-pointer" onclick="handlePhoneSuggestion('commute')">
+              <div class="p-3.5 rounded-xl bg-[#10251c] border border-emerald-800/40 hover:border-rose-500 transition flex items-center justify-between cursor-pointer" onclick="handlePhoneSuggestion('commute')">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 rounded-lg bg-emerald-950 border border-emerald-700/50 flex items-center justify-center text-emerald-400">
                     <i data-lucide="train" class="w-5 h-5"></i>
@@ -594,7 +660,7 @@
               </div>
 
               <!-- Suggestion 3: Cooking ventilation -->
-              <div class="p-3.5 rounded-xl bg-[#132b21] border border-emerald-800/40 hover:border-emerald-600 transition flex items-center justify-between cursor-pointer" onclick="handlePhoneSuggestion('cooking')">
+              <div class="p-3.5 rounded-xl bg-[#10251c] border border-emerald-800/40 hover:border-rose-500 transition flex items-center justify-between cursor-pointer" onclick="handlePhoneSuggestion('cooking')">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 rounded-lg bg-emerald-950 border border-emerald-700/50 flex items-center justify-center text-emerald-400">
                     <i data-lucide="flame-kindling" class="w-5 h-5"></i>
@@ -608,7 +674,7 @@
               </div>
 
               <!-- Suggestion 4: N95 Respirator -->
-              <div class="p-3.5 rounded-xl bg-[#132b21] border border-emerald-800/40 hover:border-emerald-600 transition flex items-center justify-between cursor-pointer" onclick="handlePhoneSuggestion('mask')">
+              <div class="p-3.5 rounded-xl bg-[#10251c] border border-emerald-800/40 hover:border-rose-500 transition flex items-center justify-between cursor-pointer" onclick="handlePhoneSuggestion('mask')">
                 <div class="flex items-center gap-3">
                   <div class="w-9 h-9 rounded-lg bg-emerald-950 border border-emerald-700/50 flex items-center justify-center text-emerald-400">
                     <i data-lucide="shield" class="w-5 h-5"></i>
@@ -626,8 +692,8 @@
 
           <!-- Direct Impact Card Inside Phone -->
           <div class="px-5 py-3">
-            <div class="p-4 rounded-xl bg-gradient-to-br from-[#10291e] to-[#0b1c15] border border-emerald-800/50">
-              <span class="text-[11px] font-bold text-emerald-400 uppercase tracking-wider block">Today's Personal Impact</span>
+            <div class="p-4 rounded-xl bg-gradient-to-br from-[#122c21] to-[#081510] border border-emerald-800/50">
+              <span class="text-[11px] font-bold text-rose-400 uppercase tracking-wider block font-kanji">今日の功徳 (Personal Impact)</span>
               <div class="flex items-center justify-between mt-2">
                 <div>
                   <span class="text-2xl font-extrabold text-white" id="phoneCo2Saved">4.05 kg</span>
@@ -642,8 +708,8 @@
           </div>
 
           <!-- Bottom Phone Navigation -->
-          <div class="phone-nav border-t border-emerald-950/80 bg-[#091712] py-2 px-6 flex justify-between items-center text-slate-400 text-[10px]">
-            <button class="flex flex-col items-center gap-1 text-emerald-400">
+          <div class="phone-nav border-t border-emerald-950/80 bg-[#07130e] py-2 px-6 flex justify-between items-center text-slate-400 text-[10px]">
+            <button class="flex flex-col items-center gap-1 text-rose-400">
               <i data-lucide="home" class="w-4 h-4"></i>
               <span>Today</span>
             </button>
@@ -668,9 +734,9 @@
   </main>
 
   <!-- Hack Detail Modal (For step-by-step blueprints) -->
-  <div id="hackModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#0e241c] border border-emerald-700/60 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 shadow-2xl relative">
-      <button id="closeHackModalBtn" class="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-[#153327] transition">
+  <div id="hackModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-[#0b1c15] border border-rose-500/40 rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-6 sm:p-8 shadow-2xl relative">
+      <button id="closeHackModalBtn" class="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#143327] transition">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
@@ -681,23 +747,23 @@
   </div>
 
   <!-- Report Community Violation Modal -->
-  <div id="reportModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#0e241c] border border-emerald-700/60 rounded-2xl max-w-lg w-full p-6 shadow-2xl relative">
-      <button id="closeReportModalBtn" class="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-[#153327] transition">
+  <div id="reportModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-[#0b1c15] border border-amber-500/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative">
+      <button id="closeReportModalBtn" class="absolute top-5 right-5 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#143327] transition">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div class="flex items-center gap-2 mb-4">
-        <div class="w-8 h-8 rounded-lg bg-amber-500/20 flex items-center justify-center text-amber-400">
-          <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+      <div class="flex items-center gap-3 mb-4">
+        <div class="w-9 h-9 rounded-xl bg-amber-500/20 flex items-center justify-center text-amber-400">
+          <i data-lucide="alert-triangle" class="w-5 h-5"></i>
         </div>
-        <h3 class="font-bold text-white text-lg">Report Smog / Emission Hotspot</h3>
+        <h3 class="font-bold text-white text-lg font-kanji">煤煙・汚染通報 (Report Smog Hotspot)</h3>
       </div>
 
       <form id="reportForm" class="space-y-4">
         <div>
           <label class="text-xs text-slate-300 font-semibold block mb-1">Violation Category</label>
-          <select id="reportType" class="w-full bg-[#122c22] text-white text-sm rounded-xl px-3.5 py-2.5 border border-emerald-800/60 focus:ring-2 focus:ring-emerald-500">
+          <select id="reportType" class="w-full bg-[#10281e] text-white text-sm rounded-xl px-3.5 py-2.5 border border-emerald-800/60 focus:ring-2 focus:ring-rose-500">
             <option value="Open Biomass Burning">Open Biomass / Leaf Burning</option>
             <option value="Garbage / Plastic Fire">Garbage / Plastic Burning</option>
             <option value="Uncovered Construction Dust">Uncovered Construction Dust</option>
@@ -708,33 +774,33 @@
 
         <div>
           <label class="text-xs text-slate-300 font-semibold block mb-1">Neighborhood / Landmark</label>
-          <input type="text" id="reportNeighborhood" placeholder="e.g. Rohini Sector 16 Park" required class="w-full bg-[#122c22] text-white text-sm rounded-xl px-3.5 py-2.5 border border-emerald-800/60 focus:ring-2 focus:ring-emerald-500">
+          <input type="text" id="reportNeighborhood" placeholder="e.g. Rohini Sector 16 Park" required class="w-full bg-[#10281e] text-white text-sm rounded-xl px-3.5 py-2.5 border border-emerald-800/60 focus:ring-2 focus:ring-rose-500">
         </div>
 
         <div>
           <label class="text-xs text-slate-300 font-semibold block mb-1">Incident Details</label>
-          <textarea id="reportDetails" rows="3" placeholder="Describe the smoke plume, time of occurrence, or nearby affected schools/homes..." required class="w-full bg-[#122c22] text-white text-sm rounded-xl px-3.5 py-2.5 border border-emerald-800/60 focus:ring-2 focus:ring-emerald-500"></textarea>
+          <textarea id="reportDetails" rows="3" placeholder="Describe the smoke plume, time of occurrence, or nearby affected schools/homes..." required class="w-full bg-[#10281e] text-white text-sm rounded-xl px-3.5 py-2.5 border border-emerald-800/60 focus:ring-2 focus:ring-rose-500"></textarea>
         </div>
 
-        <button type="submit" class="w-full py-2.5 rounded-xl bg-amber-600 hover:bg-amber-500 text-white font-bold text-sm shadow-lg shadow-amber-950/60 transition">
-          Submit Report to Civic Dashboard
+        <button type="submit" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-500 hover:to-amber-400 text-white font-bold text-sm shadow-lg shadow-amber-950/60 transition">
+          Submit Report to Civic Dashboard (通報送信)
         </button>
       </form>
     </div>
   </div>
 
   <!-- Settings & API Key Modal -->
-  <div id="settingsModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-4">
-    <div class="bg-[#0e241c] border border-emerald-700/60 rounded-2xl max-w-md w-full p-6 shadow-2xl relative">
-      <button id="closeSettingsModalBtn" class="absolute top-4 right-4 p-2 rounded-lg text-slate-400 hover:text-white hover:bg-[#153327] transition">
+  <div id="settingsModal" class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-4">
+    <div class="bg-[#0b1c15] border border-rose-500/40 rounded-3xl max-w-md w-full p-6 shadow-2xl relative">
+      <button id="closeSettingsModalBtn" class="absolute top-4 right-4 p-2 rounded-xl text-slate-400 hover:text-white hover:bg-[#143327] transition">
         <i data-lucide="x" class="w-5 h-5"></i>
       </button>
 
-      <div class="flex items-center gap-2 mb-4">
-        <div class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center text-emerald-400">
+      <div class="flex items-center gap-2.5 mb-4">
+        <div class="w-8 h-8 rounded-xl bg-rose-500/20 flex items-center justify-center text-rose-400">
           <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
         </div>
-        <h3 class="font-bold text-white text-lg">GenAI Assistant Settings</h3>
+        <h3 class="font-bold text-white text-lg font-kanji">設定 (Assistant Settings)</h3>
       </div>
 
       <div class="space-y-4 text-xs text-slate-300">
@@ -744,12 +810,12 @@
 
         <div>
           <label class="text-xs text-slate-200 font-semibold block mb-1">Google Gemini API Key (Optional)</label>
-          <input type="password" id="userGeminiKey" placeholder="AIzaSy..." class="w-full bg-[#122c22] text-white text-sm rounded-xl px-3.5 py-2.5 border border-emerald-800/60 focus:ring-2 focus:ring-emerald-500">
+          <input type="password" id="userGeminiKey" placeholder="AIzaSy..." class="w-full bg-[#10281e] text-white text-sm rounded-xl px-3.5 py-2.5 border border-emerald-800/60 focus:ring-2 focus:ring-rose-500">
           <p class="text-[11px] text-slate-400 mt-1">If provided, live queries will use Gemini 2.5 Flash. Otherwise, the built-in domain expert engine is used.</p>
         </div>
 
         <div class="pt-2 flex justify-end gap-2">
-          <button id="saveSettingsBtn" class="px-4 py-2 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-semibold text-xs transition">
+          <button id="saveSettingsBtn" class="px-4 py-2 rounded-xl bg-gradient-to-r from-rose-600 to-rose-500 hover:from-rose-500 hover:to-rose-400 text-white font-semibold text-xs transition">
             Save Settings
           </button>
         </div>
@@ -758,6 +824,7 @@
   </div>
 
   <!-- Scripts -->
+  <script src="/static/js/sakura_particles.js"></script>
   <script src="/static/js/impact.js"></script>
   <script src="/static/js/ai_chat.js"></script>
   <script src="/static/js/app.js"></script>

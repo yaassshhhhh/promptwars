@@ -112,13 +112,13 @@ window.AIChat = {
     const aqi = window.CurrentCityData ? window.CurrentCityData.aqi : 348;
     const cat = window.CurrentCityData ? window.CurrentCityData.category : "Hazardous";
 
-    const greeting = `### 🌿 Welcome to Urban Air Quality Assistant
-I am **Aura**, your GenAI specialist for navigating severe winter smog and urban air pollution in **${city}** (AQI: ${aqi} • ${cat}).
+    const greeting = `### ⛩️ 清気守護 • Urban Air Quality Assistant
+Konnichiwa! I am **Aura • 風 (Kaze)**, your GenAI sanctuary specialist for navigating severe winter smog and urban air pollution in **${city}** (AQI: ${aqi} • ${cat}).
 
-**How I can protect your family and community today:**
-1. **Low-Emission Routines**: Optimize your commute and outdoor timings to avoid ground-level thermal inversions.
-2. **Indoor Hacks**: Learn to build a \$40 DIY Corsi-Rosenthal HEPA box and time flash ventilation.
-3. **Quantified Impact**: See exactly how much $CO_2$ and micro-soot your transit and lifestyle choices spare.
+**How I safeguard your family and community today:**
+1. 🌬️ **Low-Emission Routines (日課)**: Optimize your commute and outdoor timings to avoid ground-level thermal inversions.
+2. 🌀 **Indoor Purification Hacks (浄化法)**: Build a \$45 DIY Corsi-Rosenthal HEPA box and time solar flash ventilation.
+3. 💚 **Quantified Impact (功徳)**: Track exact community $CO_2$ spared, $PM_{2.5}$ tailpipe emissions avoided, and cigarette equivalence.
 
 *What would you like to plan or safeguard right now?*`;
 
@@ -229,10 +229,10 @@ I am **Aura**, your GenAI specialist for navigating severe winter smog and urban
       }
 
       msgDiv.innerHTML = `
-        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-[#071611] font-bold text-xs shrink-0 shadow-sm mt-0.5">
-          A
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-400 flex items-center justify-center text-white font-bold text-xs shrink-0 shadow-sm mt-0.5 border border-rose-300/40 font-kanji">
+          風
         </div>
-        <div class="max-w-[88%] bg-[#10241c] text-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-md border border-emerald-800/40 prose-dark text-sm">
+        <div class="max-w-[88%] bg-[#0e221b] text-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-md border border-emerald-800/40 prose-dark text-sm">
           ${parsedHtml}
           ${impactBadge}
         </div>
@@ -250,8 +250,8 @@ I am **Aura**, your GenAI specialist for navigating severe winter smog and urban
     typingDiv.id = id;
     typingDiv.className = 'flex gap-3 justify-start';
     typingDiv.innerHTML = `
-      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-emerald-600 to-teal-400 flex items-center justify-center text-[#071611] font-bold text-xs shrink-0 shadow-sm mt-0.5">
-        A
+      <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-400 flex items-center justify-center text-white font-bold text-xs shrink-0 shadow-sm mt-0.5 border border-rose-300/40 font-kanji">
+        風
       </div>
       <div class="bg-[#10241c] rounded-2xl rounded-tl-sm px-4 py-3 border border-emerald-800/40 flex items-center gap-1.5">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-bounce"></span>

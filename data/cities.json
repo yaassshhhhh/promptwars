@@ -216,6 +216,68 @@
         {"hour": "20:00", "aqi": 82, "inversion": "Low"},
         {"hour": "22:00", "aqi": 74, "inversion": "Low"}
       ]
+    },
+    {
+      "id": "tokyo",
+      "name": "Tokyo (東京)",
+      "country": "Japan",
+      "region": "Kanto Basin",
+      "aqi": 42,
+      "category": "Good",
+      "primary_pollutant": "PM2.5",
+      "pm25": 10.2,
+      "pm10": 18.4,
+      "no2": 24.1,
+      "so2": 3.2,
+      "co": 0.4,
+      "o3": 31.0,
+      "temp_c": 9,
+      "humidity": 52,
+      "wind_speed_kmh": 12.4,
+      "inversion_alert": "Crisp winter sea breeze from Tokyo Bay maintains excellent air clarity; Mount Fuji visible.",
+      "safe_ventilation_window": "All Day (Optimal: 10:00 AM - 4:00 PM)",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 48, "inversion": "None"},
+        {"hour": "08:00", "aqi": 56, "inversion": "Low"},
+        {"hour": "10:00", "aqi": 45, "inversion": "None"},
+        {"hour": "12:00", "aqi": 38, "inversion": "None (Pristine)"},
+        {"hour": "14:00", "aqi": 35, "inversion": "None (Pristine)"},
+        {"hour": "16:00", "aqi": 40, "inversion": "None"},
+        {"hour": "18:00", "aqi": 52, "inversion": "Low"},
+        {"hour": "20:00", "aqi": 46, "inversion": "None"},
+        {"hour": "22:00", "aqi": 41, "inversion": "None"}
+      ]
+    },
+    {
+      "id": "kyoto",
+      "name": "Kyoto (京都)",
+      "country": "Japan",
+      "region": "Kansai Mountain Basin",
+      "aqi": 64,
+      "category": "Moderate",
+      "primary_pollutant": "PM2.5",
+      "pm25": 18.0,
+      "pm10": 26.5,
+      "no2": 28.0,
+      "so2": 4.1,
+      "co": 0.6,
+      "o3": 29.0,
+      "temp_c": 7,
+      "humidity": 68,
+      "wind_speed_kmh": 6.8,
+      "inversion_alert": "Morning mountain basin mist (霧) around Higashiyama; clears by mid-day under bamboo canopy.",
+      "safe_ventilation_window": "11:30 AM - 4:00 PM",
+      "hourly_forecast": [
+        {"hour": "06:00", "aqi": 72, "inversion": "Moderate"},
+        {"hour": "08:00", "aqi": 78, "inversion": "Moderate"},
+        {"hour": "10:00", "aqi": 66, "inversion": "Low"},
+        {"hour": "12:00", "aqi": 55, "inversion": "None"},
+        {"hour": "14:00", "aqi": 50, "inversion": "None (Zen Window)"},
+        {"hour": "16:00", "aqi": 58, "inversion": "Low"},
+        {"hour": "18:00", "aqi": 68, "inversion": "Moderate"},
+        {"hour": "20:00", "aqi": 65, "inversion": "Low"},
+        {"hour": "22:00", "aqi": 60, "inversion": "Low"}
+      ]
     }
   ],
   "hacks": [
