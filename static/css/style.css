@@ -67,6 +67,26 @@ body {
   animation: samuraiBreathing 20s infinite ease-in-out;
   transform-origin: 50% 30%;
   will-change: transform;
+  z-index: 0;
+}
+
+.samurai-video-bg {
+  position: absolute;
+  inset: -20px;
+  width: calc(100% + 40px);
+  height: calc(100% + 40px);
+  object-fit: cover;
+  object-position: center 25%;
+  filter: brightness(0.92) contrast(1.15) saturate(1.22);
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 1.2s ease-in-out;
+  will-change: opacity, transform;
+}
+
+.samurai-video-bg.is-loaded {
+  opacity: 1;
 }
 
 /* Pulsing Red Aura Behind Blood Moon */
@@ -81,7 +101,7 @@ body {
   background: radial-gradient(circle, rgba(239, 68, 68, 0.45) 0%, rgba(220, 38, 38, 0.25) 45%, rgba(153, 27, 27, 0.08) 70%, transparent 85%);
   filter: blur(28px);
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
   animation: bloodMoonAuraPulse 4s infinite alternate ease-in-out;
   mix-blend-mode: screen;
 }
@@ -111,7 +131,7 @@ body {
   transform: rotate(32deg);
   opacity: 0;
   pointer-events: none;
-  z-index: 2;
+  z-index: 3;
   animation: katanaShine 6.5s infinite ease-in-out 2.5s;
 }
 
@@ -126,7 +146,7 @@ body {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 3;
+  z-index: 4;
   background: 
     radial-gradient(ellipse at 50% 100%, rgba(3, 7, 5, 0.78) 0%, rgba(3, 7, 5, 0.3) 45%, transparent 75%),
     radial-gradient(circle at 85% 30%, rgba(220, 38, 38, 0.12) 0%, transparent 40%),

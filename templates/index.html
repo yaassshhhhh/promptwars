@@ -60,9 +60,22 @@
 
 <body class="min-h-screen text-slate-100 antialiased selection:bg-rose-600 selection:text-white relative">
 
-  <!-- LIVING 3D ANIMATED SAMURAI & BLOOD MOON BACKDROP -->
+  <!-- LIVING 3D ANIMATED SAMURAI & BLOOD MOON VIDEO BACKDROP -->
   <div class="samurai-backdrop-wrapper">
     <div class="samurai-backdrop"></div>
+    <video
+      id="bgVideo"
+      class="samurai-video-bg"
+      autoplay
+      loop
+      muted
+      playsinline
+      webkit-playsinline
+      preload="auto"
+      poster="/static/images/samurai_bg.jpg"
+    >
+      <source src="/static/videos/background.mp4" type="video/mp4">
+    </video>
     <div class="blood-moon-aura"></div>
     <div class="katana-glint"></div>
     <div class="ink-mist-layer"></div>

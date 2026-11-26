@@ -423,6 +423,7 @@
   window.toggleZenAmbience = function () {
     const actx = getAudioCtx();
     const btn = document.getElementById('zenAmbienceToggleBtn');
+    const bgVid = document.getElementById('bgVideo');
 
     if (isZenAmbienceActive) {
       // Turn OFF
@@ -430,16 +431,21 @@
         ambientDroneGain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.8);
       }
       if (bambooTimer) clearInterval(bambooTimer);
+      if (bgVid) bgVid.muted = true;
       isZenAmbienceActive = false;
       if (btn) {
-        btn.innerHTML = `<i data-lucide="volume-x" class="w-4 h-4 text-slate-400"></i><span class="text-xs font-kanji font-bold">雅楽: 停止 (Off)</span>`;
+        btn.innerHTML = `<i data-lucide="music" class="w-4 h-4 text-amber-400"></i><span class="text-xs font-bold hidden sm:inline">Ambience</span>`;
         btn.classList.remove('border-rose-500', 'bg-rose-950/60');
       }
     } else {
       // Turn ON
       isZenAmbienceActive = true;
+      if (bgVid) {
+        bgVid.muted = false;
+        bgVid.volume = 0.55;
+      }
       if (btn) {
-        btn.innerHTML = `<i data-lucide="volume-2" class="w-4 h-4 text-rose-400 animate-pulse"></i><span class="text-xs font-kanji font-bold text-rose-200">雅楽: 再生中 (Zen On)</span>`;
+        btn.innerHTML = `<i data-lucide="volume-2" class="w-4 h-4 text-rose-400 animate-pulse"></i><span class="text-xs font-bold text-rose-200">Playing Ambience</span>`;
         btn.classList.add('border-rose-500', 'bg-rose-950/60');
       }
 
@@ -480,4 +486,45 @@
 
     if (window.lucide) lucide.createIcons();
   };
+
+  // Handle background video initialization & smooth fade-in
+  function initBackgroundVideo() {
+    const bgVideo = document.getElementById('bgVideo');
+    if (!bgVideo) return;
+
+    const markVideoActive = () => {
+      bgVideo.classList.add('is-loaded');
+    };
+
+    if (bgVideo.readyState >= 2) {
+      markVideoActive();
+    } else {
+      bgVideo.addEventListener('playing', markVideoActive, { once: true });
+      bgVideo.addEventListener('canplay', markVideoActive, { once: true });
+    }
+
+    const tryPlay = () => {
+      bgVideo.muted = true;
+      const p = bgVideo.play();
+      if (p !== undefined) {
+        p.then(markVideoActive).catch(() => {
+          const userPlay = () => {
+            bgVideo.play().then(markVideoActive).catch(() => {});
+            window.removeEventListener('click', userPlay);
+            window.removeEventListener('touchstart', userPlay);
+          };
+          window.addEventListener('click', userPlay, { once: true });
+          window.addEventListener('touchstart', userPlay, { once: true });
+        });
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', tryPlay);
+    } else {
+      tryPlay();
+    }
+  }
+
+  initBackgroundVideo();
 })();
