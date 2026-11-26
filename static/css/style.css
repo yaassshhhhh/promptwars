@@ -1,26 +1,28 @@
-/* Japanese Zen Shrine & Urban Air Quality Assistant Theme */
+/* Japanese Zen Shrine & Sakura Atmospheric Master Theme */
 
-/* Import Japanese Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;600;700;900&family=Shippori+Mincho:wght@500;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 
 :root {
   --torii-vermilion: #e11d48;
   --torii-dark: #881337;
   --shrine-gold: #f59e0b;
   --zen-emerald: #10b981;
-  --lacquer-black: #080d0a;
+  --sakura-pink: #f472b6;
+  --sakura-soft: #fbcfe8;
+  --lacquer-black: #060d09;
 }
 
 body {
   font-family: 'Inter', sans-serif;
   background-color: var(--lacquer-black);
-  /* Subtle Japanese Asanoha / Seigaiha wave inspired background */
+  /* Traditional Japanese layered background: Seigaiha waves + Asanoha hemp + soft Sakura mist */
   background-image: 
-    radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.08) 0%, transparent 60%),
-    radial-gradient(circle at 100% 50%, rgba(16, 185, 129, 0.06) 0%, transparent 50%),
-    linear-gradient(rgba(10, 20, 15, 0.96), rgba(8, 13, 10, 0.98)),
-    radial-gradient(#16382b 0.75px, transparent 0.75px);
-  background-size: 100% 100%, 100% 100%, 100% 100%, 28px 28px;
+    radial-gradient(circle at 50% 0%, rgba(225, 29, 72, 0.14) 0%, transparent 65%),
+    radial-gradient(circle at 10% 30%, rgba(244, 114, 182, 0.09) 0%, transparent 45%),
+    radial-gradient(circle at 90% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 50%),
+    linear-gradient(rgba(8, 16, 12, 0.97), rgba(6, 11, 8, 0.98)),
+    radial-gradient(#1e4636 0.8px, transparent 0.8px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 26px 26px;
   background-attachment: fixed;
 }
 
@@ -28,23 +30,20 @@ body {
   font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
 }
 
-/* Scrollbar styles */
+/* Custom Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
-
 ::-webkit-scrollbar-track {
-  background: #080d0a;
+  background: #060d09;
 }
-
 ::-webkit-scrollbar-thumb {
-  background: #1b4334;
+  background: #e11d48;
   border-radius: 9999px;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-  background: #e11d48;
+  background: #fb7185;
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -55,72 +54,118 @@ body {
   scrollbar-width: none;
 }
 
-/* Japanese Shrine Torii Archway Banner Header */
+/* Japanese Corner Sakura Branches (Overhang) */
+.sakura-branch-tl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 320px;
+  height: 240px;
+  pointer-events: none;
+  z-index: 25;
+  filter: drop-shadow(0 6px 16px rgba(225, 29, 72, 0.25));
+  opacity: 0.88;
+  transition: opacity 0.3s ease;
+}
+
+.sakura-branch-tr {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 340px;
+  height: 260px;
+  pointer-events: none;
+  z-index: 25;
+  filter: drop-shadow(0 6px 16px rgba(225, 29, 72, 0.25));
+  opacity: 0.88;
+  transform: scaleX(-1);
+  transition: opacity 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .sakura-branch-tl, .sakura-branch-tr {
+    width: 200px;
+    height: 150px;
+    opacity: 0.65;
+  }
+}
+
+/* Japanese Shrine Torii Hero Architecture */
 .shrine-hero {
   position: relative;
-  background: linear-gradient(135deg, rgba(16, 37, 28, 0.9) 0%, rgba(10, 22, 17, 0.95) 50%, rgba(20, 10, 15, 0.9) 100%);
-  border: 1px solid rgba(225, 29, 72, 0.3);
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.8), 0 0 25px rgba(225, 29, 72, 0.12);
+  background: linear-gradient(135deg, rgba(20, 38, 29, 0.95) 0%, rgba(12, 22, 17, 0.96) 55%, rgba(30, 12, 20, 0.95) 100%);
+  border: 1px solid rgba(225, 29, 72, 0.45);
+  box-shadow: 0 16px 50px -10px rgba(0, 0, 0, 0.85), 0 0 30px rgba(225, 29, 72, 0.18);
+  border-radius: 2rem;
+  overflow: hidden;
 }
 
-.shrine-hero::before {
-  content: "清気守護";
-  position: absolute;
-  right: 2%;
-  top: 50%;
-  transform: translateY(-50%);
+/* Traditional Red Hanko / Inkan Stamp (印鑑) */
+.hanko-stamp {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 52px;
+  height: 52px;
+  border: 2.5px solid #e11d48;
+  border-radius: 8px;
+  color: #e11d48;
   font-family: 'Shippori Mincho', serif;
-  font-size: 8rem;
   font-weight: 900;
-  color: rgba(255, 255, 255, 0.025);
-  pointer-events: none;
-  letter-spacing: 0.5rem;
-  writing-mode: vertical-rl;
-  line-height: 1;
+  font-size: 14px;
+  line-height: 1.1;
+  background: rgba(225, 29, 72, 0.08);
+  box-shadow: inset 0 0 8px rgba(225, 29, 72, 0.25), 0 0 12px rgba(225, 29, 72, 0.3);
+  transform: rotate(-4deg);
+  letter-spacing: -0.5px;
+  user-select: none;
 }
 
-/* Floating Lantern Glow Animation */
-@keyframes lanternGlow {
+/* Hanging Japanese Shrine Lantern Sway Animation */
+@keyframes lanternSway {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(245, 158, 11, 0.4), inset 0 0 8px rgba(245, 158, 11, 0.3);
-    border-color: rgba(245, 158, 11, 0.6);
+    transform: rotate(0deg);
   }
-  50% {
-    box-shadow: 0 0 28px rgba(245, 158, 11, 0.75), inset 0 0 14px rgba(245, 158, 11, 0.5);
-    border-color: rgba(245, 158, 11, 0.9);
+  33% {
+    transform: rotate(3deg);
+  }
+  66% {
+    transform: rotate(-3deg);
   }
 }
 
-.lantern-glow {
-  animation: lanternGlow 3s infinite ease-in-out;
+.lantern-sway {
+  transform-origin: top center;
+  animation: lanternSway 6s infinite ease-in-out;
 }
 
-/* Torii Vermilion Border Glow */
-.torii-border {
+/* Torii Vermilion Card Border & Eaves */
+.torii-card {
   border-top: 3px solid #e11d48;
   position: relative;
 }
 
-.torii-border::after {
+.torii-card::before {
   content: "";
   position: absolute;
   top: -3px;
-  left: 15%;
-  right: 15%;
+  left: 20%;
+  right: 20%;
   height: 3px;
   background: #f59e0b;
-  box-shadow: 0 0 8px #f59e0b;
+  box-shadow: 0 0 10px #f59e0b;
 }
 
-/* Phone Frame Reproduction with Japanese Zen Crest */
+/* Phone Frame Reproduction with Japanese Shrine Touch */
 .phone-frame {
   width: 375px;
   height: 750px;
-  background: #0f1713;
-  border: 10px solid #202b25;
+  background: #0b1410;
+  border: 10px solid #1f3027;
   border-radius: 48px;
   overflow: hidden;
-  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.9), 0 0 35px rgba(225, 29, 72, 0.2);
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.95), 0 0 40px rgba(225, 29, 72, 0.25);
   display: flex;
   flex-direction: column;
 }
@@ -128,7 +173,7 @@ body {
 .phone-notch {
   width: 100%;
   height: 28px;
-  background: #080d0a;
+  background: #060c09;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -144,7 +189,7 @@ body {
 
 .phone-screen {
   flex: 1;
-  background: #080e0b;
+  background: #07100c;
   display: flex;
   flex-direction: column;
   position: relative;
@@ -154,10 +199,10 @@ body {
   height: 58px;
 }
 
-/* Chat bubble typography */
+/* Markdown prose styling */
 .prose-dark {
   font-size: 0.875rem;
-  line-height: 1.55;
+  line-height: 1.6;
   color: #e2e8f0;
 }
 
@@ -176,7 +221,7 @@ body {
 .prose-dark h4 {
   font-size: 0.925rem;
   font-weight: 600;
-  color: #34d399;
+  color: #f472b6;
   margin-top: 0.5rem;
   margin-bottom: 0.25rem;
 }
@@ -200,17 +245,17 @@ body {
 }
 
 .prose-dark hr {
-  border-color: #1e3a2f;
+  border-color: #244637;
   margin: 0.75rem 0;
 }
 
 /* Pulse animation for high hazard AQI */
 @keyframes pulseGlow {
   0%, 100% {
-    box-shadow: 0 0 15px rgba(225, 29, 72, 0.4);
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.45);
   }
   50% {
-    box-shadow: 0 0 30px rgba(225, 29, 72, 0.85);
+    box-shadow: 0 0 32px rgba(225, 29, 72, 0.85);
   }
 }
 
@@ -218,7 +263,7 @@ body {
   animation: pulseGlow 2.5s infinite ease-in-out;
 }
 
-/* Torii gate SVG decoration */
-.torii-icon {
-  filter: drop-shadow(0 2px 8px rgba(225, 29, 72, 0.5));
+/* Zen wind chime button animation */
+.chime-btn:hover i {
+  animation: lanternSway 1s infinite ease-in-out;
 }
