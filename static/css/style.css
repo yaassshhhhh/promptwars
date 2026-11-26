@@ -24,12 +24,18 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Outfit', sans-serif;
+  letter-spacing: -0.012em;
   background-color: var(--kuro-urushi);
   color: #f1f5f9;
   overflow-x: hidden;
   position: relative;
   min-height: 100vh;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Outfit', 'Space Grotesk', sans-serif;
+  letter-spacing: -0.025em;
 }
 
 /* ==========================================================================
@@ -171,14 +177,14 @@ body {
 
 /* Typography Classes (Modern Executive Sans) */
 .font-kanji {
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 .font-calligraphy {
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 .font-sacred {
-  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
-  letter-spacing: 0.04em;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 0.05em;
 }
 
 /* Custom Japanese Vermilion Scrollbar */
@@ -581,7 +587,7 @@ body {
 }
 
 .prose-dark h3 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Outfit', 'Space Grotesk', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #ffffff;
@@ -595,7 +601,7 @@ body {
 }
 
 .prose-dark h4 {
-  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-family: 'Outfit', 'Space Grotesk', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   color: #f472b6;

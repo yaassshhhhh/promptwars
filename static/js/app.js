@@ -144,7 +144,7 @@ async function loadCityData(cityId) {
     // 100 < aqi <= 200: Yellow (Moderate / Sensitive Groups)
     // <= 100: Green (Good / Clean Air)
     if (aqi > 200) {
-      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Plus_Jakarta_Sans'] fire-glow-red transition-colors duration-500";
+      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Outfit'] fire-glow-red transition-colors duration-500";
       if (aqiLabel) aqiLabel.className = "text-sm font-bold text-rose-300 block transition-colors duration-500";
       if (badge) {
         badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-[#881337] text-rose-100 border border-rose-500/50 flex items-center gap-2 shadow-lg shadow-rose-950/60 glow-hazard transition-all duration-500";
@@ -155,7 +155,7 @@ async function loadCityData(cityId) {
         telemetryCard.style.borderColor = "rgba(244, 63, 94, 0.45)";
       }
     } else if (aqi > 100) {
-      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-amber-400 font-['Plus_Jakarta_Sans'] fire-glow-yellow transition-colors duration-500";
+      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-amber-400 font-['Outfit'] fire-glow-yellow transition-colors duration-500";
       if (aqiLabel) aqiLabel.className = "text-sm font-bold text-amber-300 block transition-colors duration-500";
       if (badge) {
         badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-amber-950/80 text-amber-200 border border-amber-500/50 flex items-center gap-2 shadow-lg shadow-amber-950/60 transition-all duration-500";
@@ -166,7 +166,7 @@ async function loadCityData(cityId) {
         telemetryCard.style.borderColor = "rgba(245, 158, 11, 0.45)";
       }
     } else {
-      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-emerald-400 font-['Plus_Jakarta_Sans'] fire-glow-green transition-colors duration-500";
+      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-emerald-400 font-['Outfit'] fire-glow-green transition-colors duration-500";
       if (aqiLabel) aqiLabel.className = "text-sm font-bold text-emerald-300 block transition-colors duration-500";
       if (badge) {
         badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-200 border border-emerald-500/50 flex items-center gap-2 shadow-lg shadow-emerald-950/60 transition-all duration-500";
@@ -324,7 +324,7 @@ async function loadIndoorHacks() {
             <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-rose-950/80 text-rose-300 border border-rose-800/80">${hack.category}</span>
             <span class="text-xs font-semibold text-amber-300">${hack.cost_tier}</span>
           </div>
-          <h4 class="text-base font-bold text-white group-hover:text-rose-400 transition font-['Plus_Jakarta_Sans']">${hack.title}</h4>
+          <h4 class="text-base font-bold text-white group-hover:text-rose-400 transition font-['Outfit']">${hack.title}</h4>
           <p class="text-xs text-slate-300 mt-1.5 line-clamp-2 leading-relaxed">${hack.subtitle}</p>
         </div>
 
@@ -357,7 +357,7 @@ function openHackModal(hackId) {
       <span class="px-2.5 py-0.5 rounded text-[11px] font-bold bg-emerald-950 text-emerald-300 border border-emerald-800">${hack.category}</span>
       <span class="text-xs text-slate-400">${hack.cost_tier}</span>
     </div>
-    <h3 class="text-xl font-extrabold text-white font-['Plus_Jakarta_Sans']">${hack.title}</h3>
+    <h3 class="text-xl font-extrabold text-white font-['Outfit']">${hack.title}</h3>
     <p class="text-sm text-emerald-400 font-medium mt-1">${hack.subtitle}</p>
 
     <div class="my-4 p-3 rounded-xl bg-emerald-950/40 border border-emerald-800/50 text-xs text-emerald-200">
@@ -555,7 +555,7 @@ function bindAppEvents() {
 /**
  * Handle Suggestion clicks inside the Phone View
  */
-window.handlePhoneSuggestion = function(type) {
+window.handlePhoneSuggestion = function (type) {
   // Switch back to dashboard view to show full AI reasoning
   document.getElementById('viewDashboardBtn')?.click();
 

@@ -6,6 +6,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>AEROVA • Autonomous Urban Air Quality & Smog Mitigation AI</title>
 
+  <!-- Google Fonts: Outfit (Primary & Display), Space Grotesk, Cinzel (Sacred), JetBrains Mono (Telemetry) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -42,8 +47,10 @@
             }
           },
           fontFamily: {
-            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
-            display: ['Plus Jakarta Sans', 'Inter', 'sans-serif'],
+            sans: ['Outfit', 'Inter', 'system-ui', 'sans-serif'],
+            display: ['Outfit', 'Space Grotesk', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+            sacred: ['Cinzel', 'serif'],
           }
         }
       }
@@ -166,7 +173,7 @@
         </div>
         <div>
           <div class="flex items-center gap-2">
-            <span class="font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5 font-['Plus_Jakarta_Sans']">
+            <span class="font-extrabold text-xl tracking-tight text-white flex items-center gap-1.5 font-['Outfit']">
               <span>AEROVA</span>
               <span class="text-xs text-rose-500 font-light">|</span>
               <span class="text-base text-slate-100 font-bold">Urban Air Quality AI</span>
@@ -254,7 +261,7 @@
             </span>
           </div>
 
-          <h1 class="text-3xl sm:text-5xl font-extrabold text-white font-['Plus_Jakarta_Sans'] tracking-tight leading-tight">
+          <h1 class="text-3xl sm:text-5xl font-extrabold text-white font-['Outfit'] tracking-tight leading-tight">
             Next-Gen Urban Air Quality Intelligence
             <span class="block text-rose-400 font-sans text-xl sm:text-2xl font-semibold mt-1.5">Predictive Exposure Mitigation & Community Protection</span>
           </h1>
@@ -311,7 +318,7 @@
               <p class="text-xs uppercase font-bold tracking-widest text-emerald-400 flex items-center gap-1.5">
                 <span>Real-Time Sensor Feed</span> &bull; <span>Ambient Telemetry</span>
               </p>
-              <h2 id="cardCityName" class="text-3xl font-extrabold text-white mt-1 font-['Plus_Jakarta_Sans']">Delhi NCR</h2>
+              <h2 id="cardCityName" class="text-3xl font-extrabold text-white mt-1 font-['Outfit']">Delhi NCR</h2>
               <p id="cardRegion" class="text-xs text-slate-300">Northern Plains &bull; Winter Smog Profile</p>
             </div>
             <div id="aqiBadge"
@@ -324,7 +331,7 @@
           <!-- Main AQI Value Big Display with Fire Glow -->
           <div class="my-6 flex items-baseline gap-4">
             <span id="cardAqiValue"
-              class="text-6xl sm:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Plus_Jakarta_Sans'] fire-glow-red transition-colors duration-500">348</span>
+              class="text-6xl sm:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Outfit'] fire-glow-red transition-colors duration-500">348</span>
             <div>
               <span id="cardAqiLabel" class="text-sm font-bold text-rose-300 block transition-colors duration-500">Air Quality Index (AQI)</span>
               <span class="text-xs text-slate-300">Primary Pollutant: <strong id="cardPrimaryPollutant" class="text-white">PM2.5</strong></span>
@@ -637,7 +644,7 @@
                 <span class="text-[10px] uppercase font-bold text-slate-400 block">CO₂ Saved</span>
                 <div class="flex items-baseline gap-1 mt-1">
                   <span id="impactCo2"
-                    class="text-2xl font-extrabold text-emerald-400 font-['Plus_Jakarta_Sans']">4.05</span>
+                    class="text-2xl font-extrabold text-emerald-400 font-['Outfit']">4.05</span>
                   <span class="text-xs font-semibold text-slate-400">kg</span>
                 </div>
                 <span class="text-[10px] text-emerald-300 mt-0.5 block">≈ 480 smartphone charges</span>
@@ -647,7 +654,7 @@
                 <span class="text-[10px] uppercase font-bold text-slate-400 block">Tailpipe PM2.5 Spared</span>
                 <div class="flex items-baseline gap-1 mt-1">
                   <span id="impactPm25"
-                    class="text-2xl font-extrabold text-teal-300 font-['Plus_Jakarta_Sans']">1.06</span>
+                    class="text-2xl font-extrabold text-teal-300 font-['Outfit']">1.06</span>
                   <span class="text-xs font-semibold text-slate-400">grams</span>
                 </div>
                 <span class="text-[10px] text-teal-400 mt-0.5 block">Soot spared from streets</span>
@@ -657,7 +664,7 @@
                 <span class="text-[10px] uppercase font-bold text-slate-400 block">Cigarettes Equivalence</span>
                 <div class="flex items-baseline gap-1 mt-1">
                   <span id="impactCigs"
-                    class="text-2xl font-extrabold text-amber-400 font-['Plus_Jakarta_Sans']">8.7</span>
+                    class="text-2xl font-extrabold text-amber-400 font-['Outfit']">8.7</span>
                   <span class="text-xs font-semibold text-slate-400">cigs</span>
                 </div>
                 <span class="text-[10px] text-amber-300 mt-0.5 block">Toxicity shielded from lungs</span>
@@ -667,7 +674,7 @@
                 <span class="text-[10px] uppercase font-bold text-slate-400 block">Health Risk Drop</span>
                 <div class="flex items-baseline gap-1 mt-1">
                   <span id="impactRiskPct"
-                    class="text-2xl font-extrabold text-rose-300 font-['Plus_Jakarta_Sans']">72%</span>
+                    class="text-2xl font-extrabold text-rose-300 font-['Outfit']">72%</span>
                   <span class="text-xs font-semibold text-slate-400">lower</span>
                 </div>
                 <span class="text-[10px] text-rose-400 mt-0.5 block">Bronchial stress index</span>
