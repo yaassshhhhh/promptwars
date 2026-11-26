@@ -194,7 +194,7 @@ async function loadIndoorHacks() {
     container.innerHTML = '';
     allHacks.forEach(hack => {
       const card = document.createElement('div');
-      card.className = "ema-card p-6 flex flex-col justify-between group cursor-pointer relative shrine-roof";
+      card.className = "ema-card p-6 flex flex-col justify-between group cursor-pointer relative shrine-roof min-h-[220px]";
       card.onclick = () => openHackModal(hack.id);
 
       card.innerHTML = `
@@ -211,9 +211,9 @@ async function loadIndoorHacks() {
           <p class="text-xs text-slate-300 mt-1.5 line-clamp-2 leading-relaxed">${hack.subtitle}</p>
         </div>
 
-        <div class="mt-5 pt-3.5 border-t border-emerald-900/60 flex items-center justify-between text-xs">
-          <span class="text-emerald-300 font-medium text-[11px]">${hack.efficacy}</span>
-          <span class="text-rose-400 group-hover:text-white flex items-center gap-1 font-bold">
+        <div class="mt-5 pt-3.5 border-t border-emerald-900/60 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
+          <span class="text-emerald-300 font-medium text-[11px] leading-tight flex-1 pr-2">${hack.efficacy}</span>
+          <span class="text-rose-400 group-hover:text-white flex items-center gap-1 font-bold text-xs shrink-0 self-end sm:self-auto">
             Inspect Blueprint <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </span>
         </div>
@@ -287,21 +287,21 @@ async function loadCommunityReports() {
     container.innerHTML = '';
     reports.forEach(r => {
       const card = document.createElement('div');
-      card.className = "ema-card p-4.5 flex flex-col justify-between text-xs relative overflow-hidden";
+      card.className = "ema-card p-5 flex flex-col justify-between text-xs relative overflow-hidden min-h-[175px] shadow-md";
       card.innerHTML = `
-        <div>
-          <div class="flex items-center justify-between text-[11px] text-slate-300 mb-1.5">
-            <span class="font-bold text-white">${r.neighborhood}</span>
-            <span class="text-amber-400 font-semibold">${r.timestamp}</span>
+        <div class="space-y-2">
+          <div class="flex items-center justify-between text-[11px] text-slate-300 gap-2">
+            <span class="font-bold text-white text-xs truncate">${r.neighborhood}</span>
+            <span class="text-amber-400 font-semibold text-[10px] shrink-0">${r.timestamp}</span>
           </div>
-          <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-950/90 text-rose-300 border border-rose-800/80 mb-2">
+          <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-950/90 text-rose-300 border border-rose-800/80">
             ${r.type}
           </span>
-          <p class="text-slate-200 leading-snug">${r.details}</p>
+          <p class="text-slate-200 text-xs leading-relaxed line-clamp-2">${r.details}</p>
         </div>
-        <div class="mt-3 pt-2.5 border-t border-emerald-900/60 flex items-center justify-between text-[11px]">
-          <span class="text-amber-300 font-bold">${r.status}</span>
-          <span class="text-slate-300 font-semibold flex items-center gap-1">
+        <div class="mt-3 pt-2.5 border-t border-emerald-900/60 flex items-center justify-between text-[11px] gap-2">
+          <span class="text-amber-300 font-semibold text-[11px] truncate">${r.status}</span>
+          <span class="text-slate-300 font-semibold flex items-center gap-1 shrink-0">
             <i data-lucide="thumbs-up" class="w-3.5 h-3.5 text-rose-400"></i> ${r.upvotes}
           </span>
         </div>
