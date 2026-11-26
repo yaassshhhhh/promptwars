@@ -59,6 +59,18 @@
 </head>
 <body class="min-h-screen text-slate-100 antialiased selection:bg-rose-600 selection:text-white relative">
 
+  <!-- TORII GATE SCREEN PILLARS (Left & Right Viewport Pillars) -->
+  <div class="torii-pillar-left">
+    <div class="torii-pillar-ring" style="top: 18%;"></div>
+    <div class="torii-pillar-ring" style="top: 50%;"></div>
+    <div class="torii-pillar-ring" style="top: 82%;"></div>
+  </div>
+  <div class="torii-pillar-right">
+    <div class="torii-pillar-ring" style="top: 18%;"></div>
+    <div class="torii-pillar-ring" style="top: 50%;"></div>
+    <div class="torii-pillar-ring" style="top: 82%;"></div>
+  </div>
+
   <!-- OVERLAY 1: Blooming Japanese Sakura Branches (Framing top-left & top-right) -->
   <svg class="sakura-branch-tl" viewBox="0 0 360 270" fill="none" xmlns="http://www.w3.org/2000/svg">
     <!-- Branch Twigs -->
@@ -163,6 +175,12 @@
           <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-2.5 pointer-events-none"></i>
         </div>
 
+        <!-- Ambient Zen Shrine Soundscape Toggle (雅楽・環境音) -->
+        <button id="zenAmbienceToggleBtn" onclick="window.toggleZenAmbience && window.toggleZenAmbience()" class="p-2.5 rounded-xl bg-[#0b1c15] text-amber-300 hover:text-amber-100 border border-amber-600/50 hover:border-amber-400 transition shadow-sm flex items-center gap-1.5 active:scale-95" title="Play Japanese Zen Ambience (雅楽・環境音)">
+          <i data-lucide="music" class="w-4 h-4 text-amber-400"></i>
+          <span class="text-xs font-kanji font-bold hidden sm:inline">雅楽 (Zen Audio)</span>
+        </button>
+
         <!-- Interactive Zen Wind Chime (風鈴) Button -->
         <button id="zenChimeBtn" onclick="window.playZenWindChime && window.playZenWindChime()" class="p-2.5 rounded-xl bg-[#0b1c15] text-amber-300 hover:text-amber-100 border border-amber-600/50 hover:border-amber-400 transition shadow-sm flex items-center gap-1.5 active:scale-95" title="Ring Zen Wind Chime (風鈴を鳴らす)">
           <i data-lucide="bell" class="w-4 h-4 text-amber-400"></i>
@@ -201,10 +219,43 @@
       <div class="kanamono-corner kanamono-br"></div>
 
       <!-- Mount Fuji, Sun Disk & Grand Torii Gate Landscape Art in Background -->
-      <div class="absolute right-0 bottom-0 top-0 w-full sm:w-2/3 opacity-30 pointer-events-none overflow-hidden flex justify-end items-end">
+      <div class="absolute right-0 bottom-0 top-0 w-full sm:w-2/3 opacity-35 pointer-events-none overflow-hidden flex justify-end items-end">
         <svg class="w-full h-full max-h-96" viewBox="0 0 540 260" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <!-- Crimson Rising Sun Disk (日の出) -->
-          <circle cx="360" cy="115" r="65" fill="#dc2626" opacity="0.45" />
+          <!-- Crimson Rising Sun Disk (日の出) with Sacred Glow -->
+          <circle cx="360" cy="115" r="70" fill="#dc2626" opacity="0.45" />
+          <circle cx="360" cy="115" r="90" fill="#f43f5e" opacity="0.12" />
+          
+          <!-- Five-Story Japanese Pagoda (五重塔 Gojūnotō) on the left ridge -->
+          <g transform="translate(45, 75) scale(0.65)" opacity="0.75">
+            <!-- Finial Spire (Sōrin 相輪) -->
+            <line x1="50" y1="10" x2="50" y2="45" stroke="#f59e0b" stroke-width="3" />
+            <circle cx="50" cy="8" r="4" fill="#f59e0b" />
+            <!-- Tier 5 Roof -->
+            <path d="M25 55 Q 50 45, 75 55 L 70 60 Q 50 52, 30 60 Z" fill="#e11d48" />
+            <rect x="42" y="58" width="16" height="12" fill="#0b1b13" />
+            <!-- Tier 4 Roof -->
+            <path d="M20 72 Q 50 60, 80 72 L 75 78 Q 50 68, 25 78 Z" fill="#e11d48" />
+            <rect x="38" y="76" width="24" height="14" fill="#0b1b13" />
+            <!-- Tier 3 Roof -->
+            <path d="M15 92 Q 50 78, 85 92 L 80 99 Q 50 86, 20 99 Z" fill="#e11d48" />
+            <rect x="35" y="96" width="30" height="16" fill="#0b1b13" />
+            <!-- Tier 2 Roof -->
+            <path d="M10 114 Q 50 98, 90 114 L 85 122 Q 50 106, 15 122 Z" fill="#e11d48" />
+            <rect x="32" y="118" width="36" height="18" fill="#0b1b13" />
+            <!-- Tier 1 Base Roof -->
+            <path d="M5 138 Q 50 120, 95 138 L 90 148 Q 50 130, 10 148 Z" fill="#e11d48" />
+            <rect x="28" y="144" width="44" height="60" fill="#0b1b13" />
+          </g>
+
+          <!-- Ancient Japanese Pine Tree (松 Matsu) silhouette -->
+          <g transform="translate(18, 160) scale(0.65)" opacity="0.6">
+            <path d="M25 90 Q 35 45, 45 15 Q 60 55, 65 90 Z" fill="#08140e" />
+            <!-- Cloud-like pine foliage clusters -->
+            <ellipse cx="20" cy="40" rx="22" ry="9" fill="#0f261b" />
+            <ellipse cx="65" cy="30" rx="26" ry="10" fill="#0f261b" />
+            <ellipse cx="45" cy="15" rx="28" ry="11" fill="#133324" />
+          </g>
+
           <!-- Mount Fuji (富士山) -->
           <path d="M230 260 L360 45 L490 260 Z" fill="#08150f" />
           <!-- Snow Cap -->
@@ -213,7 +264,7 @@
           <path d="M110 240 Q 200 190, 310 230 T 520 215 L 540 260 L 90 260 Z" fill="#133324" opacity="0.65" />
           
           <!-- Grand Ornate Torii Gate (鳥居) -->
-          <g transform="translate(105, 30) scale(1.18)">
+          <g transform="translate(115, 30) scale(1.18)">
             <!-- Top Curved Kasagi Beam -->
             <path d="M4 22 Q 62 14, 120 22 L 117 29 Q 62 21, 7 29 Z" fill="#dc2626" />
             <!-- Shimaki Lower Beam -->

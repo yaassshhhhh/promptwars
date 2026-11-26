@@ -1,11 +1,16 @@
 /**
- * Comprehensive Japanese Zen 3D Sakura & Wind Particle Engine
+ * ============================================================================
+ * 🌸 SAKURA FUBUKI • 3D BLIZZARD & PROCEDURAL ZEN AMBIENCE ENGINE ⛩️
+ * ============================================================================
  * Features:
- * - Multi-layer depth of field (Foreground blurred, Midground crisp, Background micro-petals)
- * - 3D physics: pitch, yaw, roll, air resistance, turbulence, and gravity
- * - Interactive wind physics: cursor tracking creates breeze
- * - Click-to-spawn cherry blossom flurry
- * - Web Audio API synthesized Japanese Zen Temple Bell & Glass Wind Chime (風鈴)
+ * - 3D Multi-Depth Cherry Blossom Storm (Foreground blurred, Midground crisp, Background motes)
+ * - Mouse Wind Ribbon (trail of glittering stardust & petal flurry)
+ * - Click-to-spawn Petal Swirl with organic dispersion
+ * - Pure Procedural Web Audio API Japanese Zen Soundscape:
+ *   * Sacred Temple Singing Bowl / Bonshō Bell (108Hz resonant drone)
+ *   * Crystalline Glass Wind Chime (風鈴 Fūrin) pentatonic harmonies
+ *   * Bamboo Water Fountain (鹿おどし Shishi-odoshi) wooden percussive knock
+ * ============================================================================
  */
 
 (function () {
@@ -24,35 +29,58 @@
   let width = (canvas.width = window.innerWidth);
   let height = (canvas.height = window.innerHeight);
 
-  // Global breeze cycle (sinusoidal wind shifting direction like spring breeze)
   let windTime = 0;
-  let globalWindX = 0.8;
+  let globalWindX = 0.9;
+  let globalWindY = 0.4;
 
-  // Mouse wind tracker
-  let mouse = { x: -1000, y: -1000, vx: 0, vy: 0, lastX: 0, lastY: 0 };
+  // Mouse tracking with speed ribbon
+  let mouse = { x: -1000, y: -1000, vx: 0, vy: 0, lastX: 0, lastY: 0, speed: 0 };
+  const mouseTrail = [];
+
   window.addEventListener('mousemove', (e) => {
-    mouse.vx = (e.clientX - mouse.lastX) * 0.2;
-    mouse.vy = (e.clientY - mouse.lastY) * 0.2;
+    const dx = e.clientX - mouse.lastX;
+    const dy = e.clientY - mouse.lastY;
+    mouse.speed = Math.sqrt(dx * dx + dy * dy);
+    mouse.vx = dx * 0.22;
+    mouse.vy = dy * 0.22;
     mouse.lastX = e.clientX;
     mouse.lastY = e.clientY;
     mouse.x = e.clientX;
     mouse.y = e.clientY;
+
+    // Add glowing spark trail when moving mouse
+    if (mouse.speed > 8) {
+      for (let i = 0; i < 2; i++) {
+        mouseTrail.push({
+          x: e.clientX + (Math.random() - 0.5) * 12,
+          y: e.clientY + (Math.random() - 0.5) * 12,
+          vx: (Math.random() - 0.5) * 2,
+          vy: Math.random() * -1.5 - 0.5,
+          alpha: 0.9,
+          size: Math.random() * 3 + 2,
+          color: Math.random() > 0.4 ? '#fbcfe8' : '#fbbf24'
+        });
+      }
+    }
   });
 
-  // Click to burst a flurry of Sakura blossoms
+  // Click burst: releases a whirlwind of 20 fluttering sakura petals
   window.addEventListener('click', (e) => {
-    // Spawn 16 fresh flurry petals bursting from cursor
-    for (let i = 0; i < 16; i++) {
-      if (petals.length < 130) {
+    for (let i = 0; i < 18; i++) {
+      if (petals.length < 140) {
         const p = new SakuraPetal(true);
-        p.x = e.clientX + (Math.random() - 0.5) * 30;
-        p.y = e.clientY + (Math.random() - 0.5) * 30;
-        p.vx = (Math.random() - 0.5) * 6 + globalWindX * 2;
-        p.vy = (Math.random() - 0.8) * 5;
-        p.isFlurry = true;
+        p.x = e.clientX + (Math.random() - 0.5) * 24;
+        p.y = e.clientY + (Math.random() - 0.5) * 24;
+        const angle = Math.random() * Math.PI * 2;
+        const force = Math.random() * 5 + 3;
+        p.vx = Math.cos(angle) * force + globalWindX * 2;
+        p.vy = Math.sin(angle) * force - 1;
+        p.isBurst = true;
         petals.push(p);
       }
     }
+    // Play subtle soft chime tap
+    if (window.playSoftZenChime) window.playSoftZenChime();
   });
 
   window.addEventListener('resize', () => {
@@ -60,91 +88,85 @@
     height = canvas.height = window.innerHeight;
   });
 
-  // 3D Sakura Petal Class with 3 Depth Layers
+  // 3D Sakura Petal Class with 3 Realistic Depth Layers
   class SakuraPetal {
-    constructor(isFlurry = false) {
-      this.isFlurry = isFlurry;
-      this.reset(!isFlurry);
+    constructor(isBurst = false) {
+      this.isBurst = isBurst;
+      this.reset(!isBurst);
     }
 
     reset(initial = false) {
-      this.x = initial ? Math.random() * width : Math.random() * (width + 300) - 200;
-      this.y = initial ? Math.random() * height : -30 - Math.random() * 50;
+      this.x = initial ? Math.random() * width : Math.random() * (width + 400) - 250;
+      this.y = initial ? Math.random() * height : -35 - Math.random() * 60;
       
-      // Depth Layers:
-      // 0.3 - 0.6: Background distant small petals
-      // 0.6 - 1.1: Midground standard crisp petals
-      // 1.1 - 1.6: Foreground large sweeping petals
-      const layerRoll = Math.random();
-      if (layerRoll < 0.25) {
-        this.depth = Math.random() * 0.3 + 0.35; // Background
+      // Depth of Field:
+      // 0.35 - 0.65: Far background
+      // 0.65 - 1.15: Midground sharp focus
+      // 1.15 - 1.70: Foreground cinematic close-up
+      const layer = Math.random();
+      if (layer < 0.25) {
+        this.depth = Math.random() * 0.3 + 0.35;
         this.blur = 0;
-      } else if (layerRoll < 0.85) {
-        this.depth = Math.random() * 0.5 + 0.65; // Midground
+      } else if (layer < 0.85) {
+        this.depth = Math.random() * 0.5 + 0.65;
         this.blur = 0;
       } else {
-        this.depth = Math.random() * 0.5 + 1.15; // Foreground
-        this.blur = 1.2;
+        this.depth = Math.random() * 0.55 + 1.15;
+        this.blur = 1.4;
       }
 
-      this.size = (Math.random() * 8 + 9) * this.depth;
+      this.size = (Math.random() * 8 + 9.5) * this.depth;
+      this.vx = (Math.random() * 0.9 + 0.6) * this.depth;
+      this.vy = (Math.random() * 1.3 + 0.95) * this.depth;
       
-      // Horizontal drift & vertical fall
-      this.vx = (Math.random() * 0.8 + 0.5) * this.depth;
-      this.vy = (Math.random() * 1.2 + 0.9) * this.depth;
-      
-      // 3D Tumbling Euler angles & angular velocities
+      // 3D Euler angles
       this.pitch = Math.random() * Math.PI * 2;
       this.yaw = Math.random() * Math.PI * 2;
       this.roll = Math.random() * Math.PI * 2;
       
-      this.dPitch = (Math.random() * 0.035 + 0.015) * (Math.random() < 0.5 ? 1 : -1);
-      this.dYaw = (Math.random() * 0.04 + 0.015) * (Math.random() < 0.5 ? 1 : -1);
-      this.dRoll = Math.random() * 0.02 + 0.008;
+      this.dPitch = (Math.random() * 0.04 + 0.015) * (Math.random() < 0.5 ? 1 : -1);
+      this.dYaw = (Math.random() * 0.045 + 0.015) * (Math.random() < 0.5 ? 1 : -1);
+      this.dRoll = Math.random() * 0.025 + 0.01;
       
-      // Sakura color palette: pale blush pink, pure blossom white, vermilion-tinged tips
-      const colorChoice = Math.random();
-      if (colorChoice < 0.5) {
-        // Soft cherry blossom pink (桜色)
-        this.color = '#fbcfe8';
+      // Authentic Japanese Cherry Blossom color tones
+      const r = Math.random();
+      if (r < 0.55) {
+        this.color = '#fce7f3'; // Soft cherry silk (薄桜)
         this.edgeColor = '#f472b6';
-      } else if (colorChoice < 0.8) {
-        // Pure white-pink blossom
-        this.color = '#fff1f2';
+      } else if (r < 0.85) {
+        this.color = '#fff1f2'; // Pristine snow blossom (白桜)
         this.edgeColor = '#fda4af';
       } else {
-        // Traditional vermilion-tinted sakura
-        this.color = '#fecdd3';
+        this.color = '#fecdd3'; // Crimson-tinged blossom (紅桜)
         this.edgeColor = '#fb7185';
       }
 
-      this.opacity = Math.random() * 0.35 + (this.depth > 1 ? 0.45 : 0.65);
+      this.opacity = Math.random() * 0.35 + (this.depth > 1 ? 0.5 : 0.72);
     }
 
     update() {
-      // Advance 3D rotations
       this.pitch += this.dPitch;
       this.yaw += this.dYaw;
       this.roll += this.dRoll;
 
-      // Natural sinusoidal wind wave
-      const wave = Math.sin(this.pitch) * (1.2 * this.depth);
-      this.x += this.vx + globalWindX * this.depth + wave;
-      this.y += this.vy;
+      // Natural wind oscillation
+      const sway = Math.sin(this.pitch) * (1.3 * this.depth);
+      this.x += this.vx + globalWindX * this.depth + sway;
+      this.y += this.vy + globalWindY;
 
-      // Mouse interactive breeze
+      // Mouse interactive wind displacement
       const dx = this.x - mouse.x;
       const dy = this.y - mouse.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
-      if (dist < 180) {
-        const force = (1 - dist / 180) * 4.5;
-        this.x += mouse.vx * force + (dx / (dist || 1)) * force * 2.5;
-        this.y += mouse.vy * force + (dy / (dist || 1)) * force * 1.5;
+      if (dist < 190) {
+        const force = (1 - dist / 190) * 4.8;
+        this.x += mouse.vx * force + (dx / (dist || 1)) * force * 2.8;
+        this.y += mouse.vy * force + (dy / (dist || 1)) * force * 1.6;
       }
 
-      // Despawn flurry or loop standard petals
-      if (this.y > height + 40 || this.x < -150 || this.x > width + 200) {
-        if (this.isFlurry) {
+      // Loop around screen
+      if (this.y > height + 50 || this.x < -180 || this.x > width + 220) {
+        if (this.isBurst) {
           const idx = petals.indexOf(this);
           if (idx !== -1) petals.splice(idx, 1);
         } else {
@@ -158,74 +180,65 @@
       ctx.translate(this.x, this.y);
       ctx.rotate(this.roll);
       
-      // 3D perspective distortion (simulate tumbling in air current)
       const scaleX = Math.cos(this.yaw);
       const scaleY = Math.sin(this.pitch);
       ctx.scale(scaleX, scaleY);
 
-      if (this.blur > 0) {
-        ctx.filter = `blur(${this.blur}px)`;
-      }
+      if (this.blur > 0) ctx.filter = `blur(${this.blur}px)`;
 
       ctx.fillStyle = this.color;
       ctx.globalAlpha = this.opacity * Math.abs(scaleX * scaleY * 0.45 + 0.55);
 
-      // Organic Japanese Sakura Petal Geometry
+      // Organic Japanese Cherry Blossom Petal Path
       ctx.beginPath();
       ctx.moveTo(0, -this.size);
-      // Left curve
-      ctx.bezierCurveTo(this.size * 0.85, -this.size * 0.8, this.size * 0.95, this.size * 0.4, 0, this.size);
-      // Right curve
-      ctx.bezierCurveTo(-this.size * 0.95, this.size * 0.4, -this.size * 0.85, -this.size * 0.8, 0, -this.size);
+      ctx.bezierCurveTo(this.size * 0.88, -this.size * 0.82, this.size * 0.98, this.size * 0.42, 0, this.size);
+      ctx.bezierCurveTo(-this.size * 0.98, this.size * 0.42, -this.size * 0.88, -this.size * 0.82, 0, -this.size);
       
-      // Authentic cleft notch at the petal tip (桜の花びら特有の切れ込み)
-      ctx.lineTo(0, -this.size * 0.82);
+      // Authentic cleft notch at the petal tip (桜特有の切れ込み)
+      ctx.lineTo(0, -this.size * 0.84);
       ctx.closePath();
       ctx.fill();
 
-      // Subtle delicate petal center vein
+      // Delicate center vein
       ctx.strokeStyle = this.edgeColor;
-      ctx.lineWidth = 0.7;
-      ctx.globalAlpha = this.opacity * 0.4;
+      ctx.lineWidth = 0.75;
+      ctx.globalAlpha = this.opacity * 0.45;
       ctx.beginPath();
-      ctx.moveTo(0, this.size * 0.8);
-      ctx.lineTo(0, -this.size * 0.55);
+      ctx.moveTo(0, this.size * 0.82);
+      ctx.lineTo(0, -this.size * 0.58);
       ctx.stroke();
 
       ctx.restore();
     }
   }
 
-  // Floating Shrine Kodama Spirit Orbs (Gold and Vermilion)
+  // Floating Shrine Kodama Spirit Orbs (Gold & Sacred Vermilion)
   class SpiritOrb {
     constructor() {
       this.reset(true);
     }
-
     reset(initial = false) {
       this.x = Math.random() * width;
-      this.y = initial ? Math.random() * height : height + 20;
-      this.size = Math.random() * 2.8 + 1.2;
-      this.vy = -(Math.random() * 0.5 + 0.25);
-      this.vx = (Math.random() - 0.5) * 0.3;
+      this.y = initial ? Math.random() * height : height + 25;
+      this.size = Math.random() * 3 + 1.2;
+      this.vy = -(Math.random() * 0.65 + 0.3);
+      this.vx = (Math.random() - 0.5) * 0.35;
       this.phase = Math.random() * Math.PI * 2;
-      this.pulseSpeed = Math.random() * 0.025 + 0.01;
-      this.isGold = Math.random() > 0.35;
+      this.pulseSpeed = Math.random() * 0.03 + 0.012;
+      this.isGold = Math.random() > 0.4;
     }
-
     update() {
       this.phase += this.pulseSpeed;
       this.y += this.vy;
-      this.x += this.vx + Math.sin(this.phase) * 0.4;
-      if (this.y < -30) this.reset();
+      this.x += this.vx + Math.sin(this.phase) * 0.45;
+      if (this.y < -35) this.reset();
     }
-
     draw() {
       ctx.save();
-      const alpha = (Math.sin(this.phase) * 0.3 + 0.7) * 0.65;
+      const alpha = (Math.sin(this.phase) * 0.35 + 0.65) * 0.7;
       ctx.globalAlpha = Math.max(0, alpha);
-      
-      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3.5);
+      const grad = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.size * 3.8);
       if (this.isGold) {
         grad.addColorStop(0, '#fef08a');
         grad.addColorStop(0.35, '#f59e0b');
@@ -235,27 +248,45 @@
         grad.addColorStop(0.35, '#e11d48');
         grad.addColorStop(1, 'rgba(225, 29, 72, 0)');
       }
-      
       ctx.fillStyle = grad;
       ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size * 3.5, 0, Math.PI * 2);
+      ctx.arc(this.x, this.y, this.size * 3.8, 0, Math.PI * 2);
       ctx.fill();
       ctx.restore();
     }
   }
 
-  // Particle Pools (Generous density for true full Japanese Sakura atmosphere)
-  const baseCount = Math.max(45, Math.min(85, Math.floor(window.innerWidth / 18)));
+  // Particle Pools (Substantial density for true cinematic Japanese immersion)
+  const baseCount = Math.max(55, Math.min(95, Math.floor(window.innerWidth / 16)));
   const petals = Array.from({ length: baseCount }, () => new SakuraPetal());
-  const orbs = Array.from({ length: 24 }, () => new SpiritOrb());
+  const orbs = Array.from({ length: 28 }, () => new SpiritOrb());
 
-  // Master Animation Loop
+  // Animation Loop
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    // Global wind oscillation
-    windTime += 0.008;
-    globalWindX = Math.sin(windTime) * 0.7 + 0.6; // Gentle rightward breeze
+    // Global wind shifting like spring breeze
+    windTime += 0.007;
+    globalWindX = Math.sin(windTime) * 0.75 + 0.75;
+
+    // Draw mouse spark trail
+    for (let i = mouseTrail.length - 1; i >= 0; i--) {
+      const sp = mouseTrail[i];
+      sp.x += sp.vx;
+      sp.y += sp.vy;
+      sp.alpha -= 0.025;
+      if (sp.alpha <= 0) {
+        mouseTrail.splice(i, 1);
+        continue;
+      }
+      ctx.save();
+      ctx.globalAlpha = sp.alpha;
+      ctx.fillStyle = sp.color;
+      ctx.beginPath();
+      ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
 
     // Draw spirit orbs
     for (let i = 0; i < orbs.length; i++) {
@@ -274,52 +305,173 @@
 
   animate();
 
-  // Web Audio API Synthesizer: Japanese Zen Temple Bell & Glass Wind Chime (風鈴)
+  // ==========================================================================
+  // 🎶 PROCEDURAL WEB AUDIO API JAPANESE ZEN SOUNDSCAPE (雅楽)
+  // ==========================================================================
+  let zenAudioContext = null;
+  let isZenAmbienceActive = false;
+  let ambientDroneGain = null;
+  let bambooTimer = null;
+
+  function getAudioCtx() {
+    if (!zenAudioContext) {
+      const AudioCtx = window.AudioContext || window.webkitAudioContext;
+      zenAudioContext = new AudioCtx();
+    }
+    if (zenAudioContext.state === 'suspended') {
+      zenAudioContext.resume();
+    }
+    return zenAudioContext;
+  }
+
+  // Soft wooden click / gentle chime for UI clicks
+  window.playSoftZenChime = function () {
+    try {
+      const actx = getAudioCtx();
+      const osc = actx.createOscillator();
+      const gain = actx.createGain();
+      const notes = [1046.5, 1174.66, 1396.91, 1567.98, 1760];
+      const note = notes[Math.floor(Math.random() * notes.length)];
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(note, actx.currentTime);
+      gain.gain.setValueAtTime(0.001, actx.currentTime);
+      gain.gain.linearRampToValueAtTime(0.08, actx.currentTime + 0.015);
+      gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.8);
+      osc.connect(gain);
+      gain.connect(actx.destination);
+      osc.start();
+      osc.stop(actx.currentTime + 0.85);
+    } catch (e) {}
+  };
+
+  // Grand Wind Chime (風鈴 Fūrin)
   window.playZenWindChime = function () {
     try {
-      const AudioContext = window.AudioContext || window.webkitAudioContext;
-      if (!AudioContext) return;
-      const actx = new AudioContext();
-
-      // Pentatonic Japanese Insen / Hirajōshi Scale Frequencies:
-      // A5 (880Hz), C6 (1046.5Hz), D6 (1174.66Hz), F6 (1396.91Hz), A6 (1760Hz)
-      const notes = [880, 1046.5, 1174.66, 1396.91, 1760, 2093];
-      const selectedNote = notes[Math.floor(Math.random() * notes.length)];
+      const actx = getAudioCtx();
+      const pentatonic = [880, 1046.5, 1174.66, 1396.91, 1760, 2093];
+      const selected = pentatonic[Math.floor(Math.random() * pentatonic.length)];
 
       const osc = actx.createOscillator();
       const gain = actx.createGain();
-
       osc.type = 'sine';
-      osc.frequency.setValueAtTime(selectedNote, actx.currentTime);
-      // Harmonic shimmer
-      osc.frequency.exponentialRampToValueAtTime(selectedNote * 1.002, actx.currentTime + 1.2);
+      osc.frequency.setValueAtTime(selected, actx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(selected * 1.003, actx.currentTime + 1.2);
 
-      // Delicate glass bell envelope
       gain.gain.setValueAtTime(0.001, actx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.18, actx.currentTime + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 2.2);
+      gain.gain.linearRampToValueAtTime(0.2, actx.currentTime + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 2.5);
 
       osc.connect(gain);
       gain.connect(actx.destination);
-
       osc.start();
-      osc.stop(actx.currentTime + 2.3);
+      osc.stop(actx.currentTime + 2.6);
 
-      // Play a soft harmonic overtone
+      // Harmonic chime overtone
       const osc2 = actx.createOscillator();
       const gain2 = actx.createGain();
       osc2.type = 'triangle';
-      osc2.frequency.setValueAtTime(selectedNote * 2.76, actx.currentTime);
+      osc2.frequency.setValueAtTime(selected * 2.76, actx.currentTime);
       gain2.gain.setValueAtTime(0.001, actx.currentTime);
-      gain2.gain.linearRampToValueAtTime(0.06, actx.currentTime + 0.015);
-      gain2.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 1.5);
-
+      gain2.gain.linearRampToValueAtTime(0.06, actx.currentTime + 0.018);
+      gain2.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 1.6);
       osc2.connect(gain2);
       gain2.connect(actx.destination);
       osc2.start();
-      osc2.stop(actx.currentTime + 1.6);
-    } catch (e) {
-      console.warn("Audio chime unsupported:", e);
+      osc2.stop(actx.currentTime + 1.7);
+    } catch (e) {}
+  };
+
+  // Shishi-odoshi (Bamboo Water Fountain Knock)
+  function playBambooKnock() {
+    try {
+      const actx = getAudioCtx();
+      // Low wooden "thock" sound
+      const osc = actx.createOscillator();
+      const gain = actx.createGain();
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(140, actx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(60, actx.currentTime + 0.12);
+      gain.gain.setValueAtTime(0.18, actx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.25);
+      osc.connect(gain);
+      gain.connect(actx.destination);
+      osc.start();
+      osc.stop(actx.currentTime + 0.26);
+
+      // Secondary hollow echo
+      const osc2 = actx.createOscillator();
+      const gain2 = actx.createGain();
+      osc2.type = 'sine';
+      osc2.frequency.setValueAtTime(280, actx.currentTime + 0.02);
+      osc2.frequency.exponentialRampToValueAtTime(110, actx.currentTime + 0.15);
+      gain2.gain.setValueAtTime(0.09, actx.currentTime + 0.02);
+      gain2.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.2);
+      osc2.connect(gain2);
+      gain2.connect(actx.destination);
+      osc2.start(actx.currentTime + 0.02);
+      osc2.stop(actx.currentTime + 0.22);
+    } catch (e) {}
+  }
+
+  // Toggle Continuous Ambient Zen Shrine Soundscape (雅楽)
+  window.toggleZenAmbience = function () {
+    const actx = getAudioCtx();
+    const btn = document.getElementById('zenAmbienceToggleBtn');
+
+    if (isZenAmbienceActive) {
+      // Turn OFF
+      if (ambientDroneGain) {
+        ambientDroneGain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.8);
+      }
+      if (bambooTimer) clearInterval(bambooTimer);
+      isZenAmbienceActive = false;
+      if (btn) {
+        btn.innerHTML = `<i data-lucide="volume-x" class="w-4 h-4 text-slate-400"></i><span class="text-xs font-kanji font-bold">雅楽: 停止 (Off)</span>`;
+        btn.classList.remove('border-rose-500', 'bg-rose-950/60');
+      }
+    } else {
+      // Turn ON
+      isZenAmbienceActive = true;
+      if (btn) {
+        btn.innerHTML = `<i data-lucide="volume-2" class="w-4 h-4 text-rose-400 animate-pulse"></i><span class="text-xs font-kanji font-bold text-rose-200">雅楽: 再生中 (Zen On)</span>`;
+        btn.classList.add('border-rose-500', 'bg-rose-950/60');
+      }
+
+      // Sacred Temple Singing Bowl Drone (108 Hz Sacred Om / Hirajōshi harmonic)
+      const droneOsc = actx.createOscillator();
+      const droneOsc2 = actx.createOscillator();
+      ambientDroneGain = actx.createGain();
+
+      droneOsc.type = 'sine';
+      droneOsc.frequency.setValueAtTime(108, actx.currentTime); // 108 Sacred temple bell harmonic
+      droneOsc2.type = 'triangle';
+      droneOsc2.frequency.setValueAtTime(216, actx.currentTime);
+
+      ambientDroneGain.gain.setValueAtTime(0.001, actx.currentTime);
+      ambientDroneGain.gain.linearRampToValueAtTime(0.045, actx.currentTime + 2.5);
+
+      droneOsc.connect(ambientDroneGain);
+      droneOsc2.connect(ambientDroneGain);
+      ambientDroneGain.connect(actx.destination);
+
+      droneOsc.start();
+      droneOsc2.start();
+
+      // Trigger bamboo knock & periodic chime every 10-14 seconds
+      bambooTimer = setInterval(() => {
+        if (!isZenAmbienceActive) return;
+        playBambooKnock();
+        setTimeout(() => {
+          if (isZenAmbienceActive && Math.random() > 0.4) {
+            window.playZenWindChime();
+          }
+        }, 1200);
+      }, 11000);
+
+      // Play immediate welcoming chime
+      window.playZenWindChime();
     }
+
+    if (window.lucide) lucide.createIcons();
   };
 })();

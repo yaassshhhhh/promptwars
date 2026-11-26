@@ -1,18 +1,17 @@
 /* ==========================================================================
    ⛩️ JINJA SANCTUARY • JAPANESE SHRINE MASTER UI THEME ⛩️
-   Authentic Japanese Shrine Architecture, Torii Gates, Kumiko Lattices,
-   Ema Plaques, Sakura Blizzards & Sacred Washi Aesthetics
+   Authentic Japanese Shrine Architecture, Torii Gate Pillars, Kumiko Lattices,
+   Ema Plaques, 3D Sakura Blizzard & Sacred Washi Aesthetics
    ========================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800;900&family=Noto+Serif+JP:wght@400;600;700;900&family=Yuji+Boku&family=Cinzel:wght@600;700;900&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
 
 :root {
-  /* Traditional Japanese Colors (日本の伝統色) */
   --shu-iro: #dc2626;         /* Vermilion / Cinnabar Red (朱色) */
   --shu-bright: #f43f5e;      /* Radiant Torii Crimson */
   --beni-hi: #991b1b;         /* Deep Crimson Lacquer (紅緋) */
-  --kuro-urushi: #070d0a;     /* Deep Lacquer Black (黒漆) */
-  --kuro-matsu: #0a140f;      /* Midnight Pine Charcoal (松黒) */
+  --kuro-urushi: #060b08;     /* Deep Lacquer Black (黒漆) */
+  --kuro-matsu: #09140f;      /* Midnight Pine Charcoal (松黒) */
   --kin-paku: #f59e0b;        /* Pure Gold Leaf (金箔) */
   --kin-glow: #fbbf24;        /* Radiant Shrine Gold */
   --sakura-pink: #f472b6;     /* Cherry Blossom Petal (桜色) */
@@ -32,17 +31,17 @@ body {
   color: #f1f5f9;
   /* Deep layered atmospheric background: Seigaiha waves + Asanoha lattice + mist */
   background-image: 
-    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(220, 38, 38, 0.22) 0%, transparent 75%),
-    radial-gradient(circle at 10% 40%, rgba(244, 114, 182, 0.12) 0%, transparent 40%),
-    radial-gradient(circle at 90% 70%, rgba(16, 185, 129, 0.1) 0%, transparent 50%),
+    radial-gradient(ellipse 90% 60% at 50% -10%, rgba(220, 38, 38, 0.24) 0%, transparent 75%),
+    radial-gradient(circle at 10% 40%, rgba(244, 114, 182, 0.14) 0%, transparent 45%),
+    radial-gradient(circle at 90% 70%, rgba(16, 185, 129, 0.12) 0%, transparent 50%),
     linear-gradient(rgba(7, 13, 10, 0.98), rgba(5, 9, 7, 0.99)),
-    radial-gradient(#1c3f30 1px, transparent 1px);
+    radial-gradient(#1f4736 1px, transparent 1px);
   background-size: 100% 100%, 100% 100%, 100% 100%, 100% 100%, 32px 32px;
   background-attachment: fixed;
   overflow-x: hidden;
 }
 
-/* Authentic Japanese Typography Classes */
+/* Typography Classes */
 .font-kanji {
   font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
 }
@@ -81,14 +80,61 @@ body {
 }
 
 /* ==========================================================================
+   ⛩️ SHRINE ARCHITECTURAL PILLARS (TORII GATE SCREEN BORDERS)
+   ========================================================================== */
+
+/* Vermilion Lacquer Torii Pillars framing the entire viewport */
+.torii-pillar-left {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 14px;
+  background: linear-gradient(to right, #7f1d1d, #dc2626, #ef4444, #991b1b);
+  border-right: 1.5px solid var(--kin-paku);
+  box-shadow: 4px 0 20px rgba(220, 38, 38, 0.4);
+  z-index: 30;
+  pointer-events: none;
+}
+
+.torii-pillar-right {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 14px;
+  background: linear-gradient(to left, #7f1d1d, #dc2626, #ef4444, #991b1b);
+  border-left: 1.5px solid var(--kin-paku);
+  box-shadow: -4px 0 20px rgba(220, 38, 38, 0.4);
+  z-index: 30;
+  pointer-events: none;
+}
+
+/* Gold Brass Pillar Rings (金物 Kanamono) */
+.torii-pillar-ring {
+  position: absolute;
+  left: -2px;
+  right: -2px;
+  height: 8px;
+  background: linear-gradient(to right, #d97706, #fbbf24, #f59e0b);
+  box-shadow: 0 0 8px rgba(245, 158, 11, 0.8);
+  border-radius: 2px;
+}
+
+@media (max-width: 1024px) {
+  .torii-pillar-left, .torii-pillar-right {
+    display: none;
+  }
+}
+
+/* ==========================================================================
    ⛩️ SHRINE ARCHITECTURE: ROOFS, EAVES & KARAHAFU (唐破風)
    ========================================================================== */
 
-/* Shrine Karahafu Eave (The iconic sweeping curved roof of Japanese shrines) */
 .shrine-roof {
   position: relative;
   border-top: 3.5px solid var(--shu-iro);
-  border-radius: 1.5rem;
+  border-radius: 1.75rem;
 }
 
 .shrine-roof::before {
@@ -114,21 +160,21 @@ body {
   z-index: 15;
   filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.6));
 }
-.kanamono-tl { top: 0; left: 0; border-top: 2.5px solid; border-left: 2.5px solid; border-top-left-radius: 1.25rem; }
-.kanamono-tr { top: 0; right: 0; border-top: 2.5px solid; border-right: 2.5px solid; border-top-right-radius: 1.25rem; }
-.kanamono-bl { bottom: 0; left: 0; border-bottom: 2.5px solid; border-left: 2.5px solid; border-bottom-left-radius: 1.25rem; }
-.kanamono-br { bottom: 0; right: 0; border-bottom: 2.5px solid; border-right: 2.5px solid; border-bottom-right-radius: 1.25rem; }
+.kanamono-tl { top: 0; left: 0; border-top: 2.5px solid; border-left: 2.5px solid; border-top-left-radius: 1.5rem; }
+.kanamono-tr { top: 0; right: 0; border-top: 2.5px solid; border-right: 2.5px solid; border-top-right-radius: 1.5rem; }
+.kanamono-bl { bottom: 0; left: 0; border-bottom: 2.5px solid; border-left: 2.5px solid; border-bottom-left-radius: 1.5rem; }
+.kanamono-br { bottom: 0; right: 0; border-bottom: 2.5px solid; border-right: 2.5px solid; border-bottom-right-radius: 1.5rem; }
 
 /* Grand Shrine Hero Pavilion (本殿 Honden) */
 .shrine-honden {
   position: relative;
   background: 
-    linear-gradient(135deg, rgba(19, 39, 29, 0.94) 0%, rgba(10, 20, 15, 0.97) 50%, rgba(32, 10, 18, 0.95) 100%);
-  border: 1.5px solid rgba(220, 38, 38, 0.5);
+    linear-gradient(135deg, rgba(20, 42, 32, 0.95) 0%, rgba(11, 22, 17, 0.97) 50%, rgba(35, 12, 20, 0.96) 100%);
+  border: 1.5px solid rgba(220, 38, 38, 0.55);
   box-shadow: 
     0 25px 60px -15px rgba(0, 0, 0, 0.9),
-    0 0 35px rgba(220, 38, 38, 0.22),
-    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+    0 0 35px rgba(220, 38, 38, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.18);
   border-radius: 2.25rem;
   overflow: hidden;
 }
@@ -183,10 +229,10 @@ body {
 
 @keyframes lanternEmberPulse {
   0%, 100% {
-    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.7)) drop-shadow(0 0 24px rgba(220, 38, 38, 0.5));
+    filter: drop-shadow(0 0 12px rgba(245, 158, 11, 0.75)) drop-shadow(0 0 24px rgba(220, 38, 38, 0.55));
   }
   50% {
-    filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.95)) drop-shadow(0 0 36px rgba(220, 38, 38, 0.8));
+    filter: drop-shadow(0 0 22px rgba(245, 158, 11, 0.98)) drop-shadow(0 0 40px rgba(220, 38, 38, 0.85));
   }
 }
 
@@ -213,7 +259,7 @@ body {
   font-weight: 900;
   font-size: 15px;
   line-height: 1.08;
-  background: radial-gradient(circle, rgba(220, 38, 38, 0.16) 0%, rgba(220, 38, 38, 0.04) 100%);
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.18) 0%, rgba(220, 38, 38, 0.05) 100%);
   box-shadow: 
     inset 0 0 10px rgba(220, 38, 38, 0.35),
     0 0 14px rgba(220, 38, 38, 0.35);
@@ -235,20 +281,20 @@ body {
 .ema-card {
   position: relative;
   background: 
-    linear-gradient(135deg, rgba(20, 42, 31, 0.92) 0%, rgba(13, 27, 20, 0.96) 60%, rgba(10, 20, 15, 0.98) 100%);
-  border: 1.5px solid rgba(245, 158, 11, 0.4);
+    linear-gradient(135deg, rgba(20, 44, 33, 0.92) 0%, rgba(13, 28, 21, 0.96) 60%, rgba(10, 20, 15, 0.98) 100%);
+  border: 1.5px solid rgba(245, 158, 11, 0.42);
   border-radius: 1.75rem;
   box-shadow: 
     0 14px 40px -10px rgba(0, 0, 0, 0.8),
     0 0 20px rgba(245, 158, 11, 0.1),
-    inset 0 1px 0 rgba(245, 158, 11, 0.25);
+    inset 0 1px 0 rgba(245, 158, 11, 0.28);
   transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .ema-card:hover {
   border-color: var(--kin-glow);
   box-shadow: 
     0 20px 48px -8px rgba(0, 0, 0, 0.9),
-    0 0 30px rgba(245, 158, 11, 0.25);
+    0 0 30px rgba(245, 158, 11, 0.28);
   transform: translateY(-2px);
 }
 
@@ -256,22 +302,22 @@ body {
 .shrine-altar {
   position: relative;
   background: 
-    radial-gradient(circle at 50% 30%, rgba(220, 38, 38, 0.22) 0%, transparent 70%),
-    linear-gradient(180deg, #162f23 0%, #0c1a13 50%, #07100b 100%);
-  border: 2px solid rgba(220, 38, 38, 0.55);
+    radial-gradient(circle at 50% 30%, rgba(220, 38, 38, 0.24) 0%, transparent 70%),
+    linear-gradient(180deg, #183326 0%, #0d1c14 50%, #07100b 100%);
+  border: 2px solid rgba(220, 38, 38, 0.58);
   border-radius: 2rem;
   box-shadow: 
     0 20px 50px -10px rgba(0, 0, 0, 0.9),
-    0 0 40px rgba(220, 38, 38, 0.28);
+    0 0 40px rgba(220, 38, 38, 0.3);
 }
 
 /* Cinnabar Fire Warding Ring (厄除けの炎) */
 @keyframes sacredFireGlow {
   0%, 100% {
-    text-shadow: 0 0 20px rgba(244, 63, 94, 0.7), 0 0 40px rgba(220, 38, 38, 0.5), 0 0 70px rgba(220, 38, 38, 0.3);
+    text-shadow: 0 0 20px rgba(244, 63, 94, 0.75), 0 0 45px rgba(220, 38, 38, 0.55), 0 0 75px rgba(220, 38, 38, 0.35);
   }
   50% {
-    text-shadow: 0 0 35px rgba(244, 63, 94, 0.95), 0 0 60px rgba(220, 38, 38, 0.75), 0 0 100px rgba(220, 38, 38, 0.45);
+    text-shadow: 0 0 38px rgba(244, 63, 94, 0.98), 0 0 65px rgba(220, 38, 38, 0.8), 0 0 105px rgba(220, 38, 38, 0.5);
   }
 }
 .fire-glow {
@@ -450,4 +496,18 @@ body {
   border-color: var(--kin-glow);
   box-shadow: 0 6px 22px rgba(245, 158, 11, 0.3);
   transform: translateY(-1px);
+}
+
+/* Pulse animation for high hazard AQI */
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 15px rgba(225, 29, 72, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 32px rgba(225, 29, 72, 0.85);
+  }
+}
+
+.glow-hazard {
+  animation: pulseGlow 2.5s infinite ease-in-out;
 }
