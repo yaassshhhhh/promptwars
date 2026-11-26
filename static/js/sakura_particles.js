@@ -48,6 +48,12 @@
     mouse.x = e.clientX;
     mouse.y = e.clientY;
 
+    // 3D Parallax coordinates for living backdrop & layers
+    const normX = ((e.clientX / (width || window.innerWidth)) - 0.5) * 2;
+    const normY = ((e.clientY / (height || window.innerHeight)) - 0.5) * 2;
+    document.documentElement.style.setProperty('--mouse-norm-x', normX.toFixed(3));
+    document.documentElement.style.setProperty('--mouse-norm-y', normY.toFixed(3));
+
     // Add glowing spark trail when moving mouse
     if (mouse.speed > 8) {
       for (let i = 0; i < 2; i++) {
