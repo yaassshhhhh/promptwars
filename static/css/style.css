@@ -439,17 +439,47 @@ body {
     0 0 40px rgba(220, 38, 38, 0.3);
 }
 
-/* Cinnabar Fire Warding Ring (厄除けの炎) */
-@keyframes sacredFireGlow {
+/* ==========================================================================
+   🔥 DYNAMIC AQI GLOW & COUNTER THEMES (Red > 200, Yellow 101-200, Green <= 100)
+   ========================================================================== */
+
+/* Red Glow: AQI > 200 (Severe / Hazardous) */
+@keyframes sacredFireGlowRed {
   0%, 100% {
-    text-shadow: 0 0 20px rgba(244, 63, 94, 0.8), 0 0 45px rgba(220, 38, 38, 0.6), 0 0 75px rgba(220, 38, 38, 0.4);
+    text-shadow: 0 0 20px rgba(244, 63, 94, 0.85), 0 0 45px rgba(220, 38, 38, 0.65), 0 0 75px rgba(220, 38, 38, 0.45);
   }
   50% {
     text-shadow: 0 0 40px rgba(244, 63, 94, 0.98), 0 0 70px rgba(220, 38, 38, 0.85), 0 0 110px rgba(220, 38, 38, 0.55);
   }
 }
-.fire-glow {
-  animation: sacredFireGlow 2.5s infinite ease-in-out;
+.fire-glow, .fire-glow-red {
+  animation: sacredFireGlowRed 2.5s infinite ease-in-out;
+}
+
+/* Yellow / Amber Glow: 100 < AQI <= 200 (Moderate / Sensitive Groups) */
+@keyframes sacredFireGlowYellow {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(251, 191, 36, 0.85), 0 0 45px rgba(245, 158, 11, 0.65), 0 0 75px rgba(217, 119, 6, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 38px rgba(251, 191, 36, 0.98), 0 0 65px rgba(245, 158, 11, 0.85), 0 0 100px rgba(217, 119, 6, 0.55);
+  }
+}
+.fire-glow-yellow {
+  animation: sacredFireGlowYellow 2.5s infinite ease-in-out;
+}
+
+/* Green / Jade Emerald Glow: AQI <= 100 (Good / Clean Air) */
+@keyframes sacredFireGlowGreen {
+  0%, 100% {
+    text-shadow: 0 0 20px rgba(52, 211, 153, 0.85), 0 0 45px rgba(16, 185, 129, 0.65), 0 0 75px rgba(5, 150, 105, 0.4);
+  }
+  50% {
+    text-shadow: 0 0 38px rgba(52, 211, 153, 0.98), 0 0 65px rgba(16, 185, 129, 0.85), 0 0 100px rgba(5, 150, 105, 0.55);
+  }
+}
+.fire-glow-green {
+  animation: sacredFireGlowGreen 2.5s infinite ease-in-out;
 }
 
 /* ==========================================================================

@@ -79,6 +79,44 @@ async function initCities() {
   }
 }
 
+let currentDisplayedAqi = 0;
+
+/**
+ * Animate numeric counter smoothly from current value to target
+ */
+function animateAqiCounter(targetVal) {
+  const el = document.getElementById('cardAqiValue');
+  if (!el) return;
+  const startVal = currentDisplayedAqi || 0;
+  const target = parseInt(targetVal, 10) || 0;
+  currentDisplayedAqi = target;
+
+  if (startVal === target && startVal !== 0) {
+    el.textContent = target;
+    return;
+  }
+
+  const duration = 650;
+  const startTime = performance.now();
+
+  function step(now) {
+    const elapsed = now - startTime;
+    const progress = Math.min(elapsed / duration, 1);
+    // Smooth ease-out cubic
+    const easeOut = 1 - Math.pow(1 - progress, 3);
+    const current = Math.round(startVal + (target - startVal) * easeOut);
+    el.textContent = current;
+
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      el.textContent = target;
+    }
+  }
+
+  requestAnimationFrame(step);
+}
+
 /**
  * Load complete environmental & smog dynamics for selected city
  */
@@ -91,7 +129,55 @@ async function loadCityData(cityId) {
     // Update Dashboard UI
     document.getElementById('cardCityName').textContent = city.name;
     document.getElementById('cardRegion').textContent = `${city.region}, ${city.country} • Winter Smog Profile`;
-    document.getElementById('cardAqiValue').textContent = city.aqi;
+    
+    // Smooth animated counter
+    animateAqiCounter(city.aqi);
+
+    const aqi = parseInt(city.aqi, 10) || 0;
+    const aqiEl = document.getElementById('cardAqiValue');
+    const aqiLabel = document.getElementById('cardAqiLabel');
+    const badge = document.getElementById('aqiBadge');
+    const telemetryCard = document.getElementById('telemetryCard');
+
+    // Dynamic AQI Coloring Rules (User Request):
+    // > 200: Red (Severe / Hazardous)
+    // 100 < aqi <= 200: Yellow (Moderate / Sensitive Groups)
+    // <= 100: Green (Good / Clean Air)
+    if (aqi > 200) {
+      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Plus_Jakarta_Sans'] fire-glow-red transition-colors duration-500";
+      if (aqiLabel) aqiLabel.className = "text-sm font-bold text-rose-300 block transition-colors duration-500";
+      if (badge) {
+        badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-[#881337] text-rose-100 border border-rose-500/50 flex items-center gap-2 shadow-lg shadow-rose-950/60 glow-hazard transition-all duration-500";
+        const ping = badge.querySelector('span:first-child');
+        if (ping) ping.className = "w-2 h-2 rounded-full bg-rose-400 animate-ping";
+      }
+      if (telemetryCard) {
+        telemetryCard.style.borderColor = "rgba(244, 63, 94, 0.45)";
+      }
+    } else if (aqi > 100) {
+      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-amber-400 font-['Plus_Jakarta_Sans'] fire-glow-yellow transition-colors duration-500";
+      if (aqiLabel) aqiLabel.className = "text-sm font-bold text-amber-300 block transition-colors duration-500";
+      if (badge) {
+        badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-amber-950/80 text-amber-200 border border-amber-500/50 flex items-center gap-2 shadow-lg shadow-amber-950/60 transition-all duration-500";
+        const ping = badge.querySelector('span:first-child');
+        if (ping) ping.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
+      }
+      if (telemetryCard) {
+        telemetryCard.style.borderColor = "rgba(245, 158, 11, 0.45)";
+      }
+    } else {
+      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-emerald-400 font-['Plus_Jakarta_Sans'] fire-glow-green transition-colors duration-500";
+      if (aqiLabel) aqiLabel.className = "text-sm font-bold text-emerald-300 block transition-colors duration-500";
+      if (badge) {
+        badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-200 border border-emerald-500/50 flex items-center gap-2 shadow-lg shadow-emerald-950/60 transition-all duration-500";
+        const ping = badge.querySelector('span:first-child');
+        if (ping) ping.className = "w-2 h-2 rounded-full bg-emerald-400";
+      }
+      if (telemetryCard) {
+        telemetryCard.style.borderColor = "rgba(16, 185, 129, 0.45)";
+      }
+    }
+
     document.getElementById('cardPrimaryPollutant').textContent = city.primary_pollutant;
     document.getElementById('cardPm25').innerHTML = `${city.pm25} <span class="text-[10px] font-normal text-slate-400">µg/m³</span>`;
     document.getElementById('cardPm10').innerHTML = `${city.pm10} <span class="text-[10px] font-normal text-slate-400">µg/m³</span>`;
@@ -100,21 +186,22 @@ async function loadCityData(cityId) {
     document.getElementById('safeVentWindow').textContent = city.safe_ventilation_window;
     document.getElementById('aqiCategory').textContent = city.category;
 
-    // AQI Category badge color dynamics
-    const badge = document.getElementById('aqiBadge');
-    if (city.aqi > 300) {
-      badge.className = "px-3.5 py-1.5 rounded-full text-xs font-bold bg-[#881337] text-rose-100 border border-rose-500/40 flex items-center gap-1.5 shadow-lg shadow-rose-950/40 glow-hazard";
-    } else if (city.aqi > 200) {
-      badge.className = "px-3.5 py-1.5 rounded-full text-xs font-bold bg-amber-900/80 text-amber-100 border border-amber-500/40 flex items-center gap-1.5 shadow-lg";
-    } else {
-      badge.className = "px-3.5 py-1.5 rounded-full text-xs font-bold bg-emerald-900/80 text-emerald-100 border border-emerald-500/40 flex items-center gap-1.5";
-    }
-
     // Update Phone Mockup UI
     document.getElementById('phoneCityPill').textContent = city.name;
     document.getElementById('phoneAqiText').textContent = `${city.category} (AQI ${city.aqi})`;
     document.getElementById('phonePrimaryText').textContent = `PM2.5: ${city.pm25} µg/m³ • Inversion Active`;
     document.getElementById('phoneVentWindow').textContent = city.safe_ventilation_window;
+
+    const phoneCard = document.getElementById('phoneAqiCard');
+    if (phoneCard) {
+      if (aqi > 200) {
+        phoneCard.className = "bg-gradient-to-r from-[#7a182b] to-[#991b1b] rounded-2xl p-4 text-white shadow-lg cursor-pointer hover:opacity-95 transition flex items-center justify-between border border-rose-500/40";
+      } else if (aqi > 100) {
+        phoneCard.className = "bg-gradient-to-r from-[#78350f] to-[#b45309] rounded-2xl p-4 text-white shadow-lg cursor-pointer hover:opacity-95 transition flex items-center justify-between border border-amber-500/40";
+      } else {
+        phoneCard.className = "bg-gradient-to-r from-[#064e3b] to-[#047857] rounded-2xl p-4 text-white shadow-lg cursor-pointer hover:opacity-95 transition flex items-center justify-between border border-emerald-500/40";
+      }
+    }
 
     // Render / update 24h forecast chart
     renderAqiChart(city.hourly_forecast || []);

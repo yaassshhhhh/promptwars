@@ -298,8 +298,8 @@
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-7">
 
         <!-- Live Air Quality Card (Styled like a Modern Command Altar) -->
-        <div
-          class="lg:col-span-5 shrine-altar p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shrine-roof">
+        <div id="telemetryCard"
+          class="lg:col-span-5 shrine-altar p-6 sm:p-7 flex flex-col justify-between relative overflow-hidden shrine-roof transition-colors duration-500">
           <!-- Golden Corner Brackets -->
           <div class="kanamono-corner kanamono-tl"></div>
           <div class="kanamono-corner kanamono-tr"></div>
@@ -315,7 +315,7 @@
               <p id="cardRegion" class="text-xs text-slate-300">Northern Plains &bull; Winter Smog Profile</p>
             </div>
             <div id="aqiBadge"
-              class="px-4 py-1.5 rounded-full text-xs font-bold bg-[#991b1b] text-rose-100 border border-rose-400/50 flex items-center gap-2 shadow-lg shadow-rose-950/60 glow-hazard">
+              class="px-4 py-1.5 rounded-full text-xs font-bold bg-[#991b1b] text-rose-100 border border-rose-400/50 flex items-center gap-2 shadow-lg shadow-rose-950/60 glow-hazard transition-all duration-500">
               <span class="w-2 h-2 rounded-full bg-rose-200 animate-ping"></span>
               <span id="aqiCategory">Hazardous</span>
             </div>
@@ -324,9 +324,9 @@
           <!-- Main AQI Value Big Display with Fire Glow -->
           <div class="my-6 flex items-baseline gap-4">
             <span id="cardAqiValue"
-              class="text-6xl sm:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Plus_Jakarta_Sans'] fire-glow">348</span>
+              class="text-6xl sm:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Plus_Jakarta_Sans'] fire-glow-red transition-colors duration-500">348</span>
             <div>
-              <span class="text-sm font-bold text-rose-300 block">Air Quality Index (AQI)</span>
+              <span id="cardAqiLabel" class="text-sm font-bold text-rose-300 block transition-colors duration-500">Air Quality Index (AQI)</span>
               <span class="text-xs text-slate-300">Primary Pollutant: <strong id="cardPrimaryPollutant" class="text-white">PM2.5</strong></span>
             </div>
           </div>
