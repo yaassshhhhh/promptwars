@@ -149,16 +149,16 @@ body {
   pointer-events: none;
 }
 
-/* Typography Classes */
+/* Typography Classes (Modern Executive Sans) */
 .font-kanji {
-  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
 }
 .font-calligraphy {
-  font-family: 'Yuji Boku', 'Shippori Mincho', serif;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
 }
 .font-sacred {
-  font-family: 'Cinzel', 'Shippori Mincho', serif;
-  letter-spacing: 0.08em;
+  font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+  letter-spacing: 0.04em;
 }
 
 /* Custom Japanese Vermilion Scrollbar */
@@ -531,7 +531,7 @@ body {
 }
 
 .prose-dark h3 {
-  font-family: 'Shippori Mincho', 'Noto Serif JP', serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 1.1rem;
   font-weight: 700;
   color: #ffffff;
@@ -545,7 +545,7 @@ body {
 }
 
 .prose-dark h4 {
-  font-family: 'Shippori Mincho', serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 0.95rem;
   font-weight: 600;
   color: #f472b6;

@@ -150,7 +150,7 @@ function renderAqiChart(forecast) {
         tooltip: {
           backgroundColor: '#07120c',
           titleColor: '#fce7f3',
-          titleFont: { family: "'Shippori Mincho', serif", weight: 'bold' },
+          titleFont: { family: "'Plus Jakarta Sans', sans-serif", weight: 'bold' },
           bodyColor: '#e2e8f0',
           borderColor: '#f43f5e',
           borderWidth: 1.5,
@@ -159,7 +159,7 @@ function renderAqiChart(forecast) {
           callbacks: {
             label: (ctx) => {
               const item = forecast[ctx.dataIndex];
-              return ` 大気質 (AQI): ${ctx.raw} 【${item ? item.inversion : ''}】`;
+              return ` Air Quality (AQI): ${ctx.raw} [${item ? item.inversion : ''}]`;
             }
           }
         }
@@ -204,17 +204,17 @@ async function loadIndoorHacks() {
 
         <div>
           <div class="flex items-center justify-between gap-2 mb-2.5">
-            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-rose-950/80 text-rose-300 border border-rose-800/80 font-kanji">${hack.category}</span>
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-rose-950/80 text-rose-300 border border-rose-800/80">${hack.category}</span>
             <span class="text-xs font-semibold text-amber-300">${hack.cost_tier}</span>
           </div>
-          <h4 class="text-base font-bold text-white group-hover:text-rose-400 transition font-kanji">${hack.title}</h4>
+          <h4 class="text-base font-bold text-white group-hover:text-rose-400 transition font-['Plus_Jakarta_Sans']">${hack.title}</h4>
           <p class="text-xs text-slate-300 mt-1.5 line-clamp-2 leading-relaxed">${hack.subtitle}</p>
         </div>
 
         <div class="mt-5 pt-3.5 border-t border-emerald-900/60 flex items-center justify-between text-xs">
-          <span class="text-emerald-300 font-medium text-[11px] font-kanji">${hack.efficacy}</span>
-          <span class="text-rose-400 group-hover:text-white flex items-center gap-1 font-bold font-kanji">
-            秘伝設計図 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+          <span class="text-emerald-300 font-medium text-[11px]">${hack.efficacy}</span>
+          <span class="text-rose-400 group-hover:text-white flex items-center gap-1 font-bold">
+            Inspect Blueprint <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </span>
         </div>
       `;
@@ -290,17 +290,17 @@ async function loadCommunityReports() {
       card.className = "ema-card p-4.5 flex flex-col justify-between text-xs relative overflow-hidden";
       card.innerHTML = `
         <div>
-          <div class="flex items-center justify-between text-[11px] text-slate-300 mb-1.5 font-kanji">
+          <div class="flex items-center justify-between text-[11px] text-slate-300 mb-1.5">
             <span class="font-bold text-white">${r.neighborhood}</span>
             <span class="text-amber-400 font-semibold">${r.timestamp}</span>
           </div>
-          <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-950/90 text-rose-300 border border-rose-800/80 mb-2 font-kanji">
+          <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-950/90 text-rose-300 border border-rose-800/80 mb-2">
             ${r.type}
           </span>
           <p class="text-slate-200 leading-snug">${r.details}</p>
         </div>
         <div class="mt-3 pt-2.5 border-t border-emerald-900/60 flex items-center justify-between text-[11px]">
-          <span class="text-amber-300 font-bold font-kanji">${r.status}</span>
+          <span class="text-amber-300 font-bold">${r.status}</span>
           <span class="text-slate-300 font-semibold flex items-center gap-1">
             <i data-lucide="thumbs-up" class="w-3.5 h-3.5 text-rose-400"></i> ${r.upvotes}
           </span>

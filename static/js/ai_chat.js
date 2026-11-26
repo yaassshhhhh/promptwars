@@ -112,15 +112,15 @@ window.AIChat = {
     const aqi = window.CurrentCityData ? window.CurrentCityData.aqi : 348;
     const cat = window.CurrentCityData ? window.CurrentCityData.category : "Hazardous";
 
-    const greeting = `### ⛩️ 清気守護 • Urban Air Quality Assistant
-Konnichiwa! I am **Aura • 風 (Kaze)**, your GenAI sanctuary specialist for navigating severe winter smog and urban air pollution in **${city}** (AQI: ${aqi} • ${cat}).
+    const greeting = `### 🛡️ Kaze • Urban Air Quality AI Assistant
+Welcome! I am **Kaze**, your autonomous GenAI advisor for navigating winter smog, thermal inversions, and hazardous urban air in **${city}** (AQI: ${aqi} • ${cat}).
 
-**How I safeguard your family and community today:**
-1. 🌬️ **Low-Emission Routines (日課)**: Optimize your commute and outdoor timings to avoid ground-level thermal inversions.
-2. 🌀 **Indoor Purification Hacks (浄化法)**: Build a \$45 DIY Corsi-Rosenthal HEPA box and time solar flash ventilation.
-3. 💚 **Quantified Impact (功徳)**: Track exact community $CO_2$ spared, $PM_{2.5}$ tailpipe emissions avoided, and cigarette equivalence.
+**Core Capabilities:**
+1. 🌬️ **Low-Emission Action Routines**: Schedule commutes and errands during clean solar windows to avoid hazardous morning/evening thermal inversions.
+2. 🌀 **Hospital-Grade Indoor Hacks**: Deploy high-CADR low-cost solutions like the \$45 Corsi-Rosenthal box, HEPA filters, and perimeter sealing.
+3. 💚 **Quantified Health & Climate Impact**: Calculate exact community $CO_2$ spared, $PM_{2.5}$ emissions avoided, and cigarette-inhalation equivalence.
 
-*What would you like to plan or safeguard right now?*`;
+*How can I assist your family or optimize your routine today?*`;
 
     this.renderMessage('assistant', greeting);
   },
