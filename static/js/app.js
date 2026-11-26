@@ -113,8 +113,9 @@ function renderAqiChart(forecast) {
   }
 
   const gradient = ctx.createLinearGradient(0, 0, 0, 220);
-  gradient.addColorStop(0, 'rgba(244, 63, 94, 0.45)');
-  gradient.addColorStop(0.5, 'rgba(245, 158, 11, 0.2)');
+  gradient.addColorStop(0, 'rgba(220, 38, 38, 0.55)');
+  gradient.addColorStop(0.4, 'rgba(244, 114, 182, 0.3)');
+  gradient.addColorStop(0.8, 'rgba(245, 158, 11, 0.15)');
   gradient.addColorStop(1, 'rgba(16, 185, 129, 0.02)');
 
   aqiChartInstance = new Chart(ctx, {
@@ -124,19 +125,21 @@ function renderAqiChart(forecast) {
       datasets: [{
         label: 'AQI Trajectory',
         data: aqiData,
-        borderColor: '#10b981',
-        borderWidth: 2.5,
+        borderColor: '#f43f5e',
+        borderWidth: 3,
         backgroundColor: gradient,
-        tension: 0.4,
+        tension: 0.45,
         fill: true,
         pointBackgroundColor: (context) => {
           const val = context.raw;
-          if (val > 350) return '#f43f5e';
-          if (val > 250) return '#fbbf24';
+          if (val > 350) return '#dc2626';
+          if (val > 250) return '#f59e0b';
           return '#34d399';
         },
-        pointRadius: 4,
-        pointHoverRadius: 6
+        pointBorderColor: '#fff',
+        pointBorderWidth: 1.5,
+        pointRadius: 5,
+        pointHoverRadius: 7
       }]
     },
     options: {
@@ -145,29 +148,31 @@ function renderAqiChart(forecast) {
       plugins: {
         legend: { display: false },
         tooltip: {
-          backgroundColor: '#0c1a14',
-          titleColor: '#fff',
-          bodyColor: '#cbd5e1',
-          borderColor: '#10b981',
-          borderWidth: 1,
-          padding: 10,
+          backgroundColor: '#07120c',
+          titleColor: '#fce7f3',
+          titleFont: { family: "'Shippori Mincho', serif", weight: 'bold' },
+          bodyColor: '#e2e8f0',
+          borderColor: '#f43f5e',
+          borderWidth: 1.5,
+          padding: 12,
+          boxPadding: 4,
           callbacks: {
             label: (ctx) => {
               const item = forecast[ctx.dataIndex];
-              return `AQI: ${ctx.raw} (${item ? item.inversion : ''})`;
+              return ` 大気質 (AQI): ${ctx.raw} 【${item ? item.inversion : ''}】`;
             }
           }
         }
       },
       scales: {
         x: {
-          grid: { color: 'rgba(16, 185, 129, 0.08)' },
-          ticks: { color: '#94a3b8', font: { size: 10 } }
+          grid: { color: 'rgba(244, 114, 182, 0.08)' },
+          ticks: { color: '#cbd5e1', font: { size: 10, weight: '600' } }
         },
         y: {
-          grid: { color: 'rgba(16, 185, 129, 0.08)' },
-          ticks: { color: '#94a3b8', font: { size: 10 } },
-          min: 50
+          grid: { color: 'rgba(244, 114, 182, 0.08)' },
+          ticks: { color: '#cbd5e1', font: { size: 10, weight: '600' } },
+          min: 40
         }
       }
     }
@@ -189,23 +194,27 @@ async function loadIndoorHacks() {
     container.innerHTML = '';
     allHacks.forEach(hack => {
       const card = document.createElement('div');
-      card.className = "rounded-2xl bg-[#0f241c] border border-emerald-800/40 p-5 hover:border-emerald-500/80 transition cursor-pointer shadow-lg flex flex-col justify-between group";
+      card.className = "ema-card p-6 flex flex-col justify-between group cursor-pointer relative shrine-roof";
       card.onclick = () => openHackModal(hack.id);
 
       card.innerHTML = `
+        <!-- Corner Kanamono -->
+        <div class="kanamono-corner kanamono-tl"></div>
+        <div class="kanamono-corner kanamono-tr"></div>
+
         <div>
-          <div class="flex items-center justify-between gap-2 mb-2">
-            <span class="text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded bg-emerald-950 text-emerald-400 border border-emerald-800/60">${hack.category}</span>
-            <span class="text-xs font-semibold text-emerald-300">${hack.cost_tier}</span>
+          <div class="flex items-center justify-between gap-2 mb-2.5">
+            <span class="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-rose-950/80 text-rose-300 border border-rose-800/80 font-kanji">${hack.category}</span>
+            <span class="text-xs font-semibold text-amber-300">${hack.cost_tier}</span>
           </div>
-          <h4 class="text-base font-bold text-white group-hover:text-emerald-400 transition">${hack.title}</h4>
-          <p class="text-xs text-slate-300 mt-1 line-clamp-2">${hack.subtitle}</p>
+          <h4 class="text-base font-bold text-white group-hover:text-rose-400 transition font-kanji">${hack.title}</h4>
+          <p class="text-xs text-slate-300 mt-1.5 line-clamp-2 leading-relaxed">${hack.subtitle}</p>
         </div>
 
-        <div class="mt-4 pt-3 border-t border-emerald-900/60 flex items-center justify-between text-xs">
-          <span class="text-emerald-400 font-medium text-[11px]">${hack.efficacy}</span>
-          <span class="text-slate-400 group-hover:text-white flex items-center gap-1 font-semibold">
-            Blueprint <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        <div class="mt-5 pt-3.5 border-t border-emerald-900/60 flex items-center justify-between text-xs">
+          <span class="text-emerald-300 font-medium text-[11px] font-kanji">${hack.efficacy}</span>
+          <span class="text-rose-400 group-hover:text-white flex items-center gap-1 font-bold font-kanji">
+            秘伝設計図 <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
           </span>
         </div>
       `;
@@ -278,22 +287,22 @@ async function loadCommunityReports() {
     container.innerHTML = '';
     reports.forEach(r => {
       const card = document.createElement('div');
-      card.className = "p-4 rounded-xl bg-[#122820] border border-emerald-800/50 flex flex-col justify-between text-xs";
+      card.className = "ema-card p-4.5 flex flex-col justify-between text-xs relative overflow-hidden";
       card.innerHTML = `
         <div>
-          <div class="flex items-center justify-between text-[11px] text-slate-400 mb-1">
+          <div class="flex items-center justify-between text-[11px] text-slate-300 mb-1.5 font-kanji">
             <span class="font-bold text-white">${r.neighborhood}</span>
-            <span>${r.timestamp}</span>
+            <span class="text-amber-400 font-semibold">${r.timestamp}</span>
           </div>
-          <span class="inline-block text-[10px] font-bold px-2 py-0.5 rounded bg-rose-950/80 text-rose-300 border border-rose-800/60 mb-2">
+          <span class="inline-block text-[10px] font-bold px-2.5 py-0.5 rounded-full bg-rose-950/90 text-rose-300 border border-rose-800/80 mb-2 font-kanji">
             ${r.type}
           </span>
-          <p class="text-slate-300 leading-snug">${r.details}</p>
+          <p class="text-slate-200 leading-snug">${r.details}</p>
         </div>
-        <div class="mt-3 pt-2 border-t border-emerald-900/60 flex items-center justify-between text-[11px]">
-          <span class="text-amber-400 font-medium">${r.status}</span>
-          <span class="text-slate-400 font-semibold flex items-center gap-1">
-            <i data-lucide="thumbs-up" class="w-3 h-3 text-emerald-400"></i> ${r.upvotes}
+        <div class="mt-3 pt-2.5 border-t border-emerald-900/60 flex items-center justify-between text-[11px]">
+          <span class="text-amber-300 font-bold font-kanji">${r.status}</span>
+          <span class="text-slate-300 font-semibold flex items-center gap-1">
+            <i data-lucide="thumbs-up" class="w-3.5 h-3.5 text-rose-400"></i> ${r.upvotes}
           </span>
         </div>
       `;
