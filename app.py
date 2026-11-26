@@ -98,6 +98,7 @@ def get_cities():
             "id": c["id"],
             "name": c["name"],
             "country": c["country"],
+            "continent": c.get("continent", "Global"),
             "aqi": c["aqi"],
             "category": c["category"],
             "primary_pollutant": c["primary_pollutant"]

@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 });
 
 /**
- * Fetch and populate cities dropdown
+ * Fetch and populate cities dropdown grouped by continent/region
  */
 async function initCities() {
   const citySelect = document.getElementById('citySelect');
@@ -29,15 +29,45 @@ async function initCities() {
     const cities = data.cities || [];
 
     citySelect.innerHTML = '';
+
+    // Group cities by continent / region
+    const groups = {};
     cities.forEach(c => {
-      const opt = document.createElement('option');
-      opt.value = c.id;
-      opt.textContent = `${c.name} (${c.country}) - AQI ${c.aqi}`;
-      citySelect.appendChild(opt);
+      const region = c.continent || 'Global';
+      if (!groups[region]) groups[region] = [];
+      groups[region].push(c);
+    });
+
+    // Preferred order of regions
+    const regionOrder = ['India', 'Asia & Middle East', 'Europe', 'Americas', 'Africa & Oceania'];
+    const sortedRegions = Object.keys(groups).sort((a, b) => {
+      const idxA = regionOrder.indexOf(a);
+      const idxB = regionOrder.indexOf(b);
+      if (idxA !== -1 && idxB !== -1) return idxA - idxB;
+      if (idxA !== -1) return -1;
+      if (idxB !== -1) return 1;
+      return a.localeCompare(b);
+    });
+
+    sortedRegions.forEach(region => {
+      const optGroup = document.createElement('optgroup');
+      optGroup.label = `📍 ${region} (${groups[region].length})`;
+      optGroup.className = "bg-[#07130e] text-rose-300 font-bold";
+
+      groups[region].forEach(c => {
+        const opt = document.createElement('option');
+        opt.value = c.id;
+        opt.textContent = `${c.name} (${c.country}) - AQI ${c.aqi}`;
+        opt.className = "bg-[#0b1c15] text-slate-200 font-normal";
+        optGroup.appendChild(opt);
+      });
+
+      citySelect.appendChild(optGroup);
     });
 
     // Default select first city (Delhi)
     if (cities.length > 0) {
+      citySelect.value = cities[0].id;
       await loadCityData(cities[0].id);
     }
 

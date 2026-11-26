@@ -4,6 +4,7 @@
       "id": "delhi",
       "name": "Delhi NCR",
       "country": "India",
+      "continent": "India",
       "region": "Northern Plains",
       "aqi": 348,
       "category": "Hazardous",
@@ -20,52 +21,194 @@
       "inversion_alert": "Severe ground-level thermal inversion active until 11:30 AM. Pollutants trapped under cold air blanket.",
       "safe_ventilation_window": "1:30 PM - 3:30 PM",
       "hourly_forecast": [
-        {"hour": "06:00", "aqi": 380, "inversion": "Critical"},
-        {"hour": "08:00", "aqi": 395, "inversion": "Critical"},
-        {"hour": "10:00", "aqi": 360, "inversion": "High"},
-        {"hour": "12:00", "aqi": 315, "inversion": "Moderate"},
-        {"hour": "14:00", "aqi": 270, "inversion": "Low (Best Window)"},
-        {"hour": "16:00", "aqi": 295, "inversion": "Moderate"},
-        {"hour": "18:00", "aqi": 340, "inversion": "High"},
-        {"hour": "20:00", "aqi": 375, "inversion": "Critical"},
-        {"hour": "22:00", "aqi": 390, "inversion": "Critical"}
+        {
+          "hour": "06:00",
+          "aqi": 380,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 395,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 360,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 315,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 270,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 295,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 340,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 375,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 390,
+          "inversion": "Critical"
+        }
       ]
     },
     {
-      "id": "lahore",
-      "name": "Lahore",
-      "country": "Pakistan",
-      "region": "Punjab",
-      "aqi": 362,
-      "category": "Hazardous",
+      "id": "pune",
+      "name": "Pune",
+      "country": "India",
+      "continent": "India",
+      "region": "Maharashtra (Deccan Plateau)",
+      "aqi": 162,
+      "category": "Unhealthy",
       "primary_pollutant": "PM2.5",
-      "pm25": 312.0,
-      "pm10": 445.8,
-      "no2": 72.0,
-      "so2": 31.0,
-      "co": 4.1,
-      "o3": 38.0,
-      "temp_c": 13,
-      "humidity": 82,
-      "wind_speed_kmh": 3.8,
-      "inversion_alert": "Dense winter smog fog (smog). Cold surface layer trapping particulate matter.",
-      "safe_ventilation_window": "2:00 PM - 3:45 PM",
+      "pm25": 78.5,
+      "pm10": 142.0,
+      "no2": 42.1,
+      "so2": 14.8,
+      "co": 1.8,
+      "o3": 38.4,
+      "temp_c": 18,
+      "humidity": 62,
+      "wind_speed_kmh": 6.5,
+      "inversion_alert": "Morning Mutha-Mula river valley inversion traps vehicular exhaust until 9:45 AM.",
+      "safe_ventilation_window": "12:30 PM - 4:00 PM",
       "hourly_forecast": [
-        {"hour": "06:00", "aqi": 390, "inversion": "Critical"},
-        {"hour": "08:00", "aqi": 410, "inversion": "Critical"},
-        {"hour": "10:00", "aqi": 380, "inversion": "High"},
-        {"hour": "12:00", "aqi": 330, "inversion": "Moderate"},
-        {"hour": "14:00", "aqi": 285, "inversion": "Low (Best Window)"},
-        {"hour": "16:00", "aqi": 310, "inversion": "Moderate"},
-        {"hour": "18:00", "aqi": 355, "inversion": "High"},
-        {"hour": "20:00", "aqi": 395, "inversion": "Critical"},
-        {"hour": "22:00", "aqi": 405, "inversion": "Critical"}
+        {
+          "hour": "06:00",
+          "aqi": 185,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 198,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 172,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 145,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 130,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 142,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 168,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 180,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 175,
+          "inversion": "Moderate"
+        }
+      ]
+    },
+    {
+      "id": "solapur",
+      "name": "Solapur",
+      "country": "India",
+      "continent": "India",
+      "region": "Maharashtra (South-East Plateau)",
+      "aqi": 128,
+      "category": "Unhealthy for Sensitive Groups",
+      "primary_pollutant": "PM10",
+      "pm25": 46.2,
+      "pm10": 122.5,
+      "no2": 32.4,
+      "so2": 11.2,
+      "co": 1.4,
+      "o3": 34.0,
+      "temp_c": 21,
+      "humidity": 54,
+      "wind_speed_kmh": 7.8,
+      "inversion_alert": "Semi-arid winter breezes clear particulate matter by midday; minor biomass smoke at dawn.",
+      "safe_ventilation_window": "11:00 AM - 4:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 145,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 152,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 135,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 118,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 105,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 112,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 132,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 140,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 136,
+          "inversion": "Moderate"
+        }
       ]
     },
     {
       "id": "mumbai",
       "name": "Mumbai",
       "country": "India",
+      "continent": "India",
       "region": "Coastal West",
       "aqi": 184,
       "category": "Unhealthy",
@@ -79,56 +222,1830 @@
       "temp_c": 24,
       "humidity": 65,
       "wind_speed_kmh": 8.5,
-      "inversion_alert": "Coastal sea breeze moderates inversion in afternoon; morning vehicular spike.",
+      "inversion_alert": "Coastal sea breeze moderates inversion in afternoon; morning vehicular spike along traffic corridors.",
       "safe_ventilation_window": "11:00 AM - 4:00 PM",
       "hourly_forecast": [
-        {"hour": "06:00", "aqi": 210, "inversion": "Moderate"},
-        {"hour": "08:00", "aqi": 225, "inversion": "High"},
-        {"hour": "10:00", "aqi": 195, "inversion": "Moderate"},
-        {"hour": "12:00", "aqi": 165, "inversion": "Low"},
-        {"hour": "14:00", "aqi": 150, "inversion": "Low"},
-        {"hour": "16:00", "aqi": 160, "inversion": "Low"},
-        {"hour": "18:00", "aqi": 190, "inversion": "Moderate"},
-        {"hour": "20:00", "aqi": 205, "inversion": "Moderate"},
-        {"hour": "22:00", "aqi": 195, "inversion": "Moderate"}
+        {
+          "hour": "06:00",
+          "aqi": 210,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 225,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 195,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 165,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 150,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 160,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 190,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 205,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 195,
+          "inversion": "Moderate"
+        }
+      ]
+    },
+    {
+      "id": "bengaluru",
+      "name": "Bengaluru",
+      "country": "India",
+      "continent": "India",
+      "region": "Karnataka (Southern Plateau)",
+      "aqi": 92,
+      "category": "Moderate",
+      "primary_pollutant": "PM2.5",
+      "pm25": 32.1,
+      "pm10": 78.4,
+      "no2": 28.5,
+      "so2": 9.2,
+      "co": 1.1,
+      "o3": 30.5,
+      "temp_c": 20,
+      "humidity": 58,
+      "wind_speed_kmh": 9.2,
+      "inversion_alert": "Light morning radiation fog in valleys; rapid convective dispersion by 9:00 AM.",
+      "safe_ventilation_window": "10:00 AM - 5:00 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 110,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 118,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 95,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 82,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 75,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 80,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 98,
+          "inversion": "Low"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 105,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 96,
+          "inversion": "Low"
+        }
+      ]
+    },
+    {
+      "id": "hyderabad",
+      "name": "Hyderabad",
+      "country": "India",
+      "continent": "India",
+      "region": "Telangana",
+      "aqi": 145,
+      "category": "Unhealthy for Sensitive Groups",
+      "primary_pollutant": "PM2.5",
+      "pm25": 54.8,
+      "pm10": 115.0,
+      "no2": 38.6,
+      "so2": 12.4,
+      "co": 1.6,
+      "o3": 36.2,
+      "temp_c": 22,
+      "humidity": 55,
+      "wind_speed_kmh": 7.1,
+      "inversion_alert": "Winter morning ground stagnation traps vehicular dust in central commercial corridors.",
+      "safe_ventilation_window": "11:30 AM - 4:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 165,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 175,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 150,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 130,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 120,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 128,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 155,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 162,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 150,
+          "inversion": "Moderate"
+        }
+      ]
+    },
+    {
+      "id": "kolkata",
+      "name": "Kolkata",
+      "country": "India",
+      "continent": "India",
+      "region": "West Bengal (Gangetic Delta)",
+      "aqi": 265,
+      "category": "Very Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 215.0,
+      "pm10": 310.2,
+      "no2": 58.4,
+      "so2": 21.0,
+      "co": 3.1,
+      "o3": 32.0,
+      "temp_c": 18,
+      "humidity": 80,
+      "wind_speed_kmh": 3.9,
+      "inversion_alert": "Severe winter fog and high humidity trap particulate matter over the river delta until midday.",
+      "safe_ventilation_window": "1:00 PM - 3:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 295,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 310,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 280,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 240,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 210,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 235,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 270,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 290,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 285,
+          "inversion": "Critical"
+        }
+      ]
+    },
+    {
+      "id": "chennai",
+      "name": "Chennai",
+      "country": "India",
+      "continent": "India",
+      "region": "Tamil Nadu (Coromandel Coast)",
+      "aqi": 88,
+      "category": "Moderate",
+      "primary_pollutant": "PM2.5",
+      "pm25": 30.2,
+      "pm10": 68.0,
+      "no2": 24.1,
+      "so2": 8.5,
+      "co": 1.0,
+      "o3": 28.0,
+      "temp_c": 26,
+      "humidity": 72,
+      "wind_speed_kmh": 11.2,
+      "inversion_alert": "Strong coastal sea breezes provide continuous ventilation across eastern coastline.",
+      "safe_ventilation_window": "9:30 AM - 5:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 105,
+          "inversion": "Low"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 112,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 92,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 80,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 74,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 78,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 94,
+          "inversion": "Low"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 98,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 90,
+          "inversion": "Low"
+        }
+      ]
+    },
+    {
+      "id": "ahmedabad",
+      "name": "Ahmedabad",
+      "country": "India",
+      "continent": "India",
+      "region": "Gujarat",
+      "aqi": 210,
+      "category": "Very Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 160.0,
+      "pm10": 255.4,
+      "no2": 52.0,
+      "so2": 19.5,
+      "co": 2.8,
+      "o3": 39.0,
+      "temp_c": 19,
+      "humidity": 50,
+      "wind_speed_kmh": 5.4,
+      "inversion_alert": "Calm winter nights trap industrial and ring-road vehicular emissions in lower boundary layer.",
+      "safe_ventilation_window": "12:00 PM - 3:45 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 240,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 255,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 225,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 190,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 170,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 185,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 215,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 235,
+          "inversion": "High"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 230,
+          "inversion": "High"
+        }
+      ]
+    },
+    {
+      "id": "jaipur",
+      "name": "Jaipur",
+      "country": "India",
+      "continent": "India",
+      "region": "Rajasthan",
+      "aqi": 245,
+      "category": "Very Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 195.2,
+      "pm10": 298.0,
+      "no2": 48.0,
+      "so2": 16.2,
+      "co": 2.5,
+      "o3": 37.0,
+      "temp_c": 15,
+      "humidity": 52,
+      "wind_speed_kmh": 4.8,
+      "inversion_alert": "Valley basin surrounding Aravalli hills restricts winter smog dispersion until late afternoon.",
+      "safe_ventilation_window": "1:00 PM - 3:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 275,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 290,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 260,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 220,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 195,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 210,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 250,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 270,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 265,
+          "inversion": "Critical"
+        }
+      ]
+    },
+    {
+      "id": "lucknow",
+      "name": "Lucknow",
+      "country": "India",
+      "continent": "India",
+      "region": "Uttar Pradesh (Central Gangetic Plain)",
+      "aqi": 318,
+      "category": "Hazardous",
+      "primary_pollutant": "PM2.5",
+      "pm25": 268.0,
+      "pm10": 385.0,
+      "no2": 62.5,
+      "so2": 22.0,
+      "co": 3.4,
+      "o3": 33.0,
+      "temp_c": 13,
+      "humidity": 84,
+      "wind_speed_kmh": 3.5,
+      "inversion_alert": "Severe dense fog and surface cooling create a persistent 300m smog blanket through midday.",
+      "safe_ventilation_window": "1:45 PM - 3:15 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 350,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 370,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 335,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 290,
+          "inversion": "High"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 250,
+          "inversion": "Moderate (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 275,
+          "inversion": "High"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 320,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 355,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 360,
+          "inversion": "Critical"
+        }
+      ]
+    },
+    {
+      "id": "nagpur",
+      "name": "Nagpur",
+      "country": "India",
+      "continent": "India",
+      "region": "Maharashtra (Vidarbha)",
+      "aqi": 138,
+      "category": "Unhealthy for Sensitive Groups",
+      "primary_pollutant": "PM2.5",
+      "pm25": 51.0,
+      "pm10": 118.0,
+      "no2": 34.0,
+      "so2": 13.0,
+      "co": 1.5,
+      "o3": 35.0,
+      "temp_c": 19,
+      "humidity": 56,
+      "wind_speed_kmh": 6.2,
+      "inversion_alert": "Moderate morning ground inversion dissipates by 10:00 AM as sun warms the central plains.",
+      "safe_ventilation_window": "11:00 AM - 4:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 158,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 168,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 142,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 125,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 115,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 122,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 148,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 155,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 150,
+          "inversion": "Moderate"
+        }
+      ]
+    },
+    {
+      "id": "lahore",
+      "name": "Lahore",
+      "country": "Pakistan",
+      "continent": "Asia & Middle East",
+      "region": "Punjab",
+      "aqi": 362,
+      "category": "Hazardous",
+      "primary_pollutant": "PM2.5",
+      "pm25": 312.0,
+      "pm10": 445.8,
+      "no2": 72.0,
+      "so2": 31.0,
+      "co": 4.1,
+      "o3": 38.0,
+      "temp_c": 13,
+      "humidity": 82,
+      "wind_speed_kmh": 3.8,
+      "inversion_alert": "Dense transboundary winter smog. Shallow boundary layer traps particulates close to the ground.",
+      "safe_ventilation_window": "2:00 PM - 3:45 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 390,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 410,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 380,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 330,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 285,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 310,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 355,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 395,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 405,
+          "inversion": "Critical"
+        }
+      ]
+    },
+    {
+      "id": "dhaka",
+      "name": "Dhaka",
+      "country": "Bangladesh",
+      "continent": "Asia & Middle East",
+      "region": "Dhaka Division",
+      "aqi": 280,
+      "category": "Very Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 230.5,
+      "pm10": 340.0,
+      "no2": 55.0,
+      "so2": 26.0,
+      "co": 3.2,
+      "o3": 30.0,
+      "temp_c": 20,
+      "humidity": 75,
+      "wind_speed_kmh": 4.5,
+      "inversion_alert": "Brick kiln plume accumulation and calm morning humidity maintain heavy particulate fog.",
+      "safe_ventilation_window": "1:15 PM - 3:45 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 310,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 330,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 295,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 255,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 220,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 245,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 285,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 315,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 310,
+          "inversion": "Critical"
+        }
+      ]
+    },
+    {
+      "id": "kathmandu",
+      "name": "Kathmandu",
+      "country": "Nepal",
+      "continent": "Asia & Middle East",
+      "region": "Kathmandu Valley",
+      "aqi": 175,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 102.0,
+      "pm10": 188.0,
+      "no2": 36.0,
+      "so2": 14.0,
+      "co": 1.9,
+      "o3": 34.0,
+      "temp_c": 11,
+      "humidity": 76,
+      "wind_speed_kmh": 3.2,
+      "inversion_alert": "Inter-montane bowl topography traps wood smoke and vehicle emissions under cold valley inversion.",
+      "safe_ventilation_window": "12:00 PM - 3:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 205,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 220,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 185,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 150,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 135,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 148,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 182,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 200,
+          "inversion": "High"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 195,
+          "inversion": "High"
+        }
       ]
     },
     {
       "id": "beijing",
       "name": "Beijing",
       "country": "China",
+      "continent": "Asia & Middle East",
       "region": "Northern China",
-      "aqi": 168,
+      "aqi": 195,
       "category": "Unhealthy",
       "primary_pollutant": "PM2.5",
-      "pm25": 88.0,
-      "pm10": 135.0,
-      "no2": 52.0,
-      "so2": 12.0,
-      "co": 1.9,
-      "o3": 30.0,
+      "pm25": 142.0,
+      "pm10": 210.5,
+      "no2": 58.0,
+      "so2": 15.0,
+      "co": 2.4,
+      "o3": 28.0,
       "temp_c": 2,
-      "humidity": 45,
-      "wind_speed_kmh": 11.2,
-      "inversion_alert": "Winter heating season smog wave. Strong north wind expected tomorrow to clear basin.",
-      "safe_ventilation_window": "12:00 PM - 3:00 PM",
+      "humidity": 48,
+      "wind_speed_kmh": 5.8,
+      "inversion_alert": "Cold air drainage from Yanshan Mountains traps regional coal and vehicle particulates.",
+      "safe_ventilation_window": "1:00 PM - 3:00 PM",
       "hourly_forecast": [
-        {"hour": "06:00", "aqi": 190, "inversion": "Moderate"},
-        {"hour": "08:00", "aqi": 205, "inversion": "High"},
-        {"hour": "10:00", "aqi": 180, "inversion": "Moderate"},
-        {"hour": "12:00", "aqi": 150, "inversion": "Low"},
-        {"hour": "14:00", "aqi": 140, "inversion": "Low"},
-        {"hour": "16:00", "aqi": 155, "inversion": "Moderate"},
-        {"hour": "18:00", "aqi": 175, "inversion": "Moderate"},
-        {"hour": "20:00", "aqi": 185, "inversion": "Moderate"},
-        {"hour": "22:00", "aqi": 180, "inversion": "Moderate"}
+        {
+          "hour": "06:00",
+          "aqi": 220,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 235,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 210,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 175,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 155,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 170,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 205,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 225,
+          "inversion": "High"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 215,
+          "inversion": "High"
+        }
       ]
     },
     {
-      "id": "saltlakecity",
+      "id": "tokyo",
+      "name": "Tokyo",
+      "country": "Japan",
+      "continent": "Asia & Middle East",
+      "region": "Kanto Region",
+      "aqi": 42,
+      "category": "Good",
+      "primary_pollutant": "PM2.5",
+      "pm25": 10.2,
+      "pm10": 18.5,
+      "no2": 18.4,
+      "so2": 4.1,
+      "co": 0.4,
+      "o3": 32.0,
+      "temp_c": 11,
+      "humidity": 55,
+      "wind_speed_kmh": 12.0,
+      "inversion_alert": "High atmospheric ventilation. Crisp Pacific breeze keeps air pristine throughout the basin.",
+      "safe_ventilation_window": "All Day (8:00 AM - 6:00 PM)",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 48,
+          "inversion": "None"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 52,
+          "inversion": "Low"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 45,
+          "inversion": "None"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 38,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 34,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 39,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 46,
+          "inversion": "None"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 44,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 40,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "kyoto",
+      "name": "Kyoto",
+      "country": "Japan",
+      "continent": "Asia & Middle East",
+      "region": "Kansai Basin",
+      "aqi": 35,
+      "category": "Good",
+      "primary_pollutant": "PM2.5",
+      "pm25": 8.4,
+      "pm10": 15.0,
+      "no2": 14.2,
+      "so2": 3.2,
+      "co": 0.3,
+      "o3": 30.5,
+      "temp_c": 9,
+      "humidity": 62,
+      "wind_speed_kmh": 8.5,
+      "inversion_alert": "Valley mist in morning clears quickly; pristine mountain forest air circulation.",
+      "safe_ventilation_window": "All Day (9:00 AM - 5:00 PM)",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 40,
+          "inversion": "Low"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 44,
+          "inversion": "Low"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 38,
+          "inversion": "None"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 32,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 28,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 31,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 37,
+          "inversion": "None"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 36,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 33,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "seoul",
+      "name": "Seoul",
+      "country": "South Korea",
+      "continent": "Asia & Middle East",
+      "region": "Capital Region",
+      "aqi": 115,
+      "category": "Unhealthy for Sensitive Groups",
+      "primary_pollutant": "PM2.5",
+      "pm25": 41.2,
+      "pm10": 76.0,
+      "no2": 35.0,
+      "so2": 8.0,
+      "co": 1.2,
+      "o3": 26.0,
+      "temp_c": 4,
+      "humidity": 50,
+      "wind_speed_kmh": 7.5,
+      "inversion_alert": "Yellow dust and trans-Yellow Sea haze moderate daytime air quality; morning thermal layer.",
+      "safe_ventilation_window": "1:00 PM - 3:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 130,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 138,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 122,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 105,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 95,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 102,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 120,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 125,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 118,
+          "inversion": "Moderate"
+        }
+      ]
+    },
+    {
+      "id": "bangkok",
+      "name": "Bangkok",
+      "country": "Thailand",
+      "continent": "Asia & Middle East",
+      "region": "Central Plains",
+      "aqi": 168,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 88.5,
+      "pm10": 145.0,
+      "no2": 40.0,
+      "so2": 10.0,
+      "co": 1.8,
+      "o3": 44.0,
+      "temp_c": 28,
+      "humidity": 68,
+      "wind_speed_kmh": 5.2,
+      "inversion_alert": "Seasonal sugar-cane burning and vehicular stagnation create heavy winter urban haze.",
+      "safe_ventilation_window": "11:30 AM - 3:00 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 188,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 202,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 175,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 150,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 138,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 148,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 176,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 185,
+          "inversion": "High"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 180,
+          "inversion": "High"
+        }
+      ]
+    },
+    {
+      "id": "hanoi",
+      "name": "Hanoi",
+      "country": "Vietnam",
+      "continent": "Asia & Middle East",
+      "region": "Red River Delta",
+      "aqi": 192,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 135.0,
+      "pm10": 205.0,
+      "no2": 46.0,
+      "so2": 16.0,
+      "co": 2.2,
+      "o3": 35.0,
+      "temp_c": 19,
+      "humidity": 78,
+      "wind_speed_kmh": 4.1,
+      "inversion_alert": "High winter humidity and temperature inversion hold motorbike emissions trapped in delta basin.",
+      "safe_ventilation_window": "1:00 PM - 3:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 215,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 230,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 200,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 170,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 155,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 168,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 202,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 220,
+          "inversion": "High"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 210,
+          "inversion": "High"
+        }
+      ]
+    },
+    {
+      "id": "jakarta",
+      "name": "Jakarta",
+      "country": "Indonesia",
+      "continent": "Asia & Middle East",
+      "region": "Java",
+      "aqi": 158,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 72.0,
+      "pm10": 130.0,
+      "no2": 42.0,
+      "so2": 18.0,
+      "co": 2.0,
+      "o3": 40.0,
+      "temp_c": 29,
+      "humidity": 76,
+      "wind_speed_kmh": 6.0,
+      "inversion_alert": "Morning land-breeze traps coal plant emissions and gridlocked traffic over coastal basin.",
+      "safe_ventilation_window": "12:00 PM - 4:00 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 175,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 188,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 165,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 142,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 130,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 138,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 164,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 172,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 165,
+          "inversion": "Moderate"
+        }
+      ]
+    },
+    {
+      "id": "dubai",
+      "name": "Dubai",
+      "country": "United Arab Emirates",
+      "continent": "Asia & Middle East",
+      "region": "Arabian Gulf",
+      "aqi": 135,
+      "category": "Unhealthy for Sensitive Groups",
+      "primary_pollutant": "PM10",
+      "pm25": 48.0,
+      "pm10": 140.0,
+      "no2": 38.0,
+      "so2": 12.0,
+      "co": 1.5,
+      "o3": 42.0,
+      "temp_c": 26,
+      "humidity": 60,
+      "wind_speed_kmh": 14.5,
+      "inversion_alert": "Airborne mineral desert dust elevated by Shamal winds; sea breeze clears coastal line in afternoon.",
+      "safe_ventilation_window": "2:00 PM - 5:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 150,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 158,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 142,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 128,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 118,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 122,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 140,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 146,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 142,
+          "inversion": "Moderate"
+        }
+      ]
+    },
+    {
+      "id": "london",
+      "name": "London",
+      "country": "United Kingdom",
+      "continent": "Europe",
+      "region": "Greater London",
+      "aqi": 48,
+      "category": "Good",
+      "primary_pollutant": "NO2",
+      "pm25": 11.5,
+      "pm10": 20.0,
+      "no2": 32.5,
+      "so2": 4.0,
+      "co": 0.5,
+      "o3": 28.0,
+      "temp_c": 8,
+      "humidity": 82,
+      "wind_speed_kmh": 14.0,
+      "inversion_alert": "North Atlantic frontal system keeps urban basin well-ventilated; localized roadside NO2 during rush hours.",
+      "safe_ventilation_window": "All Day (10:00 AM - 4:00 PM)",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 52,
+          "inversion": "Low"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 64,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 50,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 42,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 38,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 45,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 56,
+          "inversion": "Low"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 48,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 44,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "paris",
+      "name": "Paris",
+      "country": "France",
+      "continent": "Europe",
+      "region": "\u00cele-de-France",
+      "aqi": 55,
+      "category": "Moderate",
+      "primary_pollutant": "PM2.5",
+      "pm25": 14.0,
+      "pm10": 24.0,
+      "no2": 34.0,
+      "so2": 4.5,
+      "co": 0.6,
+      "o3": 30.0,
+      "temp_c": 7,
+      "humidity": 79,
+      "wind_speed_kmh": 10.5,
+      "inversion_alert": "Light anticyclonic condition creates weak morning inversion over the Seine basin.",
+      "safe_ventilation_window": "11:00 AM - 4:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 62,
+          "inversion": "Low"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 72,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 58,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 48,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 42,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 49,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 65,
+          "inversion": "Low"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 58,
+          "inversion": "Low"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 50,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "berlin",
+      "name": "Berlin",
+      "country": "Germany",
+      "continent": "Europe",
+      "region": "Brandenburg Plain",
+      "aqi": 45,
+      "category": "Good",
+      "primary_pollutant": "PM2.5",
+      "pm25": 10.8,
+      "pm10": 19.5,
+      "no2": 26.0,
+      "so2": 3.8,
+      "co": 0.4,
+      "o3": 29.0,
+      "temp_c": 5,
+      "humidity": 74,
+      "wind_speed_kmh": 13.0,
+      "inversion_alert": "Open topography and steady westerly winds maintain optimal air circulation.",
+      "safe_ventilation_window": "All Day (9:00 AM - 5:00 PM)",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 50,
+          "inversion": "None"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 58,
+          "inversion": "Low"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 46,
+          "inversion": "None"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 40,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 36,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 41,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 52,
+          "inversion": "Low"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 45,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 42,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "milan",
+      "name": "Milan",
+      "country": "Italy",
+      "continent": "Europe",
+      "region": "Lombardy (Po Valley)",
+      "aqi": 155,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 68.4,
+      "pm10": 95.0,
+      "no2": 52.0,
+      "so2": 8.5,
+      "co": 1.6,
+      "o3": 22.0,
+      "temp_c": 6,
+      "humidity": 86,
+      "wind_speed_kmh": 2.8,
+      "inversion_alert": "Alps-enclosed Po Valley thermal inversion traps winter heating & traffic emissions for days.",
+      "safe_ventilation_window": "1:30 PM - 3:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 175,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 188,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 168,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 142,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 125,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 138,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 165,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 180,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 178,
+          "inversion": "Critical"
+        }
+      ]
+    },
+    {
+      "id": "warsaw",
+      "name": "Warsaw",
+      "country": "Poland",
+      "continent": "Europe",
+      "region": "Mazovia",
+      "aqi": 165,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 82.0,
+      "pm10": 125.0,
+      "no2": 38.0,
+      "so2": 18.0,
+      "co": 1.9,
+      "o3": 24.0,
+      "temp_c": 1,
+      "humidity": 88,
+      "wind_speed_kmh": 4.2,
+      "inversion_alert": "Residential coal/wood stove winter heating combined with cold ground inversion creates heavy winter smog.",
+      "safe_ventilation_window": "12:30 PM - 2:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 185,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 195,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 175,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 150,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 135,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 155,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 182,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 192,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 188,
+          "inversion": "Critical"
+        }
+      ]
+    },
+    {
+      "id": "madrid",
+      "name": "Madrid",
+      "country": "Spain",
+      "continent": "Europe",
+      "region": "Central Plateau (Meseta)",
+      "aqi": 62,
+      "category": "Moderate",
+      "primary_pollutant": "NO2",
+      "pm25": 16.5,
+      "pm10": 28.0,
+      "no2": 42.0,
+      "so2": 5.0,
+      "co": 0.8,
+      "o3": 35.0,
+      "temp_c": 12,
+      "humidity": 58,
+      "wind_speed_kmh": 8.0,
+      "inversion_alert": "Winter anticyclone caps vehicular emissions in the Manzanares valley during rush hours.",
+      "safe_ventilation_window": "12:00 PM - 5:00 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 72,
+          "inversion": "Low"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 85,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 68,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 52,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 46,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 54,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 75,
+          "inversion": "Low"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 70,
+          "inversion": "Low"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 60,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "amsterdam",
+      "name": "Amsterdam",
+      "country": "Netherlands",
+      "continent": "Europe",
+      "region": "North Holland",
+      "aqi": 38,
+      "category": "Good",
+      "primary_pollutant": "PM2.5",
+      "pm25": 8.8,
+      "pm10": 16.2,
+      "no2": 22.0,
+      "so2": 3.0,
+      "co": 0.4,
+      "o3": 32.0,
+      "temp_c": 7,
+      "humidity": 85,
+      "wind_speed_kmh": 18.0,
+      "inversion_alert": "Constant North Sea maritime winds provide exceptional natural air renewal.",
+      "safe_ventilation_window": "All Day (8:00 AM - 6:00 PM)",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 42,
+          "inversion": "None"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 46,
+          "inversion": "None"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 39,
+          "inversion": "None"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 34,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 30,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 35,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 42,
+          "inversion": "None"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 40,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 36,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "saltlake",
       "name": "Salt Lake City",
       "country": "United States",
-      "region": "Utah Valley Basin",
+      "continent": "Americas",
+      "region": "Utah (Wasatch Front Basin)",
       "aqi": 142,
       "category": "Unhealthy for Sensitive Groups",
       "primary_pollutant": "PM2.5",
@@ -136,147 +2053,807 @@
       "pm10": 78.0,
       "no2": 38.0,
       "so2": 6.2,
-      "co": 1.2,
-      "o3": 32.0,
-      "temp_c": -1,
-      "humidity": 68,
-      "wind_speed_kmh": 3.2,
-      "inversion_alert": "Valley basin temperature inversion trapping wood smoke and vehicle exhaust.",
-      "safe_ventilation_window": "1:00 PM - 3:30 PM",
+      "co": 1.4,
+      "o3": 24.0,
+      "temp_c": -2,
+      "humidity": 72,
+      "wind_speed_kmh": 3.1,
+      "inversion_alert": "Wasatch mountain cold pool creates severe multi-day winter capping inversion.",
+      "safe_ventilation_window": "1:30 PM - 3:30 PM",
       "hourly_forecast": [
-        {"hour": "06:00", "aqi": 155, "inversion": "High"},
-        {"hour": "08:00", "aqi": 168, "inversion": "High"},
-        {"hour": "10:00", "aqi": 150, "inversion": "Moderate"},
-        {"hour": "12:00", "aqi": 130, "inversion": "Low"},
-        {"hour": "14:00", "aqi": 115, "inversion": "Low"},
-        {"hour": "16:00", "aqi": 128, "inversion": "Moderate"},
-        {"hour": "18:00", "aqi": 145, "inversion": "High"},
-        {"hour": "20:00", "aqi": 158, "inversion": "High"},
-        {"hour": "22:00", "aqi": 160, "inversion": "High"}
+        {
+          "hour": "06:00",
+          "aqi": 160,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 172,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 152,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 130,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 115,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 125,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 150,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 165,
+          "inversion": "High"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 158,
+          "inversion": "High"
+        }
       ]
     },
     {
-      "id": "milan",
-      "name": "Milan",
-      "country": "Italy",
-      "region": "Po Valley",
-      "aqi": 156,
-      "category": "Unhealthy",
-      "primary_pollutant": "PM2.5",
-      "pm25": 65.0,
-      "pm10": 98.0,
-      "no2": 58.0,
-      "so2": 8.0,
-      "co": 1.5,
-      "o3": 25.0,
-      "temp_c": 5,
-      "humidity": 85,
-      "wind_speed_kmh": 2.5,
-      "inversion_alert": "Po Valley stagnation event with persistent ground fog and low vertical mixing.",
-      "safe_ventilation_window": "1:00 PM - 3:00 PM",
-      "hourly_forecast": [
-        {"hour": "06:00", "aqi": 165, "inversion": "High"},
-        {"hour": "08:00", "aqi": 180, "inversion": "High"},
-        {"hour": "10:00", "aqi": 162, "inversion": "Moderate"},
-        {"hour": "12:00", "aqi": 142, "inversion": "Low"},
-        {"hour": "14:00", "aqi": 130, "inversion": "Low"},
-        {"hour": "16:00", "aqi": 145, "inversion": "Moderate"},
-        {"hour": "18:00", "aqi": 168, "inversion": "High"},
-        {"hour": "20:00", "aqi": 178, "inversion": "High"},
-        {"hour": "22:00", "aqi": 172, "inversion": "High"}
-      ]
-    },
-    {
-      "id": "london",
-      "name": "London",
-      "country": "United Kingdom",
-      "region": "Greater London",
-      "aqi": 78,
+      "id": "newyork",
+      "name": "New York City",
+      "country": "United States",
+      "continent": "Americas",
+      "region": "New York",
+      "aqi": 52,
       "category": "Moderate",
-      "primary_pollutant": "NO2",
-      "pm25": 21.0,
-      "pm10": 34.0,
-      "no2": 42.0,
+      "primary_pollutant": "PM2.5",
+      "pm25": 13.5,
+      "pm10": 24.0,
+      "no2": 30.0,
       "so2": 5.0,
-      "co": 0.8,
-      "o3": 28.0,
-      "temp_c": 8,
-      "humidity": 75,
-      "wind_speed_kmh": 14.0,
-      "inversion_alert": "Light morning thermal layer clearing rapidly due to brisk Atlantic westerly breeze.",
-      "safe_ventilation_window": "10:00 AM - 5:00 PM",
+      "co": 0.7,
+      "o3": 32.0,
+      "temp_c": 6,
+      "humidity": 64,
+      "wind_speed_kmh": 15.0,
+      "inversion_alert": "Atlantic coastal winds provide steady flushing; minor street-canyon vehicular accumulation.",
+      "safe_ventilation_window": "All Day (9:30 AM - 5:00 PM)",
       "hourly_forecast": [
-        {"hour": "06:00", "aqi": 85, "inversion": "Low"},
-        {"hour": "08:00", "aqi": 98, "inversion": "Moderate"},
-        {"hour": "10:00", "aqi": 80, "inversion": "Low"},
-        {"hour": "12:00", "aqi": 68, "inversion": "None"},
-        {"hour": "14:00", "aqi": 65, "inversion": "None"},
-        {"hour": "16:00", "aqi": 75, "inversion": "Low"},
-        {"hour": "18:00", "aqi": 88, "inversion": "Moderate"},
-        {"hour": "20:00", "aqi": 82, "inversion": "Low"},
-        {"hour": "22:00", "aqi": 74, "inversion": "Low"}
+        {
+          "hour": "06:00",
+          "aqi": 58,
+          "inversion": "Low"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 68,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 54,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 45,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 40,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 48,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 62,
+          "inversion": "Low"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 55,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 48,
+          "inversion": "None"
+        }
       ]
     },
     {
-      "id": "tokyo",
-      "name": "Tokyo (東京)",
-      "country": "Japan",
-      "region": "Kanto Basin",
-      "aqi": 42,
+      "id": "losangeles",
+      "name": "Los Angeles",
+      "country": "United States",
+      "continent": "Americas",
+      "region": "California (South Coast Air Basin)",
+      "aqi": 112,
+      "category": "Unhealthy for Sensitive Groups",
+      "primary_pollutant": "O3",
+      "pm25": 39.8,
+      "pm10": 68.0,
+      "no2": 36.0,
+      "so2": 4.0,
+      "co": 1.2,
+      "o3": 64.0,
+      "temp_c": 20,
+      "humidity": 55,
+      "wind_speed_kmh": 7.5,
+      "inversion_alert": "Marine boundary layer inversion traps highway smog against San Gabriel Mountains.",
+      "safe_ventilation_window": "9:30 AM - 1:00 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 95,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 120,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 115,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 105,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 125,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 135,
+          "inversion": "High"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 122,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 108,
+          "inversion": "Low"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 98,
+          "inversion": "Low"
+        }
+      ]
+    },
+    {
+      "id": "toronto",
+      "name": "Toronto",
+      "country": "Canada",
+      "continent": "Americas",
+      "region": "Ontario",
+      "aqi": 36,
       "category": "Good",
       "primary_pollutant": "PM2.5",
-      "pm25": 10.2,
-      "pm10": 18.4,
-      "no2": 24.1,
-      "so2": 3.2,
+      "pm25": 8.5,
+      "pm10": 15.0,
+      "no2": 20.0,
+      "so2": 3.5,
       "co": 0.4,
-      "o3": 31.0,
-      "temp_c": 9,
-      "humidity": 52,
-      "wind_speed_kmh": 12.4,
-      "inversion_alert": "Crisp winter sea breeze from Tokyo Bay maintains excellent air clarity; Mount Fuji visible.",
-      "safe_ventilation_window": "All Day (Optimal: 10:00 AM - 4:00 PM)",
+      "o3": 30.0,
+      "temp_c": 1,
+      "humidity": 70,
+      "wind_speed_kmh": 16.5,
+      "inversion_alert": "Lake Ontario convective mixing ensures clear, well-ventilated winter atmospheric conditions.",
+      "safe_ventilation_window": "All Day (8:30 AM - 5:00 PM)",
       "hourly_forecast": [
-        {"hour": "06:00", "aqi": 48, "inversion": "None"},
-        {"hour": "08:00", "aqi": 56, "inversion": "Low"},
-        {"hour": "10:00", "aqi": 45, "inversion": "None"},
-        {"hour": "12:00", "aqi": 38, "inversion": "None (Pristine)"},
-        {"hour": "14:00", "aqi": 35, "inversion": "None (Pristine)"},
-        {"hour": "16:00", "aqi": 40, "inversion": "None"},
-        {"hour": "18:00", "aqi": 52, "inversion": "Low"},
-        {"hour": "20:00", "aqi": 46, "inversion": "None"},
-        {"hour": "22:00", "aqi": 41, "inversion": "None"}
+        {
+          "hour": "06:00",
+          "aqi": 40,
+          "inversion": "None"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 48,
+          "inversion": "Low"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 38,
+          "inversion": "None"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 32,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 28,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 34,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 42,
+          "inversion": "None"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 38,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 35,
+          "inversion": "None"
+        }
       ]
     },
     {
-      "id": "kyoto",
-      "name": "Kyoto (京都)",
-      "country": "Japan",
-      "region": "Kansai Mountain Basin",
-      "aqi": 64,
+      "id": "mexicocity",
+      "name": "Mexico City",
+      "country": "Mexico",
+      "continent": "Americas",
+      "region": "Valley of Mexico",
+      "aqi": 162,
+      "category": "Unhealthy",
+      "primary_pollutant": "O3",
+      "pm25": 74.0,
+      "pm10": 135.0,
+      "no2": 48.0,
+      "so2": 14.0,
+      "co": 2.2,
+      "o3": 78.0,
+      "temp_c": 18,
+      "humidity": 46,
+      "wind_speed_kmh": 4.8,
+      "inversion_alert": "High altitude volcanic basin (2,240m) creates morning thermal lids holding motor exhaust.",
+      "safe_ventilation_window": "10:00 AM - 1:00 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 175,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 190,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 165,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 145,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 170,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 182,
+          "inversion": "High"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 168,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 158,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 152,
+          "inversion": "Moderate"
+        }
+      ]
+    },
+    {
+      "id": "santiago",
+      "name": "Santiago",
+      "country": "Chile",
+      "continent": "Americas",
+      "region": "Central Valley",
+      "aqi": 178,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM2.5",
+      "pm25": 105.0,
+      "pm10": 180.0,
+      "no2": 44.0,
+      "so2": 12.0,
+      "co": 2.0,
+      "o3": 38.0,
+      "temp_c": 15,
+      "humidity": 65,
+      "wind_speed_kmh": 3.4,
+      "inversion_alert": "Andes Mountain barrier traps winter heating and traffic pollution beneath severe inversion cap.",
+      "safe_ventilation_window": "1:30 PM - 4:00 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 195,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 210,
+          "inversion": "Critical"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 182,
+          "inversion": "High"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 155,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 140,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 152,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 185,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 200,
+          "inversion": "High"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 192,
+          "inversion": "High"
+        }
+      ]
+    },
+    {
+      "id": "saopaulo",
+      "name": "S\u00e3o Paulo",
+      "country": "Brazil",
+      "continent": "Americas",
+      "region": "Southeast",
+      "aqi": 98,
       "category": "Moderate",
       "primary_pollutant": "PM2.5",
-      "pm25": 18.0,
-      "pm10": 26.5,
-      "no2": 28.0,
-      "so2": 4.1,
-      "co": 0.6,
-      "o3": 29.0,
-      "temp_c": 7,
+      "pm25": 34.5,
+      "pm10": 62.0,
+      "no2": 38.0,
+      "so2": 8.0,
+      "co": 1.4,
+      "o3": 45.0,
+      "temp_c": 23,
       "humidity": 68,
-      "wind_speed_kmh": 6.8,
-      "inversion_alert": "Morning mountain basin mist (霧) around Higashiyama; clears by mid-day under bamboo canopy.",
-      "safe_ventilation_window": "11:30 AM - 4:00 PM",
+      "wind_speed_kmh": 8.2,
+      "inversion_alert": "Weak winter thermal capping broken by afternoon Atlantic breeze.",
+      "safe_ventilation_window": "11:00 AM - 4:00 PM",
       "hourly_forecast": [
-        {"hour": "06:00", "aqi": 72, "inversion": "Moderate"},
-        {"hour": "08:00", "aqi": 78, "inversion": "Moderate"},
-        {"hour": "10:00", "aqi": 66, "inversion": "Low"},
-        {"hour": "12:00", "aqi": 55, "inversion": "None"},
-        {"hour": "14:00", "aqi": 50, "inversion": "None (Zen Window)"},
-        {"hour": "16:00", "aqi": 58, "inversion": "Low"},
-        {"hour": "18:00", "aqi": 68, "inversion": "Moderate"},
-        {"hour": "20:00", "aqi": 65, "inversion": "Low"},
-        {"hour": "22:00", "aqi": 60, "inversion": "Low"}
+        {
+          "hour": "06:00",
+          "aqi": 115,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 128,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 105,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 88,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 78,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 85,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 108,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 114,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 102,
+          "inversion": "Low"
+        }
+      ]
+    },
+    {
+      "id": "cairo",
+      "name": "Cairo",
+      "country": "Egypt",
+      "continent": "Africa & Oceania",
+      "region": "Nile River Valley",
+      "aqi": 188,
+      "category": "Unhealthy",
+      "primary_pollutant": "PM10",
+      "pm25": 115.0,
+      "pm10": 235.0,
+      "no2": 50.0,
+      "so2": 22.0,
+      "co": 2.8,
+      "o3": 46.0,
+      "temp_c": 21,
+      "humidity": 55,
+      "wind_speed_kmh": 5.5,
+      "inversion_alert": "Agricultural black cloud residue and Mokattam hills thermal lid hold heavy dust over the delta.",
+      "safe_ventilation_window": "12:30 PM - 3:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 210,
+          "inversion": "High"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 225,
+          "inversion": "High"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 195,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 168,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 152,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 165,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 198,
+          "inversion": "High"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 215,
+          "inversion": "High"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 208,
+          "inversion": "High"
+        }
+      ]
+    },
+    {
+      "id": "johannesburg",
+      "name": "Johannesburg",
+      "country": "South Africa",
+      "continent": "Africa & Oceania",
+      "region": "Highveld Plateau",
+      "aqi": 85,
+      "category": "Moderate",
+      "primary_pollutant": "PM2.5",
+      "pm25": 28.5,
+      "pm10": 58.0,
+      "no2": 26.0,
+      "so2": 12.0,
+      "co": 1.0,
+      "o3": 38.0,
+      "temp_c": 18,
+      "humidity": 52,
+      "wind_speed_kmh": 9.5,
+      "inversion_alert": "Highveld winter anticyclone produces cool calm nights with prompt daytime convective clearing.",
+      "safe_ventilation_window": "10:30 AM - 4:30 PM",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 105,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 112,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 90,
+          "inversion": "Low"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 76,
+          "inversion": "Low"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 68,
+          "inversion": "Low (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 74,
+          "inversion": "Low"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 92,
+          "inversion": "Low"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 98,
+          "inversion": "Moderate"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 90,
+          "inversion": "Low"
+        }
+      ]
+    },
+    {
+      "id": "nairobi",
+      "name": "Nairobi",
+      "country": "Kenya",
+      "continent": "Africa & Oceania",
+      "region": "Central Highlands",
+      "aqi": 68,
+      "category": "Moderate",
+      "primary_pollutant": "PM2.5",
+      "pm25": 20.2,
+      "pm10": 45.0,
+      "no2": 22.0,
+      "so2": 7.0,
+      "co": 0.8,
+      "o3": 32.0,
+      "temp_c": 22,
+      "humidity": 62,
+      "wind_speed_kmh": 11.0,
+      "inversion_alert": "High-altitude equatorial plateau maintains good natural thermal lift throughout the year.",
+      "safe_ventilation_window": "All Day (9:00 AM - 5:00 PM)",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 78,
+          "inversion": "None"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 88,
+          "inversion": "Low"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 72,
+          "inversion": "None"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 60,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 54,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 62,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 76,
+          "inversion": "None"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 74,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 68,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "sydney",
+      "name": "Sydney",
+      "country": "Australia",
+      "continent": "Africa & Oceania",
+      "region": "New South Wales (Sydney Basin)",
+      "aqi": 28,
+      "category": "Good",
+      "primary_pollutant": "PM2.5",
+      "pm25": 6.5,
+      "pm10": 14.0,
+      "no2": 16.0,
+      "so2": 2.5,
+      "co": 0.3,
+      "o3": 26.0,
+      "temp_c": 23,
+      "humidity": 65,
+      "wind_speed_kmh": 16.0,
+      "inversion_alert": "Pristine Tasman Sea ventilation sweeps clean oceanic air through the coastal basin.",
+      "safe_ventilation_window": "All Day (8:00 AM - 6:00 PM)",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 32,
+          "inversion": "None"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 36,
+          "inversion": "None"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 30,
+          "inversion": "None"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 25,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 22,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 26,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 32,
+          "inversion": "None"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 30,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 27,
+          "inversion": "None"
+        }
+      ]
+    },
+    {
+      "id": "melbourne",
+      "name": "Melbourne",
+      "country": "Australia",
+      "continent": "Africa & Oceania",
+      "region": "Victoria (Port Phillip Bay)",
+      "aqi": 32,
+      "category": "Good",
+      "primary_pollutant": "PM2.5",
+      "pm25": 7.8,
+      "pm10": 16.5,
+      "no2": 18.0,
+      "so2": 2.8,
+      "co": 0.4,
+      "o3": 28.0,
+      "temp_c": 20,
+      "humidity": 60,
+      "wind_speed_kmh": 17.5,
+      "inversion_alert": "Southern Ocean maritime air stream maintains high atmospheric clarity and low pollutant retention.",
+      "safe_ventilation_window": "All Day (8:00 AM - 6:00 PM)",
+      "hourly_forecast": [
+        {
+          "hour": "06:00",
+          "aqi": 36,
+          "inversion": "None"
+        },
+        {
+          "hour": "08:00",
+          "aqi": 42,
+          "inversion": "None"
+        },
+        {
+          "hour": "10:00",
+          "aqi": 34,
+          "inversion": "None"
+        },
+        {
+          "hour": "12:00",
+          "aqi": 28,
+          "inversion": "None"
+        },
+        {
+          "hour": "14:00",
+          "aqi": 25,
+          "inversion": "None (Best Window)"
+        },
+        {
+          "hour": "16:00",
+          "aqi": 30,
+          "inversion": "None"
+        },
+        {
+          "hour": "18:00",
+          "aqi": 36,
+          "inversion": "None"
+        },
+        {
+          "hour": "20:00",
+          "aqi": 34,
+          "inversion": "None"
+        },
+        {
+          "hour": "22:00",
+          "aqi": 30,
+          "inversion": "None"
+        }
       ]
     }
   ],
