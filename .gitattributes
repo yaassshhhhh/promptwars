@@ -1,0 +1,27 @@
+# ==============================================================================
+# GitHub Linguist Language Detection Configuration
+# Ensures GitHub accurately detects and displays all languages in this project:
+# Python, JavaScript, CSS, and HTML.
+# ==============================================================================
+
+# Core Application Languages
+*.py linguist-language=Python linguist-detectable=true linguist-vendored=false
+*.js linguist-language=JavaScript linguist-detectable=true linguist-vendored=false
+*.css linguist-language=CSS linguist-detectable=true linguist-vendored=false
+*.html linguist-language=HTML linguist-detectable=true linguist-vendored=false
+
+# Explicit Directory Rules (Overrides GitHub Linguist's default suppression of static/ folders)
+static/js/** linguist-language=JavaScript linguist-detectable=true linguist-vendored=false
+static/css/** linguist-language=CSS linguist-detectable=true linguist-vendored=false
+templates/** linguist-language=HTML linguist-detectable=true linguist-vendored=false
+api/** linguist-language=Python linguist-detectable=true linguist-vendored=false
+tests/** linguist-language=Python linguist-detectable=true linguist-vendored=false
+
+# Ignore Large Datasets, Binary Media & Config from Skewing Language Statistics
+data/** linguist-vendored=true
+static/videos/** linguist-vendored=true
+static/audio/** linguist-vendored=true
+static/images/** linguist-vendored=true
+package.json linguist-vendored=true
+vercel.json linguist-vendored=true
+requirements.txt linguist-detectable=false

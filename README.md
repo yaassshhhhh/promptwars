@@ -1,7 +1,26 @@
-# 🌿 Urban Air Quality Assistant (Challenge 06)
+# 🌿 Urban Air Quality Assistant • AEROVA (Challenge 06)
 
-> **GenAI-powered assistant helping families and communities navigate severe winter smog and urban air pollution.**  
-> Built for Prompt Wars Challenge 06.
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://promptwars-livid-sigma.vercel.app)
+[![Python](https://img.shields.io/badge/Python_3.9+-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![Flask](https://img.shields.io/badge/Flask_Backend-000000?style=for-the-badge&logo=flask&logoColor=white)](https://flask.palletsprojects.com/)
+[![JavaScript](https://img.shields.io/badge/JavaScript_ES6+-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
+[![HTML5 / CSS3](https://img.shields.io/badge/HTML5_%26_CSS3-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://developer.mozilla.org/)
+[![Gemini AI](https://img.shields.io/badge/Google_Gemini-8E75C2?style=for-the-badge&logo=google&logoColor=white)](https://deepmind.google/technologies/gemini/)
+
+> **Autonomous GenAI-powered winter smog sanctuary & urban air quality assistant.**  
+> Built for Prompt Wars • Challenge 06.
+
+---
+
+### 💻 Technology Stack & Language Breakdown
+
+| Language / Tech | Role in Project | Highlights |
+| :--- | :--- | :--- |
+| **Python** | Backend Server & AI Engine | Flask REST API, 42-city telemetry routing, GenAI domain expert reasoning & formula calculator |
+| **JavaScript** | Frontend Orchestration & Dynamics | Chart.js diurnal inversion curves, dynamic AQI counter easing, 3D sakura canvas particles & Japanese theme audio player |
+| **CSS3** | Visual Design & Theme | Japanese Cyberpunk Glassmorphism, Cinnabar red / Amber / Emerald fire-glow animations, Washi glass cards |
+| **HTML5** | Semantic Altar Structure | Responsive single-page application with dual views (Desktop Sanctuary Command Center + Mobile Phone Simulator) |
 
 ---
 
