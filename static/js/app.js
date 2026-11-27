@@ -129,7 +129,7 @@ async function loadCityData(cityId) {
     // Update Dashboard UI
     document.getElementById('cardCityName').textContent = city.name;
     document.getElementById('cardRegion').textContent = `${city.region}, ${city.country} • Winter Smog Profile`;
-    
+
     // Smooth animated counter
     animateAqiCounter(city.aqi);
 

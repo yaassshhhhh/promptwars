@@ -198,17 +198,20 @@
           <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-2.5 pointer-events-none"></i>
         </div>
 
-        <!-- Ambient Soundscape Toggle -->
-        <button id="zenAmbienceToggleBtn" onclick="window.toggleZenAmbience && window.toggleZenAmbience()" class="p-2.5 rounded-xl bg-[#0b1c15] text-amber-300 hover:text-amber-100 border border-amber-600/50 hover:border-amber-400 transition shadow-sm flex items-center gap-1.5 active:scale-95" title="Toggle Atmosphere Audio">
-          <i data-lucide="music" class="w-4 h-4 text-amber-400"></i>
-          <span class="text-xs font-bold hidden sm:inline">Ambience</span>
+        <!-- Japanese Theme Music Player Button -->
+        <button id="zenMusicToggleBtn" onclick="window.toggleJapaneseMusic && window.toggleJapaneseMusic()" class="p-2.5 rounded-xl bg-[#0b1c15] text-slate-300 hover:text-rose-200 border border-emerald-800/80 hover:border-rose-500/60 transition shadow-sm flex items-center gap-2 active:scale-95 group" title="Toggle Japanese Theme Music">
+          <i id="zenMusicIcon" data-lucide="music" class="w-4 h-4 text-rose-400 group-hover:scale-110 transition-transform"></i>
+          <span id="zenMusicLabel" class="text-xs font-bold hidden sm:inline">Theme Song: Off</span>
+          <span id="zenMusicVisualizer" class="hidden items-center gap-0.5 h-3">
+            <span class="w-0.5 h-2 bg-rose-400 rounded-full animate-bounce"></span>
+            <span class="w-0.5 h-3 bg-rose-300 rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
+            <span class="w-0.5 h-1.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+          </span>
         </button>
 
-        <!-- Wind Chime Button -->
-        <button id="zenChimeBtn" onclick="window.playZenWindChime && window.playZenWindChime()" class="p-2.5 rounded-xl bg-[#0b1c15] text-amber-300 hover:text-amber-100 border border-amber-600/50 hover:border-amber-400 transition shadow-sm flex items-center gap-1.5 active:scale-95" title="Play Chime">
-          <i data-lucide="bell" class="w-4 h-4 text-amber-400"></i>
-          <span class="text-xs font-bold hidden lg:inline">Chime</span>
-        </button>
+        <audio id="japaneseThemeAudio" loop preload="auto">
+          <source src="/static/audio/japanese_theme.mp3" type="audio/mpeg">
+        </audio>
 
         <!-- Phone vs Dashboard View Toggle -->
         <div class="bg-[#0b1c15] p-1 rounded-xl border border-emerald-800/60 hidden md:flex items-center">

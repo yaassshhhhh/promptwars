@@ -85,8 +85,6 @@
         petals.push(p);
       }
     }
-    // Play subtle soft chime tap
-    if (window.playSoftZenChime) window.playSoftZenChime();
   });
 
   window.addEventListener('resize', () => {
@@ -312,180 +310,91 @@
   animate();
 
   // ==========================================================================
-  // 🎶 PROCEDURAL WEB AUDIO API JAPANESE ZEN SOUNDSCAPE (雅楽)
+  // 🎶 JAPANESE THEME SONG MUSIC CONTROLLER (Sakura Garden Theme)
   // ==========================================================================
-  let zenAudioContext = null;
-  let isZenAmbienceActive = false;
-  let ambientDroneGain = null;
-  let bambooTimer = null;
+  let isJapaneseMusicPlaying = false;
+  let audioFadeInterval = null;
 
-  function getAudioCtx() {
-    if (!zenAudioContext) {
-      const AudioCtx = window.AudioContext || window.webkitAudioContext;
-      zenAudioContext = new AudioCtx();
+  function getThemeAudio() {
+    let audio = document.getElementById('japaneseThemeAudio');
+    if (!audio) {
+      audio = new Audio('/static/audio/japanese_theme.mp3');
+      audio.id = 'japaneseThemeAudio';
+      audio.loop = true;
+      document.body.appendChild(audio);
     }
-    if (zenAudioContext.state === 'suspended') {
-      zenAudioContext.resume();
-    }
-    return zenAudioContext;
+    return audio;
   }
 
-  // Soft wooden click / gentle chime for UI clicks
-  window.playSoftZenChime = function () {
-    try {
-      const actx = getAudioCtx();
-      const osc = actx.createOscillator();
-      const gain = actx.createGain();
-      const notes = [1046.5, 1174.66, 1396.91, 1567.98, 1760];
-      const note = notes[Math.floor(Math.random() * notes.length)];
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(note, actx.currentTime);
-      gain.gain.setValueAtTime(0.001, actx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.08, actx.currentTime + 0.015);
-      gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.8);
-      osc.connect(gain);
-      gain.connect(actx.destination);
-      osc.start();
-      osc.stop(actx.currentTime + 0.85);
-    } catch (e) {}
-  };
+  window.toggleJapaneseMusic = function () {
+    const audio = getThemeAudio();
+    const btn = document.getElementById('zenMusicToggleBtn');
 
-  // Grand Wind Chime (風鈴 Fūrin)
-  window.playZenWindChime = function () {
-    try {
-      const actx = getAudioCtx();
-      const pentatonic = [880, 1046.5, 1174.66, 1396.91, 1760, 2093];
-      const selected = pentatonic[Math.floor(Math.random() * pentatonic.length)];
+    if (audioFadeInterval) clearInterval(audioFadeInterval);
 
-      const osc = actx.createOscillator();
-      const gain = actx.createGain();
-      osc.type = 'sine';
-      osc.frequency.setValueAtTime(selected, actx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(selected * 1.003, actx.currentTime + 1.2);
+    if (isJapaneseMusicPlaying) {
+      // Smooth fade out then pause
+      let vol = audio.volume;
+      audioFadeInterval = setInterval(() => {
+        if (vol > 0.05) {
+          vol -= 0.05;
+          audio.volume = Math.max(0, vol);
+        } else {
+          clearInterval(audioFadeInterval);
+          audio.pause();
+          isJapaneseMusicPlaying = false;
+        }
+      }, 30);
 
-      gain.gain.setValueAtTime(0.001, actx.currentTime);
-      gain.gain.linearRampToValueAtTime(0.2, actx.currentTime + 0.02);
-      gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 2.5);
-
-      osc.connect(gain);
-      gain.connect(actx.destination);
-      osc.start();
-      osc.stop(actx.currentTime + 2.6);
-
-      // Harmonic chime overtone
-      const osc2 = actx.createOscillator();
-      const gain2 = actx.createGain();
-      osc2.type = 'triangle';
-      osc2.frequency.setValueAtTime(selected * 2.76, actx.currentTime);
-      gain2.gain.setValueAtTime(0.001, actx.currentTime);
-      gain2.gain.linearRampToValueAtTime(0.06, actx.currentTime + 0.018);
-      gain2.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 1.6);
-      osc2.connect(gain2);
-      gain2.connect(actx.destination);
-      osc2.start();
-      osc2.stop(actx.currentTime + 1.7);
-    } catch (e) {}
-  };
-
-  // Shishi-odoshi (Bamboo Water Fountain Knock)
-  function playBambooKnock() {
-    try {
-      const actx = getAudioCtx();
-      // Low wooden "thock" sound
-      const osc = actx.createOscillator();
-      const gain = actx.createGain();
-      osc.type = 'triangle';
-      osc.frequency.setValueAtTime(140, actx.currentTime);
-      osc.frequency.exponentialRampToValueAtTime(60, actx.currentTime + 0.12);
-      gain.gain.setValueAtTime(0.18, actx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.25);
-      osc.connect(gain);
-      gain.connect(actx.destination);
-      osc.start();
-      osc.stop(actx.currentTime + 0.26);
-
-      // Secondary hollow echo
-      const osc2 = actx.createOscillator();
-      const gain2 = actx.createGain();
-      osc2.type = 'sine';
-      osc2.frequency.setValueAtTime(280, actx.currentTime + 0.02);
-      osc2.frequency.exponentialRampToValueAtTime(110, actx.currentTime + 0.15);
-      gain2.gain.setValueAtTime(0.09, actx.currentTime + 0.02);
-      gain2.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.2);
-      osc2.connect(gain2);
-      gain2.connect(actx.destination);
-      osc2.start(actx.currentTime + 0.02);
-      osc2.stop(actx.currentTime + 0.22);
-    } catch (e) {}
-  }
-
-  // Toggle Continuous Ambient Zen Shrine Soundscape (雅楽)
-  window.toggleZenAmbience = function () {
-    const actx = getAudioCtx();
-    const btn = document.getElementById('zenAmbienceToggleBtn');
-    const bgVid = document.getElementById('bgVideo');
-
-    if (isZenAmbienceActive) {
-      // Turn OFF
-      if (ambientDroneGain) {
-        ambientDroneGain.gain.exponentialRampToValueAtTime(0.0001, actx.currentTime + 0.8);
-      }
-      if (bambooTimer) clearInterval(bambooTimer);
-      if (bgVid) bgVid.muted = true;
-      isZenAmbienceActive = false;
       if (btn) {
-        btn.innerHTML = `<i data-lucide="music" class="w-4 h-4 text-amber-400"></i><span class="text-xs font-bold hidden sm:inline">Ambience</span>`;
-        btn.classList.remove('border-rose-500', 'bg-rose-950/60');
+        btn.className = "p-2.5 rounded-xl bg-[#0b1c15] text-slate-300 hover:text-rose-200 border border-emerald-800/80 hover:border-rose-500/60 transition shadow-sm flex items-center gap-2 active:scale-95 group";
+        btn.innerHTML = `
+          <i id="zenMusicIcon" data-lucide="music" class="w-4 h-4 text-slate-400 group-hover:scale-110 transition-transform"></i>
+          <span id="zenMusicLabel" class="text-xs font-bold hidden sm:inline">Theme Song: Off</span>
+        `;
+        if (window.lucide) lucide.createIcons();
       }
     } else {
-      // Turn ON
-      isZenAmbienceActive = true;
-      if (bgVid) {
-        bgVid.muted = false;
-        bgVid.volume = 0.55;
-      }
-      if (btn) {
-        btn.innerHTML = `<i data-lucide="volume-2" class="w-4 h-4 text-rose-400 animate-pulse"></i><span class="text-xs font-bold text-rose-200">Playing Ambience</span>`;
-        btn.classList.add('border-rose-500', 'bg-rose-950/60');
-      }
+      // Start muted and fade in smoothly to comfortable listening volume
+      audio.volume = 0;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isJapaneseMusicPlaying = true;
+          let vol = 0;
+          audioFadeInterval = setInterval(() => {
+            if (vol < 0.45) {
+              vol += 0.05;
+              audio.volume = Math.min(0.45, vol);
+            } else {
+              clearInterval(audioFadeInterval);
+            }
+          }, 35);
 
-      // Sacred Temple Singing Bowl Drone (108 Hz Sacred Om / Hirajōshi harmonic)
-      const droneOsc = actx.createOscillator();
-      const droneOsc2 = actx.createOscillator();
-      ambientDroneGain = actx.createGain();
-
-      droneOsc.type = 'sine';
-      droneOsc.frequency.setValueAtTime(108, actx.currentTime); // 108 Sacred temple bell harmonic
-      droneOsc2.type = 'triangle';
-      droneOsc2.frequency.setValueAtTime(216, actx.currentTime);
-
-      ambientDroneGain.gain.setValueAtTime(0.001, actx.currentTime);
-      ambientDroneGain.gain.linearRampToValueAtTime(0.045, actx.currentTime + 2.5);
-
-      droneOsc.connect(ambientDroneGain);
-      droneOsc2.connect(ambientDroneGain);
-      ambientDroneGain.connect(actx.destination);
-
-      droneOsc.start();
-      droneOsc2.start();
-
-      // Trigger bamboo knock & periodic chime every 10-14 seconds
-      bambooTimer = setInterval(() => {
-        if (!isZenAmbienceActive) return;
-        playBambooKnock();
-        setTimeout(() => {
-          if (isZenAmbienceActive && Math.random() > 0.4) {
-            window.playZenWindChime();
+          if (btn) {
+            btn.className = "p-2.5 rounded-xl bg-[#1e0a12] text-rose-200 border border-rose-500 transition shadow-lg shadow-rose-950/60 flex items-center gap-2 active:scale-95 glow-hazard";
+            btn.innerHTML = `
+              <i id="zenMusicIcon" data-lucide="volume-2" class="w-4 h-4 text-rose-400 animate-pulse"></i>
+              <span id="zenMusicLabel" class="text-xs font-bold text-rose-100 hidden sm:inline">Playing Theme Song</span>
+              <span id="zenMusicVisualizer" class="flex items-center gap-0.5 h-3">
+                <span class="w-0.5 h-2 bg-rose-400 rounded-full animate-bounce"></span>
+                <span class="w-0.5 h-3 bg-rose-300 rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
+                <span class="w-0.5 h-1.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+              </span>
+            `;
+            if (window.lucide) lucide.createIcons();
           }
-        }, 1200);
-      }, 11000);
-
-      // Play immediate welcoming chime
-      window.playZenWindChime();
+        }).catch((err) => {
+          console.log("Audio play postponed until user gesture:", err);
+        });
+      }
     }
-
-    if (window.lucide) lucide.createIcons();
   };
+
+  // Backwards compatibility / safety aliases
+  window.toggleZenAmbience = window.toggleJapaneseMusic;
+  window.playZenWindChime = function () {};
+  window.playSoftZenChime = function () {};
 
   // Handle background video initialization & smooth fade-in
   function initBackgroundVideo() {
