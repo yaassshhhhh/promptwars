@@ -266,7 +266,7 @@ Welcome! I am **Kaze**, your autonomous environmental advisor for navigating win
 
     if (sender === 'user') {
       msgDiv.innerHTML = `
-        <div class="max-w-[85%] bg-emerald-700/80 text-white rounded-2xl rounded-tr-sm px-4 py-2.5 shadow-md text-sm border border-emerald-600/50">
+        <div class="max-w-[85%] bg-emerald-700/80 text-white rounded-2xl rounded-tr-sm px-4 py-2.5 shadow-md text-sm border border-emerald-600/50 break-words overflow-hidden">
           <p>${this.escapeHtml(text)}</p>
         </div>
       `;
@@ -295,7 +295,7 @@ Welcome! I am **Kaze**, your autonomous environmental advisor for navigating win
         <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-rose-600 via-rose-500 to-amber-400 flex items-center justify-center text-white font-bold text-xs shrink-0 shadow-sm mt-0.5 border border-rose-300/40 font-kanji">
           風
         </div>
-        <div class="max-w-[88%] bg-[#0e221b] text-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-md border border-emerald-800/40 prose-dark text-sm">
+        <div class="max-w-[88%] bg-[#0e221b] text-slate-200 rounded-2xl rounded-tl-sm px-4 py-3 shadow-md border border-emerald-800/40 prose-dark text-sm break-words overflow-hidden">
           ${parsedHtml}
           ${impactBadge}
         </div>

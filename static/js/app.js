@@ -144,10 +144,10 @@ async function loadCityData(cityId) {
     // 100 < aqi <= 200: Yellow (Moderate / Sensitive Groups)
     // <= 100: Green (Good / Clean Air)
     if (aqi > 200) {
-      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Outfit'] fire-glow-red transition-colors duration-500";
-      if (aqiLabel) aqiLabel.className = "text-sm font-bold text-rose-300 block transition-colors duration-500";
+      if (aqiEl) aqiEl.className = "text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Outfit'] fire-glow-red transition-colors duration-500 leading-none";
+      if (aqiLabel) aqiLabel.className = "text-xs sm:text-sm font-bold text-rose-300 block transition-colors duration-500";
       if (badge) {
-        badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-[#881337] text-rose-100 border border-rose-500/50 flex items-center gap-2 shadow-lg shadow-rose-950/60 glow-hazard transition-all duration-500";
+        badge.className = "px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-[#881337] text-rose-100 border border-rose-500/50 flex items-center gap-1.5 sm:gap-2 shadow-lg shadow-rose-950/60 glow-hazard transition-all duration-500 shrink-0";
         const ping = badge.querySelector('span:first-child');
         if (ping) ping.className = "w-2 h-2 rounded-full bg-rose-400 animate-ping";
       }
@@ -155,10 +155,10 @@ async function loadCityData(cityId) {
         telemetryCard.style.borderColor = "rgba(244, 63, 94, 0.45)";
       }
     } else if (aqi > 100) {
-      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-amber-400 font-['Outfit'] fire-glow-yellow transition-colors duration-500";
-      if (aqiLabel) aqiLabel.className = "text-sm font-bold text-amber-300 block transition-colors duration-500";
+      if (aqiEl) aqiEl.className = "text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter text-amber-400 font-['Outfit'] fire-glow-yellow transition-colors duration-500 leading-none";
+      if (aqiLabel) aqiLabel.className = "text-xs sm:text-sm font-bold text-amber-300 block transition-colors duration-500";
       if (badge) {
-        badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-amber-950/80 text-amber-200 border border-amber-500/50 flex items-center gap-2 shadow-lg shadow-amber-950/60 transition-all duration-500";
+        badge.className = "px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-amber-950/80 text-amber-200 border border-amber-500/50 flex items-center gap-1.5 sm:gap-2 shadow-lg shadow-amber-950/60 transition-all duration-500 shrink-0";
         const ping = badge.querySelector('span:first-child');
         if (ping) ping.className = "w-2 h-2 rounded-full bg-amber-400 animate-ping";
       }
@@ -166,10 +166,10 @@ async function loadCityData(cityId) {
         telemetryCard.style.borderColor = "rgba(245, 158, 11, 0.45)";
       }
     } else {
-      if (aqiEl) aqiEl.className = "text-6xl sm:text-7xl font-extrabold tracking-tighter text-emerald-400 font-['Outfit'] fire-glow-green transition-colors duration-500";
-      if (aqiLabel) aqiLabel.className = "text-sm font-bold text-emerald-300 block transition-colors duration-500";
+      if (aqiEl) aqiEl.className = "text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter text-emerald-400 font-['Outfit'] fire-glow-green transition-colors duration-500 leading-none";
+      if (aqiLabel) aqiLabel.className = "text-xs sm:text-sm font-bold text-emerald-300 block transition-colors duration-500";
       if (badge) {
-        badge.className = "px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-950/80 text-emerald-200 border border-emerald-500/50 flex items-center gap-2 shadow-lg shadow-emerald-950/60 transition-all duration-500";
+        badge.className = "px-3 sm:px-4 py-1.5 rounded-full text-[11px] sm:text-xs font-bold bg-emerald-950/80 text-emerald-200 border border-emerald-500/50 flex items-center gap-1.5 sm:gap-2 shadow-lg shadow-emerald-950/60 transition-all duration-500 shrink-0";
         const ping = badge.querySelector('span:first-child');
         if (ping) ping.className = "w-2 h-2 rounded-full bg-emerald-400";
       }
