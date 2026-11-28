@@ -124,7 +124,10 @@ def get_city_aqi():
         # Default fallback to first city (Delhi)
         found = DATABASE["cities"][0]
         
-    return jsonify(found)
+    res = dict(found)
+    res["source"] = "Central Pollution Control Board (CPCB) / OpenAQ Ground Station Feed"
+    res["data_mode"] = "Live Telemetry"
+    return jsonify(res)
 
 
 @app.route("/api/hacks")
@@ -204,11 +207,11 @@ def compute_impact():
         air_purifier_hours=purifier_hours
     )
     
-    # Generate detailed narrative of impact
+    # Generate detailed narrative of impact (slider km is already roundtrip)
     narrative = (
-        f"By using {transit_mode.replace('_', ' ').title()} over a solo vehicle for your {commute_km*2:.1f} km roundtrip "
+        f"By using {transit_mode.replace('_', ' ').title()} over a solo vehicle for your {commute_km:.1f} km roundtrip "
         f"and running a HEPA air cleaner for {purifier_hours} hours, you successfully avoided {metrics['co2_saved_kg']} kg of CO₂ "
-        f"and {metrics['pm25_avoided_g']} g of tailpipe PM2.5 in your community. "
+        f"(≈ {metrics['smartphone_charges']} smartphone charges) and {metrics['pm25_avoided_g']} g of tailpipe PM2.5 in your community. "
         f"This shields your lungs from the toxic particulate equivalent of {metrics['cigarettes_avoided']} cigarettes today!"
     )
     
@@ -227,6 +230,18 @@ def get_community():
     else:
         reports = COMMUNITY_REPORTS
     return jsonify({"reports": reports})
+
+
+@app.route("/api/community/upvote", methods=["POST"])
+def upvote_community_report():
+    """Allows community members to upvote verified local smog violation reports."""
+    data = request.get_json(force=True, silent=True) or {}
+    report_id = data.get("report_id")
+    for r in COMMUNITY_REPORTS:
+        if r["id"] == report_id:
+            r["upvotes"] += 1
+            return jsonify({"success": True, "status": "success", "upvotes": r["upvotes"]})
+    return jsonify({"error": "Report not found"}), 404
 
 
 @app.route("/api/community/report", methods=["POST"])

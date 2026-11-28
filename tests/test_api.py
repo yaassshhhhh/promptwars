@@ -129,5 +129,44 @@ class TestUrbanAirQualityAssistant(unittest.TestCase):
         resp2 = self.app.get('/api/community')
         self.assertEqual(len(resp2.get_json()["reports"]), initial_count + 1)
 
+    def test_community_upvote_endpoint(self):
+        """Test upvoting a community report."""
+        resp = self.app.get('/api/community')
+        reports = resp.get_json()["reports"]
+        target = reports[0]
+        initial_upvotes = target["upvotes"]
+
+        upvote_resp = self.app.post(
+            '/api/community/upvote',
+            data=json.dumps({"report_id": target["id"]}),
+            content_type='application/json'
+        )
+        self.assertEqual(upvote_resp.status_code, 200)
+        data = upvote_resp.get_json()
+        self.assertEqual(data["status"], "success")
+        self.assertEqual(data["upvotes"], initial_upvotes + 1)
+
+    def test_direct_safety_verdict_morning_asthma(self):
+        """Test that walking at 8am for asthmatic mother yields a direct NO verdict."""
+        payload = {
+            "prompt": "Is it safe for my asthmatic mother to walk at 8am?",
+            "context": {
+                "city": "Delhi NCR",
+                "aqi": 348,
+                "category": "Hazardous",
+                "safe_ventilation_window": "1:30 PM - 3:30 PM",
+                "profile": {
+                    "asthma": True,
+                    "elderly": True
+                }
+            }
+        }
+        resp = self.app.post('/api/chat', data=json.dumps(payload), content_type='application/json')
+        self.assertEqual(resp.status_code, 200)
+        data = resp.get_json()
+        self.assertIn("Direct Answer: NO — Strictly Avoid", data["reply"])
+        self.assertIn("Thermal Inversion", data["reply"])
+        self.assertIn("1:30 PM - 3:30 PM", data["reply"])
+
 if __name__ == "__main__":
     unittest.main()

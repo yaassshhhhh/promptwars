@@ -13,7 +13,7 @@ window.AIChat = {
   init() {
     this.initSpeech();
     this.bindEvents();
-    this.sendInitialGreeting();
+    this.updateContext();
   },
 
   initSpeech() {
@@ -28,8 +28,13 @@ window.AIChat = {
         this.isRecording = true;
         const statusEl = document.getElementById('voiceStatus');
         const btn = document.getElementById('voiceInputBtn');
-        if (statusEl) statusEl.classList.remove('hidden');
-        if (btn) btn.classList.add('bg-rose-600', 'text-white');
+        const input = document.getElementById('chatInput');
+        if (statusEl) {
+          statusEl.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-rose-500 animate-ping mr-1"></span>🎙️ Listening... speak your query`;
+          statusEl.classList.remove('hidden');
+        }
+        if (btn) btn.classList.add('bg-rose-600', 'text-white', 'animate-pulse');
+        if (input) input.placeholder = "🎙️ Listening... speak your query";
       };
 
       this.recognition.onresult = (event) => {
@@ -45,14 +50,49 @@ window.AIChat = {
         this.isRecording = false;
         const statusEl = document.getElementById('voiceStatus');
         const btn = document.getElementById('voiceInputBtn');
+        const input = document.getElementById('chatInput');
         if (statusEl) statusEl.classList.add('hidden');
-        if (btn) btn.classList.remove('bg-rose-600', 'text-white');
+        if (btn) btn.classList.remove('bg-rose-600', 'text-white', 'animate-pulse');
+        if (input) input.placeholder = "Ask Kaze about routines, DIY purifiers, school runs, or smog impact...";
       };
 
       this.recognition.onerror = (err) => {
         console.warn("Speech recognition error:", err);
-        this.recognition.stop();
+        this.isRecording = false;
+        const statusEl = document.getElementById('voiceStatus');
+        const btn = document.getElementById('voiceInputBtn');
+        const input = document.getElementById('chatInput');
+        if (statusEl) statusEl.classList.add('hidden');
+        if (btn) btn.classList.remove('bg-rose-600', 'text-white', 'animate-pulse');
+        if (input) input.placeholder = "Ask Kaze about routines, DIY purifiers, school runs, or smog impact...";
+        
+        if (err.error === 'not-allowed') {
+          alert("Microphone permission was denied. Please allow microphone access in your browser settings to use voice input.");
+        }
       };
+    }
+  },
+
+  updateContext() {
+    const city = window.CurrentCityData ? window.CurrentCityData.name : "Delhi NCR";
+    const aqi = window.CurrentCityData ? window.CurrentCityData.aqi : 348;
+    
+    const activeProfiles = [];
+    if (document.getElementById('profileInfants')?.checked) activeProfiles.push("👶 Infants");
+    if (document.getElementById('profileElderly')?.checked) activeProfiles.push("👵 Seniors (65+)");
+    if (document.getElementById('profileAsthma')?.checked) activeProfiles.push("🫁 Asthma");
+    if (document.getElementById('profilePets')?.checked) activeProfiles.push("🐾 Pets");
+
+    // Update Context Pill in chat header
+    const pill = document.getElementById('chatContextPill');
+    if (pill) {
+      const profStr = activeProfiles.length > 0 ? activeProfiles.join(" &bull; ") : "General Population";
+      pill.innerHTML = `📍 <strong>${city}</strong> (AQI ${aqi}) &bull; ${profStr}`;
+    }
+
+    // If chat has only the welcome greeting (or empty), refresh greeting with new city & profile
+    if (this.chatMessages.length <= 1) {
+      this.sendInitialGreeting();
     }
   },
 
@@ -82,7 +122,11 @@ window.AIChat = {
         if (this.isRecording) {
           this.recognition.stop();
         } else {
-          this.recognition.start();
+          try {
+            this.recognition.start();
+          } catch (e) {
+            console.warn("Recognition already started or error:", e);
+          }
         }
       });
     }
@@ -111,17 +155,36 @@ window.AIChat = {
     const city = window.CurrentCityData ? window.CurrentCityData.name : "Delhi NCR";
     const aqi = window.CurrentCityData ? window.CurrentCityData.aqi : 348;
     const cat = window.CurrentCityData ? window.CurrentCityData.category : "Hazardous";
+    const ventWindow = window.CurrentCityData ? window.CurrentCityData.safe_ventilation_window : "1:30 PM - 3:30 PM";
 
-    const greeting = `### 🛡️ Kaze • Urban Air Quality AI Assistant
-Welcome! I am **Kaze**, your autonomous GenAI advisor for navigating winter smog, thermal inversions, and hazardous urban air in **${city}** (AQI: ${aqi} • ${cat}).
+    const hasInfants = document.getElementById('profileInfants')?.checked;
+    const hasElderly = document.getElementById('profileElderly')?.checked;
+    const hasAsthma = document.getElementById('profileAsthma')?.checked;
+    const hasPets = document.getElementById('profilePets')?.checked;
 
-**Core Capabilities:**
-1. 🌬️ **Low-Emission Action Routines**: Schedule commutes and errands during clean solar windows to avoid hazardous morning/evening thermal inversions.
-2. 🌀 **Hospital-Grade Indoor Hacks**: Deploy high-CADR low-cost solutions like the \$45 Corsi-Rosenthal box, HEPA filters, and perimeter sealing.
-3. 💚 **Quantified Health & Climate Impact**: Calculate exact community $CO_2$ spared, $PM_{2.5}$ emissions avoided, and cigarette-inhalation equivalence.
+    let vulnAlerts = [];
+    if (hasInfants) vulnAlerts.push("• 👶 **Infants/Children Protected**: Pediatric airway alerts active; avoid outdoor stroller strolls during morning inversions.");
+    if (hasElderly) vulnAlerts.push("• 👵 **Seniors (65+) Guard**: Reschedule 6:00–10:30 AM morning walks to the safe solar window (**" + ventWindow + "**).");
+    if (hasAsthma) vulnAlerts.push("• 🫁 **Asthma / Respiratory**: Keep bronchodilator inhalers accessible; indoor continuous HEPA filtration prioritized.");
+    if (hasPets) vulnAlerts.push("• 🐾 **Pet Safeguards**: Wipe paws after brief outdoor breaks; avoid aerosol cleansers.");
 
-*How can I assist your family or optimize your routine today?*`;
+    const vulnSection = vulnAlerts.length > 0 
+      ? "\n\n**Active Household Vulnerability Safeguards:**\n" + vulnAlerts.join("\n")
+      : "";
 
+    const greeting = `### 🛡️ Kaze • Urban Air Quality AI Advisor
+Welcome! I am **Kaze**, your autonomous environmental advisor for navigating winter smog, thermal inversions, and hazardous urban air in **${city}** (Current AQI: **${aqi}** • **${cat}**).${vulnSection}
+
+**Core Action Capabilities for ${city}:**
+1. 🌬️ **Adaptive Inversion Scheduling**: Identify peak ground-inversion hazard hours vs the safe solar ventilation window (**${ventWindow}**).
+2. 🌀 **Hospital-Grade DIY Hacks**: Step-by-step guidance for the \$45 Corsi-Rosenthal box, weatherstripping, and zero-combustion kitchen defense.
+3. 💚 **Quantified Climate & Lung Savings**: Calculate exact community $CO_2$ spared (~118 smartphone charges/kg) and equivalent cigarettes shielded from lungs.
+
+*Ask a specific question (e.g., "Is it safe for my asthmatic mother to walk at 8am?"), or request a custom daily routine!*`;
+
+    const container = document.getElementById('chatMessages');
+    if (container) container.innerHTML = '';
+    this.chatMessages = [{ sender: 'assistant', text: greeting }];
     this.renderMessage('assistant', greeting);
   },
 

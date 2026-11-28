@@ -117,20 +117,33 @@ window.ImpactCalculator = {
     };
 
     const f = factors[mode] || { co2: 0.5, pm: 0.5 };
-    const totalKm = km * 2;
+    // Slider value is already roundtrip: do not double multiply
+    const totalKm = Math.max(0, parseFloat(km) || 0);
     const co2Saved = Math.max(0, (totalKm * 0.170 * (1.0 - f.co2))).toFixed(2);
     const pmSaved = Math.max(0, (totalKm * 0.04 * (1.0 - f.pm))).toFixed(3);
-    const cigs = Math.max(0.5, ((aqi / 38.0) * (purifierHours / 12.0) * (mode === 'metro' || mode === 'wfh' ? 1.4 : 1.0))).toFixed(1);
-    const riskRed = Math.min(88, Math.round(35 + (purifierHours * 3.5) + (mode === 'metro' ? 25 : 10)));
+    const smartphoneCharges = Math.round(parseFloat(co2Saved) * 118);
+
+    const avgPm25 = Math.max(20.0, aqi * 0.72);
+    const purifierFiltered = purifierHours * 0.625 * (avgPm25 * 0.85);
+    const transitProt = (mode === 'metro' || mode === 'wfh' || mode === 'ev') ? 0.25 : (mode === 'carpool' ? 0.12 : 0.04);
+    const filtFraction = purifierFiltered / Math.max(avgPm25 * 15.0, 1.0);
+    const cigs = Math.max(0.3, parseFloat(((aqi / 22.0) * (filtFraction * 0.75 + transitProt)).toFixed(1)));
+
+    // Dynamic Health Risk Reduction (20% - 92%, never stuck at 88%)
+    const baseRed = 22;
+    const purifierBoost = Math.min(46, Math.round(purifierHours * 4.2));
+    const modeBoost = (mode === 'metro' || mode === 'wfh') ? 24 : ((mode === 'ev') ? 18 : ((mode === 'carpool') ? 12 : 5));
+    const riskRed = Math.min(92, Math.max(20, baseRed + purifierBoost + modeBoost));
 
     const metrics = {
       co2_saved_kg: parseFloat(co2Saved),
       pm25_avoided_g: parseFloat(pmSaved),
-      cigarettes_avoided: parseFloat(cigs),
+      smartphone_charges: smartphoneCharges,
+      cigarettes_avoided: cigs,
       health_risk_reduction_pct: riskRed
     };
     this.currentMetrics = metrics;
-    this.updateUI(metrics, `By choosing ${mode.replace('_', ' ')} over a solo petrol car and running HEPA filtration for ${purifierHours}h, you spare your community emissions and protect your lungs from ${cigs} cigarettes equivalent toxicity.`);
+    this.updateUI(metrics, `By choosing ${mode.replace('_', ' ')} over a solo petrol car for your ${totalKm} km roundtrip and running HEPA filtration for ${purifierHours}h, you avoided ${co2Saved} kg of CO₂ (≈ ${smartphoneCharges} smartphone charges) and protected your lungs from ${cigs} cigarettes equivalent toxicity.`);
   },
 
   updateUI(metrics, explanation) {
@@ -140,12 +153,16 @@ window.ImpactCalculator = {
     const cigsEl = document.getElementById('impactCigs');
     const riskEl = document.getElementById('impactRiskPct');
     const narrEl = document.getElementById('impactNarrative');
+    const smartEl = document.getElementById('impactSmartphones');
 
     if (co2El) co2El.textContent = metrics.co2_saved_kg;
     if (pmEl) pmEl.textContent = metrics.pm25_avoided_g;
     if (cigsEl) cigsEl.textContent = metrics.cigarettes_avoided;
     if (riskEl) riskEl.textContent = `${metrics.health_risk_reduction_pct}%`;
     if (narrEl && explanation) narrEl.textContent = explanation;
+
+    const charges = metrics.smartphone_charges || Math.round((metrics.co2_saved_kg || 0) * 118);
+    if (smartEl) smartEl.textContent = `≈ ${charges} smartphone charges`;
 
     // Phone mockup elements
     const phoneCo2 = document.getElementById('phoneCo2Saved');

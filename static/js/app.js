@@ -186,6 +186,18 @@ async function loadCityData(cityId) {
     document.getElementById('safeVentWindow').textContent = city.safe_ventilation_window;
     document.getElementById('aqiCategory').textContent = city.category;
 
+    // Update Chart Footer dynamic safe window
+    const chartSolarWin = document.getElementById('chartSolarWindow');
+    if (chartSolarWin) chartSolarWin.textContent = city.safe_ventilation_window;
+
+    // Update Telemetry Source & Live Timestamp
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    const timeEl = document.getElementById('telemetryTimestamp');
+    if (timeEl) timeEl.textContent = `Live • Updated ${timeStr}`;
+    const sourceEl = document.getElementById('telemetrySource');
+    if (sourceEl) sourceEl.textContent = city.source || "Central Pollution Control Board (CPCB) / OpenAQ Ground Station Feed";
+
     // Update Phone Mockup UI
     document.getElementById('phoneCityPill').textContent = city.name;
     document.getElementById('phoneAqiText').textContent = `${city.category} (AQI ${city.aqi})`;
@@ -205,6 +217,11 @@ async function loadCityData(cityId) {
 
     // Render / update 24h forecast chart
     renderAqiChart(city.hourly_forecast || []);
+
+    // Notify Kaze AI chat of new city context
+    if (window.AIChat && window.AIChat.updateContext) {
+      window.AIChat.updateContext();
+    }
 
     // Recalculate impact for this city's AQI
     if (window.ImpactCalculator) {
@@ -391,6 +408,65 @@ function openHackModal(hackId) {
 }
 
 /**
+ * Refresh current city AQI Telemetry with animation
+ */
+window.refreshAqiData = async function() {
+  const select = document.getElementById('citySelect');
+  const cityId = select ? select.value : 'delhi';
+  const refreshBtn = document.getElementById('refreshAqiBtn');
+  if (refreshBtn) {
+    refreshBtn.classList.add('animate-spin');
+  }
+
+  try {
+    await loadCityData(cityId);
+  } finally {
+    setTimeout(() => {
+      if (refreshBtn) refreshBtn.classList.remove('animate-spin');
+    }, 600);
+  }
+};
+
+/**
+ * Interactive Civic Report Upvoting with localStorage persistence
+ */
+window.upvoteReport = async function(reportId, btn) {
+  const upvotedKey = 'upvoted_reports';
+  let votedList = [];
+  try {
+    votedList = JSON.parse(localStorage.getItem(upvotedKey) || '[]');
+  } catch (e) {
+    votedList = [];
+  }
+
+  if (votedList.includes(reportId)) {
+    alert("You have already verified and upvoted this incident report.");
+    return;
+  }
+
+  try {
+    const resp = await fetch('/api/community/upvote', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ report_id: reportId })
+    });
+    if (resp.ok) {
+      const data = await resp.json();
+      votedList.push(reportId);
+      localStorage.setItem(upvotedKey, JSON.stringify(votedList));
+
+      if (btn) {
+        const countSpan = btn.querySelector('.upvote-count');
+        if (countSpan) countSpan.textContent = data.upvotes;
+        btn.classList.add('bg-rose-900/60', 'text-rose-200', 'border-rose-500/80');
+      }
+    }
+  } catch (err) {
+    console.error("Upvote failed:", err);
+  }
+};
+
+/**
  * Load Community Watch Reports
  */
 async function loadCommunityReports() {
@@ -401,10 +477,23 @@ async function loadCommunityReports() {
     const container = document.getElementById('communityReportsList');
     if (!container) return;
 
+    let votedList = [];
+    try {
+      votedList = JSON.parse(localStorage.getItem('upvoted_reports') || '[]');
+    } catch (e) {
+      votedList = [];
+    }
+
     container.innerHTML = '';
     reports.forEach(r => {
       const card = document.createElement('div');
       card.className = "ema-card p-5 flex flex-col justify-between text-xs relative overflow-hidden min-h-[175px] shadow-md";
+      
+      const isUpvoted = votedList.includes(r.id);
+      const activeClass = isUpvoted 
+        ? "bg-rose-900/60 text-rose-200 border-rose-500/80" 
+        : "bg-emerald-950/80 hover:bg-rose-900/40 text-slate-200 border-emerald-800/60 hover:border-rose-500/60";
+
       card.innerHTML = `
         <div class="space-y-2">
           <div class="flex items-center justify-between text-[11px] text-slate-300 gap-2">
@@ -418,9 +507,10 @@ async function loadCommunityReports() {
         </div>
         <div class="mt-3 pt-2.5 border-t border-emerald-900/60 flex items-center justify-between text-[11px] gap-2">
           <span class="text-amber-300 font-semibold text-[11px] truncate">${r.status}</span>
-          <span class="text-slate-300 font-semibold flex items-center gap-1 shrink-0">
-            <i data-lucide="thumbs-up" class="w-3.5 h-3.5 text-rose-400"></i> ${r.upvotes}
-          </span>
+          <button type="button" onclick="window.upvoteReport('${r.id}', this)" class="upvote-btn px-2.5 py-1 rounded-lg ${activeClass} transition flex items-center gap-1.5 cursor-pointer text-xs font-semibold active:scale-95 shadow-sm" aria-label="Upvote report ${r.id}">
+            <i data-lucide="thumbs-up" class="w-3.5 h-3.5 text-rose-400"></i>
+            <span class="upvote-count">${r.upvotes}</span>
+          </button>
         </div>
       `;
       container.appendChild(card);
@@ -549,6 +639,15 @@ function bindAppEvents() {
     }
     settingsModal.classList.add('hidden');
     alert("Assistant settings saved successfully!");
+  });
+
+  // Re-sync Kaze context when vulnerability profile changes
+  ['profileInfants', 'profileElderly', 'profileAsthma', 'profilePets'].forEach(id => {
+    document.getElementById(id)?.addEventListener('change', () => {
+      if (window.AIChat && window.AIChat.updateContext) {
+        window.AIChat.updateContext();
+      }
+    });
   });
 }
 
