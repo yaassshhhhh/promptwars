@@ -6,10 +6,10 @@
  * - 3D Multi-Depth Cherry Blossom Storm (Foreground blurred, Midground crisp, Background motes)
  * - Mouse Wind Ribbon (trail of glittering stardust & petal flurry)
  * - Click-to-spawn Petal Swirl with organic dispersion
- * - Pure Procedural Web Audio API Japanese Zen Soundscape:
- *   * Sacred Temple Singing Bowl / Bonshō Bell (108Hz resonant drone)
- *   * Crystalline Glass Wind Chime (風鈴 Fūrin) pentatonic harmonies
- *   * Bamboo Water Fountain (鹿おどし Shishi-odoshi) wooden percussive knock
+ * - Authentic Japanese Theme Music Suite (Zero synthetic beep noise):
+ *   * Spiral Theme (螺旋 Rasen / Stardust Spiral)
+ *   * Sacred Spiritual Zen (霊性 Traditional Koto & Shakuhachi Bamboo Flute)
+ *   * Uzumaki Spiral Atmosphere (うずまき Ambient Melody)
  * ============================================================================
  */
 
@@ -310,15 +310,17 @@
   animate();
 
   // ==========================================================================
-  // 🎶 JAPANESE THEME SONG MUSIC CONTROLLER (Sakura Garden Theme)
+  // 🎶 JAPANESE SPIRAL & SPIRITUAL THEME MUSIC CONTROLLER ⛩️
+  // Pure authentic acoustic Japanese theme tracks: ZERO electronic beeps/oscillators
   // ==========================================================================
   let isJapaneseMusicPlaying = false;
   let audioFadeInterval = null;
+  let currentTrackTitle = "Spiral Theme (螺旋)";
 
   function getThemeAudio() {
     let audio = document.getElementById('japaneseThemeAudio');
     if (!audio) {
-      audio = new Audio('/static/audio/japanese_theme.mp3');
+      audio = new Audio('/static/audio/japanese_spiral_theme.mp3');
       audio.id = 'japaneseThemeAudio';
       audio.loop = true;
       document.body.appendChild(audio);
@@ -326,64 +328,97 @@
     return audio;
   }
 
-  window.toggleJapaneseMusic = function () {
-    const audio = getThemeAudio();
-    const btn = document.getElementById('zenMusicToggleBtn');
-
+  function fadeAudio(audio, targetVol) {
     if (audioFadeInterval) clearInterval(audioFadeInterval);
-
-    if (isJapaneseMusicPlaying) {
-      // Smooth fade out then pause
-      let vol = audio.volume;
-      audioFadeInterval = setInterval(() => {
-        if (vol > 0.05) {
-          vol -= 0.05;
-          audio.volume = Math.max(0, vol);
-        } else {
-          clearInterval(audioFadeInterval);
+    let vol = audio.volume;
+    const step = targetVol > vol ? 0.05 : -0.05;
+    audioFadeInterval = setInterval(() => {
+      vol += step;
+      if ((step > 0 && vol >= targetVol) || (step < 0 && vol <= targetVol)) {
+        audio.volume = Math.max(0, Math.min(1, targetVol));
+        clearInterval(audioFadeInterval);
+        if (targetVol === 0) {
           audio.pause();
           isJapaneseMusicPlaying = false;
         }
-      }, 30);
-
-      if (btn) {
-        btn.className = "p-2.5 rounded-xl bg-[#0b1c15] text-slate-300 hover:text-rose-200 border border-emerald-800/80 hover:border-rose-500/60 transition shadow-sm flex items-center gap-2 active:scale-95 group";
-        btn.innerHTML = `
-          <i id="zenMusicIcon" data-lucide="music" class="w-4 h-4 text-slate-400 group-hover:scale-110 transition-transform"></i>
-          <span id="zenMusicLabel" class="text-xs font-bold hidden sm:inline">Theme Song: Off</span>
-        `;
-        if (window.lucide) lucide.createIcons();
+      } else {
+        audio.volume = Math.max(0, Math.min(1, vol));
       }
+    }, 30);
+  }
+
+  function updateMusicUI(isPlaying) {
+    const btn = document.getElementById('zenMusicToggleBtn');
+    if (!btn) return;
+    if (isPlaying) {
+      btn.className = "p-2 sm:px-3 py-2 rounded-l-xl bg-[#1e0a12] text-rose-200 border border-rose-500 transition shadow-lg shadow-rose-950/60 flex items-center gap-2 active:scale-95 glow-hazard";
+      btn.innerHTML = `
+        <i id="zenMusicIcon" data-lucide="volume-2" class="w-4 h-4 text-rose-400 animate-pulse"></i>
+        <span id="zenMusicLabel" class="text-xs font-bold text-rose-100 hidden sm:inline">Playing ${currentTrackTitle}</span>
+        <span id="zenMusicVisualizer" class="flex items-center gap-0.5 h-3">
+          <span class="w-0.5 h-2 bg-rose-400 rounded-full animate-bounce"></span>
+          <span class="w-0.5 h-3 bg-rose-300 rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
+          <span class="w-0.5 h-1.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+        </span>
+      `;
     } else {
-      // Start muted and fade in smoothly to comfortable listening volume
+      btn.className = "p-2 sm:px-3 py-2 rounded-l-xl bg-[#0b1c15] text-slate-300 hover:text-rose-200 border border-emerald-800/80 hover:border-rose-500/60 transition shadow-sm flex items-center gap-2 active:scale-95 group";
+      btn.innerHTML = `
+        <i id="zenMusicIcon" data-lucide="music" class="w-4 h-4 text-slate-400 group-hover:scale-110 transition-transform"></i>
+        <span id="zenMusicLabel" class="text-xs font-bold hidden sm:inline">Spiral Music: Off</span>
+      `;
+    }
+    if (window.lucide) lucide.createIcons();
+  }
+
+  window.switchJapaneseTrack = function (trackSrc, trackTitle) {
+    const audio = getThemeAudio();
+    const trackSelect = document.getElementById('zenTrackSelect');
+    if (!trackTitle && trackSelect) {
+      trackTitle = trackSelect.options[trackSelect.selectedIndex]?.text || "Spiral Theme (螺旋)";
+    }
+    currentTrackTitle = trackTitle || "Spiral Theme (螺旋)";
+
+    const wasPlaying = isJapaneseMusicPlaying;
+    if (audioFadeInterval) clearInterval(audioFadeInterval);
+
+    audio.pause();
+    audio.src = trackSrc;
+    audio.load();
+
+    if (wasPlaying) {
       audio.volume = 0;
       const playPromise = audio.play();
       if (playPromise !== undefined) {
         playPromise.then(() => {
           isJapaneseMusicPlaying = true;
-          let vol = 0;
-          audioFadeInterval = setInterval(() => {
-            if (vol < 0.45) {
-              vol += 0.05;
-              audio.volume = Math.min(0.45, vol);
-            } else {
-              clearInterval(audioFadeInterval);
-            }
-          }, 35);
+          fadeAudio(audio, 0.45);
+          updateMusicUI(true);
+        }).catch((err) => {
+          console.log("Audio switch waiting for user interaction:", err);
+          updateMusicUI(false);
+        });
+      }
+    } else {
+      updateMusicUI(false);
+    }
+  };
 
-          if (btn) {
-            btn.className = "p-2.5 rounded-xl bg-[#1e0a12] text-rose-200 border border-rose-500 transition shadow-lg shadow-rose-950/60 flex items-center gap-2 active:scale-95 glow-hazard";
-            btn.innerHTML = `
-              <i id="zenMusicIcon" data-lucide="volume-2" class="w-4 h-4 text-rose-400 animate-pulse"></i>
-              <span id="zenMusicLabel" class="text-xs font-bold text-rose-100 hidden sm:inline">Playing Theme Song</span>
-              <span id="zenMusicVisualizer" class="flex items-center gap-0.5 h-3">
-                <span class="w-0.5 h-2 bg-rose-400 rounded-full animate-bounce"></span>
-                <span class="w-0.5 h-3 bg-rose-300 rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
-                <span class="w-0.5 h-1.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
-              </span>
-            `;
-            if (window.lucide) lucide.createIcons();
-          }
+  window.toggleJapaneseMusic = function () {
+    const audio = getThemeAudio();
+    if (audioFadeInterval) clearInterval(audioFadeInterval);
+
+    if (isJapaneseMusicPlaying) {
+      fadeAudio(audio, 0);
+      updateMusicUI(false);
+    } else {
+      audio.volume = 0;
+      const playPromise = audio.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isJapaneseMusicPlaying = true;
+          fadeAudio(audio, 0.45);
+          updateMusicUI(true);
         }).catch((err) => {
           console.log("Audio play postponed until user gesture:", err);
         });
@@ -391,7 +426,7 @@
     }
   };
 
-  // Backwards compatibility / safety aliases
+  // Backwards compatibility / safety aliases (all synthetic beeps/tones disabled)
   window.toggleZenAmbience = window.toggleJapaneseMusic;
   window.playZenWindChime = function () {};
   window.playSoftZenChime = function () {};

@@ -193,19 +193,29 @@
           <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 absolute right-2.5 pointer-events-none"></i>
         </div>
 
-        <!-- Japanese Theme Music Player Button -->
-        <button id="zenMusicToggleBtn" onclick="window.toggleJapaneseMusic && window.toggleJapaneseMusic()" class="p-2.5 rounded-xl bg-[#0b1c15] text-slate-300 hover:text-rose-200 border border-emerald-800/80 hover:border-rose-500/60 transition shadow-sm flex items-center gap-2 active:scale-95 group" title="Toggle Japanese Theme Music">
-          <i id="zenMusicIcon" data-lucide="music" class="w-4 h-4 text-rose-400 group-hover:scale-110 transition-transform"></i>
-          <span id="zenMusicLabel" class="text-xs font-bold hidden sm:inline">Theme Song: Off</span>
-          <span id="zenMusicVisualizer" class="hidden items-center gap-0.5 h-3">
-            <span class="w-0.5 h-2 bg-rose-400 rounded-full animate-bounce"></span>
-            <span class="w-0.5 h-3 bg-rose-300 rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
-            <span class="w-0.5 h-1.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
-          </span>
-        </button>
+        <!-- Japanese Theme Spiral Music Player Component -->
+        <div class="flex items-center shadow-sm">
+          <button id="zenMusicToggleBtn" onclick="window.toggleJapaneseMusic && window.toggleJapaneseMusic()" class="p-2 sm:px-3 py-2 rounded-l-xl bg-[#0b1c15] text-slate-300 hover:text-rose-200 border border-emerald-800/80 hover:border-rose-500/60 transition flex items-center gap-2 active:scale-95 group" title="Toggle Japanese Spiral Music">
+            <i id="zenMusicIcon" data-lucide="music" class="w-4 h-4 text-rose-400 group-hover:scale-110 transition-transform"></i>
+            <span id="zenMusicLabel" class="text-xs font-bold hidden sm:inline">Spiral Music: Off</span>
+            <span id="zenMusicVisualizer" class="hidden items-center gap-0.5 h-3">
+              <span class="w-0.5 h-2 bg-rose-400 rounded-full animate-bounce"></span>
+              <span class="w-0.5 h-3 bg-rose-300 rounded-full animate-bounce" style="animation-delay: 0.15s"></span>
+              <span class="w-0.5 h-1.5 bg-rose-400 rounded-full animate-bounce" style="animation-delay: 0.3s"></span>
+            </span>
+          </button>
+          <div class="relative flex items-center">
+            <select id="zenTrackSelect" onchange="window.switchJapaneseTrack && window.switchJapaneseTrack(this.value, this.options[this.selectedIndex].text)" class="bg-[#0b1c15] text-xs text-rose-300 font-medium rounded-r-xl pr-7 pl-2 py-2 border-y border-r border-emerald-800/80 hover:border-rose-500/60 focus:outline-none appearance-none cursor-pointer transition max-w-[130px] sm:max-w-[160px] truncate" title="Select Japanese Theme Track">
+              <option value="/static/audio/japanese_spiral_theme.mp3" selected>🌀 Spiral Theme (螺旋)</option>
+              <option value="/static/audio/japanese_spiritual_zen.mp3">🌸 Spiritual Zen (霊性)</option>
+              <option value="/static/audio/japanese_uzumaki_spiral.mp3">🌌 Uzumaki Spiral (うずまき)</option>
+            </select>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-rose-400 absolute right-2 pointer-events-none"></i>
+          </div>
+        </div>
 
         <audio id="japaneseThemeAudio" loop preload="auto">
-          <source src="/static/audio/japanese_theme.mp3" type="audio/mpeg">
+          <source src="/static/audio/japanese_spiral_theme.mp3" type="audio/mpeg">
         </audio>
 
         <!-- Phone vs Dashboard View Toggle -->
