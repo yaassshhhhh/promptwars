@@ -345,6 +345,83 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ==========================================================================
+   ✨ JAPANESE SHRINE GLITTER & GOLD LEAF KINPAKU STYLING (金箔・神社の光彩)
+   ========================================================================== */
+
+@keyframes shrineGlitterSweep {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes shrineSparkleTwinkle {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.85) rotate(0deg);
+    filter: drop-shadow(0 0 4px rgba(245, 158, 11, 0.4));
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.25) rotate(45deg);
+    filter: drop-shadow(0 0 10px rgba(251, 191, 36, 0.95)) drop-shadow(0 0 18px rgba(254, 240, 138, 0.8));
+  }
+}
+
+@keyframes goldAuraBreathe {
+  0%, 100% {
+    box-shadow: 0 0 18px -2px rgba(245, 158, 11, 0.25), inset 0 0 12px rgba(251, 191, 36, 0.05);
+  }
+  50% {
+    box-shadow: 0 0 32px 2px rgba(245, 158, 11, 0.5), inset 0 0 20px rgba(251, 191, 36, 0.15);
+  }
+}
+
+.shrine-glitter-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.shrine-glitter-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    115deg,
+    transparent 15%,
+    rgba(254, 240, 138, 0.05) 32%,
+    rgba(251, 191, 36, 0.2) 42%,
+    rgba(255, 255, 255, 0.4) 47%,
+    rgba(251, 191, 36, 0.2) 52%,
+    rgba(254, 240, 138, 0.05) 62%,
+    transparent 80%
+  );
+  background-size: 260% 100%;
+  animation: shrineGlitterSweep 8s infinite ease-in-out;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.shrine-glitter-badge {
+  background: linear-gradient(135deg, rgba(245, 158, 11, 0.2) 0%, rgba(220, 38, 38, 0.2) 100%);
+  border: 1px solid rgba(251, 191, 36, 0.6);
+  box-shadow: 0 0 14px rgba(245, 158, 11, 0.35);
+}
+
+.shrine-sparkle-star {
+  display: inline-block;
+  color: var(--kin-glow);
+  animation: shrineSparkleTwinkle 3s infinite ease-in-out;
+}
+
+.shrine-sparkle-delayed {
+  animation-delay: 1.5s;
+}
+
+/* ==========================================================================
    🏮 GLOWING SHRINE LANTERNS
    ========================================================================== */
 

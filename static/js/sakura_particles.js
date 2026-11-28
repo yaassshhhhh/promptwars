@@ -4,8 +4,9 @@
  * ============================================================================
  * Features:
  * - 3D Multi-Depth Cherry Blossom Storm (Foreground blurred, Midground crisp, Background motes)
- * - Mouse Wind Ribbon (trail of glittering stardust & petal flurry)
- * - Click-to-spawn Petal Swirl with organic dispersion
+ * - ✨ Japanese Shrine Glitter & Kinpaku Gold Leaf Flakes (金箔・神社の星神光 ✦)
+ * - Mouse Wind Ribbon (trail of glittering stardust & golden shrine sparkles)
+ * - Click-to-spawn Petal Swirl & Sacred Golden Glitter Burst
  * - Authentic Japanese Theme Music Suite (Zero synthetic beep noise):
  *   * Spiral Theme (螺旋 Rasen / Stardust Spiral)
  *   * Sacred Spiritual Zen (霊性 Traditional Koto & Shakuhachi Bamboo Flute)
@@ -54,24 +55,29 @@
     document.documentElement.style.setProperty('--mouse-norm-x', normX.toFixed(3));
     document.documentElement.style.setProperty('--mouse-norm-y', normY.toFixed(3));
 
-    // Add glowing spark trail when moving mouse
-    if (mouse.speed > 8) {
+    // Add glowing Japanese shrine glitter & gold spark trail when moving mouse
+    if (mouse.speed > 5) {
       for (let i = 0; i < 2; i++) {
+        const isStar = Math.random() > 0.4;
         mouseTrail.push({
-          x: e.clientX + (Math.random() - 0.5) * 12,
-          y: e.clientY + (Math.random() - 0.5) * 12,
-          vx: (Math.random() - 0.5) * 2,
-          vy: Math.random() * -1.5 - 0.5,
-          alpha: 0.9,
-          size: Math.random() * 3 + 2,
-          color: Math.random() > 0.4 ? '#fbcfe8' : '#fbbf24'
+          x: e.clientX + (Math.random() - 0.5) * 16,
+          y: e.clientY + (Math.random() - 0.5) * 16,
+          vx: (Math.random() - 0.5) * 2.2,
+          vy: Math.random() * -1.8 - 0.4,
+          alpha: 1.0,
+          size: isStar ? (Math.random() * 4.5 + 2.5) : (Math.random() * 2.8 + 1.2),
+          isGlitterStar: isStar,
+          rot: Math.random() * Math.PI,
+          rotSpeed: (Math.random() - 0.5) * 0.08,
+          color: Math.random() > 0.35 ? '#fbbf24' : (Math.random() > 0.5 ? '#fef08a' : '#fbcfe8')
         });
       }
     }
   });
 
-  // Click burst: releases a whirlwind of 20 fluttering sakura petals
+  // Click burst: releases a whirlwind of 18 fluttering sakura petals + burst of sacred golden shrine glitter & Kinpaku gold leaf
   window.addEventListener('click', (e) => {
+    // Sakura petals burst
     for (let i = 0; i < 18; i++) {
       if (petals.length < 140) {
         const p = new SakuraPetal(true);
@@ -84,6 +90,36 @@
         p.isBurst = true;
         petals.push(p);
       }
+    }
+
+    // Kinpaku gold leaf burst
+    for (let i = 0; i < 16; i++) {
+      if (kinpakuFlakes.length < 75) {
+        const k = new KinpakuFlake(true);
+        k.x = e.clientX + (Math.random() - 0.5) * 20;
+        k.y = e.clientY + (Math.random() - 0.5) * 20;
+        const angle = Math.random() * Math.PI * 2;
+        const force = Math.random() * 4.5 + 2;
+        k.vx = Math.cos(angle) * force;
+        k.vy = Math.sin(angle) * force - 1.2;
+        kinpakuFlakes.push(k);
+      }
+    }
+
+    // Golden shrine glitter sparkle burst
+    for (let i = 0; i < 12; i++) {
+      mouseTrail.push({
+        x: e.clientX + (Math.random() - 0.5) * 16,
+        y: e.clientY + (Math.random() - 0.5) * 16,
+        vx: (Math.random() - 0.5) * 4.5,
+        vy: (Math.random() - 0.5) * 4.5 - 1.5,
+        alpha: 1.0,
+        size: Math.random() * 6 + 3,
+        isGlitterStar: true,
+        rot: Math.random() * Math.PI,
+        rotSpeed: (Math.random() - 0.5) * 0.12,
+        color: Math.random() > 0.4 ? '#fef08a' : '#fbbf24'
+      });
     }
   });
 
@@ -260,10 +296,217 @@
     }
   }
 
-  // Particle Pools (Substantial density for true cinematic Japanese immersion)
+  // ==========================================================================
+  // ✨ JAPANESE SHRINE GLITTER & KINPAKU GOLD LEAF ENGINE (金箔・神社の星神光) ⛩️
+  // ==========================================================================
+
+  // 1. Radiant 4-Point & Diamond Shrine Glitter Star (✦)
+  class ShrineGlitterSparkle {
+    constructor() {
+      this.reset(true);
+    }
+    reset(initial = false) {
+      this.x = Math.random() * width;
+      this.y = initial ? Math.random() * height : height + Math.random() * 35;
+      this.size = Math.random() * 3.8 + 2.0;
+      this.vx = (Math.random() - 0.48) * 0.35;
+      this.vy = -(Math.random() * 0.6 + 0.25); // Sacred ascending motion like shrine incense
+      this.phase = Math.random() * Math.PI * 2;
+      this.twinkleSpeed = Math.random() * 0.045 + 0.02;
+      this.rotation = Math.random() * Math.PI;
+      this.rotSpeed = (Math.random() - 0.5) * 0.015;
+      this.depth = Math.random() * 0.55 + 0.75;
+      const r = Math.random();
+      if (r < 0.65) {
+        this.colorCore = '#ffffff';
+        this.colorGlow = '#fbbf24'; // Radiant shrine gold
+      } else if (r < 0.88) {
+        this.colorCore = '#fffdf0';
+        this.colorGlow = '#fef08a'; // Brilliant champagne gold
+      } else {
+        this.colorCore = '#fff1f2';
+        this.colorGlow = '#f43f5e'; // Sacred vermilion temple sparkle
+      }
+    }
+    update() {
+      this.phase += this.twinkleSpeed;
+      this.rotation += this.rotSpeed;
+      this.y += this.vy * this.depth;
+      this.x += this.vx + Math.sin(this.phase * 0.8) * 0.45 + (globalWindX * 0.2);
+
+      // Mouse interactive drift
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 130) {
+        const force = (1 - dist / 130) * 2.2;
+        this.x += (dx / (dist || 1)) * force + mouse.vx * 0.3;
+        this.y += (dy / (dist || 1)) * force + mouse.vy * 0.3;
+      }
+
+      if (this.y < -35 || this.x < -35 || this.x > width + 35) {
+        this.reset();
+      }
+    }
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.rotation);
+
+      const shimmer = Math.sin(this.phase);
+      const alpha = Math.max(0, shimmer * 0.4 + 0.6) * this.depth;
+      ctx.globalAlpha = Math.min(1, alpha);
+
+      const r = this.size * (0.8 + shimmer * 0.3);
+
+      // Sacred 4-point Shrine Sparkle (✦)
+      ctx.fillStyle = this.colorGlow;
+      ctx.beginPath();
+      ctx.moveTo(0, -r * 2.2);
+      ctx.quadraticCurveTo(0, 0, r * 2.2, 0);
+      ctx.quadraticCurveTo(0, 0, 0, r * 2.2);
+      ctx.quadraticCurveTo(0, 0, -r * 2.2, 0);
+      ctx.quadraticCurveTo(0, 0, 0, -r * 2.2);
+      ctx.closePath();
+      ctx.fill();
+
+      // Dazzling white-gold center core
+      ctx.fillStyle = this.colorCore;
+      ctx.beginPath();
+      ctx.moveTo(0, -r * 1.05);
+      ctx.quadraticCurveTo(0, 0, r * 1.05, 0);
+      ctx.quadraticCurveTo(0, 0, 0, r * 1.05);
+      ctx.quadraticCurveTo(0, 0, -r * 1.05, 0);
+      ctx.quadraticCurveTo(0, 0, 0, -r * 1.05);
+      ctx.closePath();
+      ctx.fill();
+
+      // Specular aura flare
+      if (shimmer > 0.65) {
+        ctx.beginPath();
+        ctx.arc(0, 0, r * 0.85, 0, Math.PI * 2);
+        ctx.fillStyle = '#ffffff';
+        ctx.globalAlpha = (shimmer - 0.65) * 1.6;
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+  }
+
+  // 2. Realistic 3D Tumbling Japanese Gold Leaf Flakes (金箔・切箔 Kinpaku Flakes)
+  class KinpakuFlake {
+    constructor(isBurst = false) {
+      this.isBurst = isBurst;
+      this.reset(!isBurst);
+    }
+    reset(initial = false) {
+      this.x = initial ? Math.random() * width : Math.random() * (width + 200) - 100;
+      this.y = initial ? Math.random() * height : -20 - Math.random() * 40;
+      this.size = Math.random() * 4.2 + 2.2;
+      this.vx = (Math.random() * 0.6 + 0.3) + globalWindX * 0.4;
+      this.vy = Math.random() * 0.85 + 0.55; // Gently falling like gold leaf dust
+      this.pitch = Math.random() * Math.PI * 2;
+      this.yaw = Math.random() * Math.PI * 2;
+      this.roll = Math.random() * Math.PI * 2;
+      this.dPitch = (Math.random() * 0.045 + 0.015) * (Math.random() < 0.5 ? 1 : -1);
+      this.dYaw = (Math.random() * 0.05 + 0.015) * (Math.random() < 0.5 ? 1 : -1);
+      this.dRoll = Math.random() * 0.025 + 0.01;
+      this.shapePoints = [
+        { x: -1 + Math.random() * 0.3, y: -1 + Math.random() * 0.3 },
+        { x: 1 - Math.random() * 0.3, y: -0.7 + Math.random() * 0.4 },
+        { x: 0.9 - Math.random() * 0.3, y: 1 - Math.random() * 0.3 },
+        { x: -0.8 + Math.random() * 0.3, y: 0.8 - Math.random() * 0.3 }
+      ];
+      this.opacity = Math.random() * 0.35 + 0.65;
+    }
+    update() {
+      this.pitch += this.dPitch;
+      this.yaw += this.dYaw;
+      this.roll += this.dRoll;
+
+      this.x += this.vx + Math.sin(this.pitch) * 0.75;
+      this.y += this.vy + Math.cos(this.yaw) * 0.35;
+
+      // Mouse interactive displacement
+      const dx = this.x - mouse.x;
+      const dy = this.y - mouse.y;
+      const dist = Math.sqrt(dx * dx + dy * dy);
+      if (dist < 140) {
+        const force = (1 - dist / 140) * 3.2;
+        this.x += mouse.vx * force + (dx / (dist || 1)) * force * 1.8;
+        this.y += mouse.vy * force + (dy / (dist || 1)) * force * 1.1;
+      }
+
+      if (this.y > height + 30 || this.x > width + 50 || this.x < -50) {
+        if (this.isBurst) {
+          const idx = kinpakuFlakes.indexOf(this);
+          if (idx !== -1) kinpakuFlakes.splice(idx, 1);
+        } else {
+          this.reset();
+        }
+      }
+    }
+    draw() {
+      ctx.save();
+      ctx.translate(this.x, this.y);
+      ctx.rotate(this.roll);
+
+      const scaleX = Math.cos(this.yaw);
+      const scaleY = Math.sin(this.pitch);
+      ctx.scale(scaleX, scaleY);
+
+      // Specular metallic sheen
+      const specular = Math.abs(scaleX * scaleY);
+      const isGlint = specular > 0.8;
+
+      ctx.globalAlpha = this.opacity * (specular * 0.5 + 0.5);
+
+      // Gold leaf metallic gradient
+      const grad = ctx.createLinearGradient(-this.size, -this.size, this.size, this.size);
+      if (isGlint) {
+        grad.addColorStop(0, '#ffffff');
+        grad.addColorStop(0.3, '#fef08a');
+        grad.addColorStop(0.7, '#fbbf24');
+        grad.addColorStop(1, '#f59e0b');
+      } else {
+        grad.addColorStop(0, '#fde047');
+        grad.addColorStop(0.5, '#f59e0b');
+        grad.addColorStop(1, '#b45309');
+      }
+
+      ctx.fillStyle = grad;
+      ctx.beginPath();
+      const pts = this.shapePoints;
+      ctx.moveTo(pts[0].x * this.size, pts[0].y * this.size);
+      for (let i = 1; i < pts.length; i++) {
+        ctx.lineTo(pts[i].x * this.size, pts[i].y * this.size);
+      }
+      ctx.closePath();
+      ctx.fill();
+
+      // Specular glint star
+      if (isGlint && Math.random() < 0.2) {
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(0, 0, this.size * 0.4, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      ctx.restore();
+    }
+  }
+
+  // Particle Pools (Balanced density for cinematic Japanese shrine immersion & 60fps)
   const baseCount = Math.max(55, Math.min(95, Math.floor(window.innerWidth / 16)));
   const petals = Array.from({ length: baseCount }, () => new SakuraPetal());
-  const orbs = Array.from({ length: 28 }, () => new SpiritOrb());
+  const orbs = Array.from({ length: 26 }, () => new SpiritOrb());
+
+  // Sacred Japanese Shrine Glitter & Kinpaku Gold Leaf Pools
+  const shrineGlitterCount = Math.max(28, Math.min(55, Math.floor(window.innerWidth / 28)));
+  const shrineGlitters = Array.from({ length: shrineGlitterCount }, () => new ShrineGlitterSparkle());
+  const kinpakuCount = Math.max(22, Math.min(44, Math.floor(window.innerWidth / 36)));
+  const kinpakuFlakes = Array.from({ length: kinpakuCount }, () => new KinpakuFlake());
 
   // Animation Loop
   function animate() {
@@ -273,22 +516,45 @@
     windTime += 0.007;
     globalWindX = Math.sin(windTime) * 0.75 + 0.75;
 
-    // Draw mouse spark trail
+    // Draw mouse spark & shrine glitter trail
     for (let i = mouseTrail.length - 1; i >= 0; i--) {
       const sp = mouseTrail[i];
       sp.x += sp.vx;
       sp.y += sp.vy;
-      sp.alpha -= 0.025;
+      if (sp.rot !== undefined) sp.rot += sp.rotSpeed || 0.02;
+      sp.alpha -= 0.024;
       if (sp.alpha <= 0) {
         mouseTrail.splice(i, 1);
         continue;
       }
       ctx.save();
-      ctx.globalAlpha = sp.alpha;
-      ctx.fillStyle = sp.color;
-      ctx.beginPath();
-      ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
-      ctx.fill();
+      ctx.globalAlpha = Math.max(0, sp.alpha);
+      if (sp.isGlitterStar) {
+        // Draw radiant 4-point shrine sparkle
+        ctx.translate(sp.x, sp.y);
+        ctx.rotate(sp.rot || 0);
+        const r = sp.size;
+        ctx.fillStyle = sp.color || '#fbbf24';
+        ctx.beginPath();
+        ctx.moveTo(0, -r);
+        ctx.quadraticCurveTo(0, 0, r, 0);
+        ctx.quadraticCurveTo(0, 0, 0, r);
+        ctx.quadraticCurveTo(0, 0, -r, 0);
+        ctx.quadraticCurveTo(0, 0, 0, -r);
+        ctx.closePath();
+        ctx.fill();
+
+        // White-gold core
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(0, 0, r * 0.35, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillStyle = sp.color;
+        ctx.beginPath();
+        ctx.arc(sp.x, sp.y, sp.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
       ctx.restore();
     }
 
@@ -296,6 +562,18 @@
     for (let i = 0; i < orbs.length; i++) {
       orbs[i].update();
       orbs[i].draw();
+    }
+
+    // Draw 3D Kinpaku Gold Leaf Flakes
+    for (let i = 0; i < kinpakuFlakes.length; i++) {
+      kinpakuFlakes[i].update();
+      kinpakuFlakes[i].draw();
+    }
+
+    // Draw Sacred Shrine Glitter Stars (✦)
+    for (let i = 0; i < shrineGlitters.length; i++) {
+      shrineGlitters[i].update();
+      shrineGlitters[i].draw();
     }
 
     // Draw 3D Sakura Petals
