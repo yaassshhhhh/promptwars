@@ -6,11 +6,11 @@
 
 window.ImpactCalculator = {
   currentMetrics: {
-    co2_saved_kg: 4.05,
-    pm25_avoided_g: 1.06,
-    purifier_filtered_ug: 1110.0,
-    cigarettes_avoided: 8.7,
-    health_risk_reduction_pct: 72
+    co2_saved_kg: 2.02,
+    pm25_avoided_g: 0.532,
+    purifier_filtered_ug: 1331.1,
+    cigarettes_avoided: 8.2,
+    health_risk_reduction_pct: 86
   },
 
   init() {
@@ -60,11 +60,14 @@ window.ImpactCalculator = {
       if (el) el.addEventListener('change', () => this.recalculate());
     });
 
-    // Explain impact button
+    // Explain impact button -> Opens Scientific Methodology Modal
     const explainBtn = document.getElementById('askImpactExplanationBtn');
     if (explainBtn) {
       explainBtn.addEventListener('click', () => {
-        if (window.AIChat) {
+        const modal = document.getElementById('methodologyModal');
+        if (modal) {
+          modal.classList.remove('hidden');
+        } else if (window.AIChat) {
           window.AIChat.sendMessage("Explain the scientific calculation behind my CO2 savings, PM2.5 avoidance, and cigarette equivalent.");
         }
       });
@@ -125,15 +128,21 @@ window.ImpactCalculator = {
 
     const avgPm25 = Math.max(20.0, aqi * 0.72);
     const purifierFiltered = purifierHours * 0.625 * (avgPm25 * 0.85);
-    const transitProt = (mode === 'metro' || mode === 'wfh' || mode === 'ev') ? 0.25 : (mode === 'carpool' ? 0.12 : 0.04);
-    const filtFraction = purifierFiltered / Math.max(avgPm25 * 15.0, 1.0);
-    const cigs = Math.max(0.3, parseFloat(((aqi / 22.0) * (filtFraction * 0.75 + transitProt)).toFixed(1)));
 
-    // Dynamic Health Risk Reduction (20% - 92%, never stuck at 88%)
-    const baseRed = 22;
-    const purifierBoost = Math.min(46, Math.round(purifierHours * 4.2));
-    const modeBoost = (mode === 'metro' || mode === 'wfh') ? 24 : ((mode === 'ev') ? 18 : ((mode === 'carpool') ? 12 : 5));
-    const riskRed = Math.min(92, Math.max(20, baseRed + purifierBoost + modeBoost));
+    const commuteHours = totalKm / 25.0;
+    const streetPm25Intake = commuteHours * 0.625 * (avgPm25 * 1.35);
+    const transitProt = (mode === 'metro' || mode === 'wfh') ? 0.85 : ((mode === 'ev') ? 0.70 : (mode === 'carpool' ? 0.40 : 0.05));
+    const commuteShielded = streetPm25Intake * transitProt;
+    const totalPmAvoided = purifierFiltered + commuteShielded;
+
+    const cigs = Math.max(0.3, parseFloat((totalPmAvoided / 175.0).toFixed(1)));
+
+    // Dynamic Health Risk Reduction (20% - 95%, responding dynamically to purifier hours, mode, and distance)
+    const baseRed = 20;
+    const purifierBoost = Math.min(44, Math.round(purifierHours * 4.0));
+    const modeBoost = (mode === 'metro' || mode === 'wfh') ? 22 : ((mode === 'ev') ? 16 : ((mode === 'carpool') ? 10 : 4));
+    const distFactor = (mode === 'metro' || mode === 'wfh' || mode === 'ev') ? Math.min(12, Math.round(totalKm * 0.35)) : -Math.min(8, Math.round(totalKm * 0.25));
+    const riskRed = Math.min(95, Math.max(18, baseRed + purifierBoost + modeBoost + distFactor));
 
     const metrics = {
       co2_saved_kg: parseFloat(co2Saved),

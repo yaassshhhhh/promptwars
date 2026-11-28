@@ -120,9 +120,12 @@ function animateAqiCounter(targetVal) {
 /**
  * Load complete environmental & smog dynamics for selected city
  */
-async function loadCityData(cityId) {
+async function loadCityData(cityId, isRefresh = false) {
   try {
-    const resp = await fetch(`/api/aqi?city=${cityId}`);
+    const url = isRefresh
+      ? `/api/aqi?city=${cityId}&refresh=1&_t=${Date.now()}`
+      : `/api/aqi?city=${cityId}&_t=${Date.now()}`;
+    const resp = await fetch(url);
     const city = await resp.json();
     window.CurrentCityData = city;
 
@@ -419,7 +422,7 @@ window.refreshAqiData = async function() {
   }
 
   try {
-    await loadCityData(cityId);
+    await loadCityData(cityId, true);
   } finally {
     setTimeout(() => {
       if (refreshBtn) refreshBtn.classList.remove('animate-spin');
@@ -626,6 +629,19 @@ function bindAppEvents() {
 
   document.getElementById('closeSettingsModalBtn')?.addEventListener('click', () => {
     settingsModal.classList.add('hidden');
+  });
+
+  // Methodology Modal Close & Action Handlers
+  document.getElementById('closeMethodologyModalBtn')?.addEventListener('click', () => {
+    document.getElementById('methodologyModal')?.classList.add('hidden');
+  });
+  document.getElementById('askKazeFromModalBtn')?.addEventListener('click', () => {
+    document.getElementById('methodologyModal')?.classList.add('hidden');
+    const chamber = document.getElementById('chatMessages');
+    if (chamber) chamber.scrollIntoView({ behavior: 'smooth' });
+    if (window.AIChat) {
+      window.AIChat.sendMessage("Explain the scientific calculation behind my CO2 savings, PM2.5 avoidance, and cigarette equivalent.");
+    }
   });
 
   document.getElementById('saveSettingsBtn')?.addEventListener('click', () => {

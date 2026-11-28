@@ -266,7 +266,8 @@
       <!-- Ambient Living Aura Behind Hero -->
       <div
         class="absolute right-0 bottom-0 top-0 w-full sm:w-2/3 opacity-20 pointer-events-none overflow-hidden flex justify-end items-end">
-        <div class="w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-gradient-to-tr from-rose-600/30 to-amber-500/20 blur-3xl"></div>
+        <div class="w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-gradient-to-tr from-rose-600/30 to-amber-500/20 blur-3xl">
+        </div>
       </div>
 
       <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6 relative z-10 pl-0 sm:pl-2">
@@ -283,9 +284,11 @@
             </span>
           </div>
 
-          <h1 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white font-['Outfit'] tracking-tight leading-tight">
+          <h1
+            class="text-2xl sm:text-4xl lg:text-5xl font-extrabold text-white font-['Outfit'] tracking-tight leading-tight">
             Next-Gen Urban Air Quality Intelligence
-            <span class="block text-rose-400 font-sans text-lg sm:text-2xl font-semibold mt-1">Predictive Exposure Mitigation & Community Protection</span>
+            <span class="block text-rose-400 font-sans text-lg sm:text-2xl font-semibold mt-1">Predictive Exposure
+              Mitigation & Community Protection</span>
           </h1>
 
           <p class="text-slate-200 text-xs sm:text-base mt-2.5 leading-relaxed font-sans">
@@ -296,14 +299,19 @@
 
           <!-- Core Value Props / Feature Chips -->
           <div class="flex flex-wrap items-center gap-2 sm:gap-3 mt-3.5 text-xs text-emerald-300 font-medium">
-            <span class="flex items-center gap-1.5 bg-[#07130e]/90 px-2.5 sm:px-3 py-1.5 rounded-xl border border-emerald-900/60">
+            <span
+              class="flex items-center gap-1.5 bg-[#07130e]/90 px-2.5 sm:px-3 py-1.5 rounded-xl border border-emerald-900/60">
               <i data-lucide="wind" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-rose-400"></i> Adaptive Inversion Scheduling
             </span>
-            <span class="flex items-center gap-1.5 bg-[#07130e]/90 px-2.5 sm:px-3 py-1.5 rounded-xl border border-emerald-900/60">
-              <i data-lucide="shield-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400"></i> Hospital-Grade DIY Filtration
+            <span
+              class="flex items-center gap-1.5 bg-[#07130e]/90 px-2.5 sm:px-3 py-1.5 rounded-xl border border-emerald-900/60">
+              <i data-lucide="shield-check" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-400"></i> Hospital-Grade DIY
+              Filtration
             </span>
-            <span class="flex items-center gap-1.5 bg-[#07130e]/90 px-2.5 sm:px-3 py-1.5 rounded-xl border border-emerald-900/60">
-              <i data-lucide="heart-pulse" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sakura"></i> Quantified Lung & CO₂ Metrics
+            <span
+              class="flex items-center gap-1.5 bg-[#07130e]/90 px-2.5 sm:px-3 py-1.5 rounded-xl border border-emerald-900/60">
+              <i data-lucide="heart-pulse" class="w-3.5 h-3.5 sm:w-4 sm:h-4 text-sakura"></i> Quantified Lung & CO₂
+              Metrics
             </span>
           </div>
         </div>
@@ -342,7 +350,8 @@
           <div class="flex items-start justify-between gap-2">
             <div>
               <div class="flex items-center gap-2">
-                <p class="text-[10px] sm:text-xs uppercase font-bold tracking-widest text-emerald-400 flex items-center gap-1.5">
+                <p
+                  class="text-[10px] sm:text-xs uppercase font-bold tracking-widest text-emerald-400 flex items-center gap-1.5">
                   <span>Real-Time Sensor Feed</span> &bull; <span>Ambient Telemetry</span>
                 </p>
                 <button id="refreshAqiBtn" onclick="window.refreshAqiData && window.refreshAqiData()"
@@ -351,7 +360,8 @@
                   <i data-lucide="refresh-cw" class="w-3.5 h-3.5"></i>
                 </button>
               </div>
-              <h2 id="cardCityName" class="text-2xl sm:text-3xl font-extrabold text-white mt-1 font-['Outfit']">Delhi NCR</h2>
+              <h2 id="cardCityName" class="text-2xl sm:text-3xl font-extrabold text-white mt-1 font-['Outfit']">Delhi
+                NCR</h2>
               <div class="flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[11px] sm:text-xs text-slate-300 mt-0.5">
                 <span id="cardRegion">Northern Plains &bull; Winter Smog Profile</span>
                 <span class="text-emerald-500">•</span>
@@ -372,7 +382,9 @@
             <span id="cardAqiValue"
               class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tighter text-rose-400 font-['Outfit'] fire-glow-red transition-colors duration-500">348</span>
             <div>
-              <span id="cardAqiLabel" class="text-xs sm:text-sm font-bold text-rose-300 block transition-colors duration-500">Air Quality Index (AQI)</span>
+              <span id="cardAqiLabel"
+                class="text-xs sm:text-sm font-bold text-rose-300 block transition-colors duration-500">Air Quality
+                Index (AQI)</span>
               <span class="text-[11px] sm:text-xs text-slate-300">Primary Pollutant: <strong id="cardPrimaryPollutant"
                   class="text-white">PM2.5</strong></span>
             </div>
@@ -381,24 +393,28 @@
           <!-- Pollutant Breakdown Grid -->
           <div class="grid grid-cols-3 gap-2 sm:gap-3 pt-3 sm:pt-4 border-t border-emerald-900/60">
             <div class="bg-[#050e09] p-2 sm:p-3 rounded-2xl border border-emerald-950/90 shadow-inner">
-              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase block font-semibold truncate">Fine PM2.5</span>
+              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase block font-semibold truncate">Fine
+                PM2.5</span>
               <span id="cardPm25" class="text-xs sm:text-sm font-bold text-white">298.4 <span
                   class="text-[9px] sm:text-[10px] font-normal text-slate-400">µg/m³</span></span>
             </div>
             <div class="bg-[#050e09] p-2 sm:p-3 rounded-2xl border border-emerald-950/90 shadow-inner">
-              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase block font-semibold truncate">Coarse PM10</span>
+              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase block font-semibold truncate">Coarse
+                PM10</span>
               <span id="cardPm10" class="text-xs sm:text-sm font-bold text-white">420.1 <span
                   class="text-[9px] sm:text-[10px] font-normal text-slate-400">µg/m³</span></span>
             </div>
             <div class="bg-[#050e09] p-2 sm:p-3 rounded-2xl border border-emerald-950/90 shadow-inner">
-              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase block font-semibold truncate">Nitrogen NO₂</span>
+              <span class="text-[9px] sm:text-[10px] text-slate-400 uppercase block font-semibold truncate">Nitrogen
+                NO₂</span>
               <span id="cardNo2" class="text-xs sm:text-sm font-bold text-white">68.2 <span
                   class="text-[9px] sm:text-[10px] font-normal text-slate-400">ppb</span></span>
             </div>
           </div>
 
           <!-- Weather & Thermal Inversion Alert Pill -->
-          <div class="mt-3.5 sm:mt-4 p-3 sm:p-3.5 rounded-2xl bg-rose-950/50 border border-rose-500/50 flex items-start gap-2.5 sm:gap-3">
+          <div
+            class="mt-3.5 sm:mt-4 p-3 sm:p-3.5 rounded-2xl bg-rose-950/50 border border-rose-500/50 flex items-start gap-2.5 sm:gap-3">
             <i data-lucide="cloud-fog" class="w-4 h-4 sm:w-5 sm:h-5 text-rose-400 shrink-0 mt-0.5"></i>
             <div>
               <span class="text-xs font-bold text-rose-200 block">Thermal Inversion Advisory</span>
@@ -425,7 +441,8 @@
                   class="px-2 py-0.5 rounded text-[9px] sm:text-[10px] font-bold bg-amber-500/20 text-amber-300 border border-amber-500/40">Inversion
                   Dynamics</span>
               </div>
-              <p class="text-[11px] sm:text-xs text-slate-300">Tracks high-risk exposure hours vs optimal flash-ventilation solar windows</p>
+              <p class="text-[11px] sm:text-xs text-slate-300">Tracks high-risk exposure hours vs optimal
+                flash-ventilation solar windows</p>
             </div>
             <!-- Safe window pill -->
             <div
@@ -440,14 +457,16 @@
             <canvas id="aqiHourlyChart"></canvas>
           </div>
 
-          <div class="mt-3 sm:mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center border-t border-emerald-950 pt-2.5 sm:pt-3">
+          <div
+            class="mt-3 sm:mt-4 grid grid-cols-2 sm:grid-cols-4 gap-2 sm:gap-3 text-center border-t border-emerald-950 pt-2.5 sm:pt-3">
             <div>
               <span class="text-[9px] sm:text-[10px] text-slate-400 block font-semibold">Morning Inversion</span>
               <span class="text-[11px] sm:text-xs font-bold text-rose-400">6:00 AM - 10:30 AM</span>
             </div>
             <div>
               <span class="text-[9px] sm:text-[10px] text-slate-400 block font-semibold">Solar Clean Window</span>
-              <span id="chartSolarWindow" class="text-[11px] sm:text-xs font-bold text-emerald-400">1:30 PM - 3:30 PM</span>
+              <span id="chartSolarWindow" class="text-[11px] sm:text-xs font-bold text-emerald-400">1:30 PM - 3:30
+                PM</span>
             </div>
             <div>
               <span class="text-[9px] sm:text-[10px] text-slate-400 block font-semibold">Evening Stagnation</span>
@@ -469,7 +488,8 @@
               <i data-lucide="shield" class="w-4 h-4 sm:w-5 sm:h-5 text-rose-400"></i>
               <span>Family Vulnerability Safeguards</span>
             </h3>
-            <p class="text-[11px] sm:text-xs text-slate-300 mt-0.5">Select household profiles to tailor AI exposure warnings, indoor thresholds, and daily alerts</p>
+            <p class="text-[11px] sm:text-xs text-slate-300 mt-0.5">Select household profiles to tailor AI exposure
+              warnings, indoor thresholds, and daily alerts</p>
           </div>
           <!-- Toggle Checkboxes -->
           <div class="grid grid-cols-2 sm:flex sm:flex-wrap items-center gap-2 sm:gap-3">
@@ -493,7 +513,8 @@
             </label>
             <label
               class="flex items-center gap-2 px-3 sm:px-4 py-2 sm:py-2.5 rounded-2xl bg-[#0a1811] border border-amber-600/40 cursor-pointer hover:border-amber-400 transition text-[11px] sm:text-xs font-medium shadow-sm">
-              <input type="checkbox" id="profilePets" class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded text-rose-600 focus:ring-0 cursor-pointer">
+              <input type="checkbox" id="profilePets"
+                class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded text-rose-600 focus:ring-0 cursor-pointer">
               <span>🐾 Household Pets</span>
             </label>
           </div>
@@ -511,7 +532,8 @@
           <div class="kanamono-corner kanamono-tr"></div>
 
           <!-- Chamber Header -->
-          <div class="px-4 sm:px-6 py-3 sm:py-4 bg-[#0d2117] border-b border-emerald-800/60 flex items-center justify-between">
+          <div
+            class="px-4 sm:px-6 py-3 sm:py-4 bg-[#0d2117] border-b border-emerald-800/60 flex items-center justify-between">
             <div class="flex items-center gap-2.5 sm:gap-3.5">
               <div class="relative">
                 <div
@@ -529,7 +551,8 @@
                     Kaze Expert Rule Engine
                   </span>
                 </div>
-                <p class="text-[10px] sm:text-[11px] text-slate-300 hidden xs:block truncate">Winter Smog Navigation &bull; Exposure Optimization &bull; DIY Engineering</p>
+                <p class="text-[10px] sm:text-[11px] text-slate-300 hidden xs:block truncate">Winter Smog Navigation
+                  &bull; Exposure Optimization &bull; DIY Engineering</p>
               </div>
             </div>
 
@@ -543,7 +566,8 @@
           </div>
 
           <!-- Dynamic Active Context Grounding Banner -->
-          <div id="chatContextPill" class="px-4 sm:px-6 py-2 bg-[#06120b] border-b border-emerald-900/60 text-[10px] sm:text-[11px] text-emerald-300 font-medium flex items-center gap-2 truncate">
+          <div id="chatContextPill"
+            class="px-4 sm:px-6 py-2 bg-[#06120b] border-b border-emerald-900/60 text-[10px] sm:text-[11px] text-emerald-300 font-medium flex items-center gap-2 truncate">
             📍 <strong>Delhi NCR</strong> (AQI 348) &bull; 👶 Infants &bull; 🫁 Asthma
           </div>
 
@@ -695,16 +719,18 @@
               <div class="p-3 sm:p-3.5 rounded-2xl bg-[#06100c]/95 border border-emerald-900/70 shadow-inner">
                 <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block truncate">CO₂ Saved</span>
                 <div class="flex items-baseline gap-1 mt-1">
-                  <span id="impactCo2" class="text-xl sm:text-2xl font-extrabold text-emerald-400 font-['Outfit']">4.05</span>
+                  <span id="impactCo2"
+                    class="text-xl sm:text-2xl font-extrabold text-emerald-400 font-['Outfit']">2.02</span>
                   <span class="text-[10px] sm:text-xs font-semibold text-slate-400">kg</span>
                 </div>
-                <span id="impactSmartphones" class="text-[9px] sm:text-[10px] text-emerald-300 mt-0.5 block truncate">≈ 478 smartphone charges</span>
+                <span id="impactSmartphones" class="text-[9px] sm:text-[10px] text-emerald-300 mt-0.5 block truncate">≈ 238 smartphone charges</span>
               </div>
 
               <div class="p-3 sm:p-3.5 rounded-2xl bg-[#06100c]/95 border border-emerald-900/70 shadow-inner">
                 <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block truncate">Tailpipe PM2.5 Spared</span>
                 <div class="flex items-baseline gap-1 mt-1">
-                  <span id="impactPm25" class="text-xl sm:text-2xl font-extrabold text-teal-300 font-['Outfit']">1.06</span>
+                  <span id="impactPm25"
+                    class="text-xl sm:text-2xl font-extrabold text-teal-300 font-['Outfit']">0.532</span>
                   <span class="text-[10px] sm:text-xs font-semibold text-slate-400">grams</span>
                 </div>
                 <span class="text-[9px] sm:text-[10px] text-teal-400 mt-0.5 block truncate">Soot spared from streets</span>
@@ -713,7 +739,8 @@
               <div class="p-3 sm:p-3.5 rounded-2xl bg-[#06100c]/95 border border-emerald-900/70 shadow-inner">
                 <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block truncate">Cigarettes Equivalence</span>
                 <div class="flex items-baseline gap-1 mt-1">
-                  <span id="impactCigs" class="text-xl sm:text-2xl font-extrabold text-amber-400 font-['Outfit']">8.7</span>
+                  <span id="impactCigs"
+                    class="text-xl sm:text-2xl font-extrabold text-amber-400 font-['Outfit']">8.2</span>
                   <span class="text-[10px] sm:text-xs font-semibold text-slate-400">cigs</span>
                 </div>
                 <span class="text-[9px] sm:text-[10px] text-amber-300 mt-0.5 block truncate">Toxicity shielded from lungs</span>
@@ -722,7 +749,8 @@
               <div class="p-3 sm:p-3.5 rounded-2xl bg-[#06100c]/95 border border-emerald-900/70 shadow-inner">
                 <span class="text-[9px] sm:text-[10px] uppercase font-bold text-slate-400 block truncate">Health Risk Drop</span>
                 <div class="flex items-baseline gap-1 mt-1">
-                  <span id="impactRiskPct" class="text-xl sm:text-2xl font-extrabold text-rose-300 font-['Outfit']">72%</span>
+                  <span id="impactRiskPct"
+                    class="text-xl sm:text-2xl font-extrabold text-rose-300 font-['Outfit']">86%</span>
                   <span class="text-[10px] sm:text-xs font-semibold text-slate-400">lower</span>
                 </div>
                 <span class="text-[9px] sm:text-[10px] text-rose-400 mt-0.5 block truncate">Bronchial stress index</span>
@@ -974,112 +1002,116 @@
       </div>
     </div>
 
-      <!-- HACKATHON DEMO & SYSTEM ARCHITECTURE FOOTER -->
-      <footer class="mt-16 pt-10 border-t border-rose-950/70 space-y-12 text-slate-300">
+    <!-- HACKATHON DEMO & SYSTEM ARCHITECTURE FOOTER -->
+    <footer class="mt-16 pt-10 border-t border-rose-950/70 space-y-12 text-slate-300">
 
-        <!-- Section 1: How It Works Pipeline -->
-        <div>
-          <div class="text-center max-w-2xl mx-auto mb-8">
-            <span
-              class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/40">
-              System Workflow
-            </span>
-            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2 font-['Outfit']">How AEROVA Protects Urban
-              Communities</h3>
-            <p class="text-xs text-slate-400 mt-1.5">A 3-stage feedback loop combining live sensor data, microclimate
-              physics, and Vertex AI GenAI reasoning.</p>
+      <!-- Section 1: How It Works Pipeline -->
+      <div>
+        <div class="text-center max-w-2xl mx-auto mb-8">
+          <span
+            class="px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-wider bg-rose-500/20 text-rose-300 border border-rose-500/40">
+            System Workflow
+          </span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold text-white mt-2 font-['Outfit']">How AEROVA Protects Urban
+            Communities</h3>
+          <p class="text-xs text-slate-400 mt-1.5">A 3-stage feedback loop combining live sensor data, microclimate
+            physics, and Vertex AI GenAI reasoning.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Step 1 -->
+          <div class="ema-card p-6 rounded-2xl border border-emerald-900/60 relative flex flex-col justify-between">
+            <div>
+              <div
+                class="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 font-bold text-sm mb-3">
+                01
+              </div>
+              <h4 class="text-base font-bold text-white font-['Outfit'] mb-1.5 flex items-center gap-2">
+                <i data-lucide="radio" class="w-4 h-4 text-rose-400"></i>
+                <span>Sensor & Inversion Telemetry</span>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Ingests real-time ground-station telemetry (CPCB / OpenAQ), tracking fine particulate spikes (PM2.5,
+                PM10) alongside nocturnal boundary-layer thermal inversions that trap toxins close to streets.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-emerald-950 text-[11px] text-emerald-400 font-medium">
+              Feed: CPCB &bull; OpenAQ &bull; 24h Diurnal Curve
+            </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <!-- Step 1 -->
-            <div class="ema-card p-6 rounded-2xl border border-emerald-900/60 relative flex flex-col justify-between">
-              <div>
-                <div
-                  class="w-10 h-10 rounded-xl bg-rose-500/20 border border-rose-500/40 flex items-center justify-center text-rose-400 font-bold text-sm mb-3">
-                  01
-                </div>
-                <h4 class="text-base font-bold text-white font-['Outfit'] mb-1.5 flex items-center gap-2">
-                  <i data-lucide="radio" class="w-4 h-4 text-rose-400"></i>
-                  <span>Sensor & Inversion Telemetry</span>
-                </h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  Ingests real-time ground-station telemetry (CPCB / OpenAQ), tracking fine particulate spikes (PM2.5,
-                  PM10) alongside nocturnal boundary-layer thermal inversions that trap toxins close to streets.
-                </p>
+          <!-- Step 2 -->
+          <div
+            class="ema-card p-6 rounded-2xl border border-rose-500/40 relative flex flex-col justify-between shadow-lg shadow-rose-950/30">
+            <div>
+              <div
+                class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 font-bold text-sm mb-3">
+                02
               </div>
-              <div class="mt-4 pt-3 border-t border-emerald-950 text-[11px] text-emerald-400 font-medium">
-                Feed: CPCB &bull; OpenAQ &bull; 24h Diurnal Curve
-              </div>
+              <h4 class="text-base font-bold text-white font-['Outfit'] mb-1.5 flex items-center gap-2">
+                <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
+                <span>Vertex AI / Gemini 2.5 Flash</span>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Contextual reasoning engine fuses hyper-local AQI with household vulnerability profiles (infants,
+                elderly 65+, asthma). Enforces direct Yes/No safety verdicts and thermal-inversion awareness with zero
+                hallucinations.
+              </p>
             </div>
-
-            <!-- Step 2 -->
-            <div
-              class="ema-card p-6 rounded-2xl border border-rose-500/40 relative flex flex-col justify-between shadow-lg shadow-rose-950/30">
-              <div>
-                <div
-                  class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-300 font-bold text-sm mb-3">
-                  02
-                </div>
-                <h4 class="text-base font-bold text-white font-['Outfit'] mb-1.5 flex items-center gap-2">
-                  <i data-lucide="cpu" class="w-4 h-4 text-amber-400"></i>
-                  <span>Vertex AI / Gemini 2.5 Flash</span>
-                </h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  Contextual reasoning engine fuses hyper-local AQI with household vulnerability profiles (infants,
-                  elderly 65+, asthma). Enforces direct Yes/No safety verdicts and thermal-inversion awareness with zero
-                  hallucinations.
-                </p>
-              </div>
-              <div class="mt-4 pt-3 border-t border-emerald-950 text-[11px] text-amber-300 font-medium">
-                Engine: Gemini 2.5 Flash + Kaze Rule Engine
-              </div>
+            <div class="mt-4 pt-3 border-t border-emerald-950 text-[11px] text-amber-300 font-medium">
+              Engine: Gemini 2.5 Flash + Kaze Rule Engine
             </div>
+          </div>
 
-            <!-- Step 3 -->
-            <div class="ema-card p-6 rounded-2xl border border-emerald-900/60 relative flex flex-col justify-between">
-              <div>
-                <div
-                  class="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-500/40 flex items-center justify-center text-teal-300 font-bold text-sm mb-3">
-                  03
-                </div>
-                <h4 class="text-base font-bold text-white font-['Outfit'] mb-1.5 flex items-center gap-2">
-                  <i data-lucide="shield-check" class="w-4 h-4 text-teal-400"></i>
-                  <span>Personalized Defense & Impact</span>
-                </h4>
-                <p class="text-xs text-slate-300 leading-relaxed">
-                  Synthesizes low-emission daily schedules, DIY Corsi-Rosenthal box blueprints, and verifies
-                  mathematically quantified health savings: CO₂ spared (~118 charges/kg), PM2.5 avoided, and cigarette
-                  equivalence.
-                </p>
+          <!-- Step 3 -->
+          <div class="ema-card p-6 rounded-2xl border border-emerald-900/60 relative flex flex-col justify-between">
+            <div>
+              <div
+                class="w-10 h-10 rounded-xl bg-teal-500/20 border border-teal-500/40 flex items-center justify-center text-teal-300 font-bold text-sm mb-3">
+                03
               </div>
-              <div class="mt-4 pt-3 border-t border-emerald-950 text-[11px] text-teal-300 font-medium">
-                Action: DIY Blueprints &bull; Quantified Health
-              </div>
+              <h4 class="text-base font-bold text-white font-['Outfit'] mb-1.5 flex items-center gap-2">
+                <i data-lucide="shield-check" class="w-4 h-4 text-teal-400"></i>
+                <span>Personalized Defense & Impact</span>
+              </h4>
+              <p class="text-xs text-slate-300 leading-relaxed">
+                Synthesizes low-emission daily schedules, DIY Corsi-Rosenthal box blueprints, and verifies
+                mathematically quantified health savings: CO₂ spared (~118 charges/kg), PM2.5 avoided, and cigarette
+                equivalence.
+              </p>
+            </div>
+            <div class="mt-4 pt-3 border-t border-emerald-950 text-[11px] text-teal-300 font-medium">
+              Action: DIY Blueprints &bull; Quantified Health
             </div>
           </div>
         </div>
+      </div>
 
       <!-- Section 2: Technical Architecture Grid -->
-      <div class="p-4 sm:p-7 rounded-2xl sm:rounded-3xl bg-[#06110b] border border-emerald-800/60 relative shrine-roof">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-4 border-b border-emerald-900/70">
+      <div class="p-7 rounded-3xl bg-[#06110b] border border-emerald-800/60 relative shrine-roof">
+        <div
+          class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6 pb-4 border-b border-emerald-900/70">
           <div>
             <h4 class="text-lg font-bold text-white font-['Outfit'] flex items-center gap-2">
               <i data-lucide="layers" class="w-5 h-5 text-rose-400"></i>
               <span>Full-Stack Architecture & Cloud Run Deployment</span>
             </h4>
-            <p class="text-xs text-slate-400 mt-0.5">Secure, low-latency deployment engineered for Google Cloud and hackathon verification.</p>
+            <p class="text-xs text-slate-400 mt-0.5">Secure, low-latency deployment engineered for Google Cloud and
+              hackathon verification.</p>
           </div>
-          <span class="text-xs font-mono px-3 py-1 rounded-xl bg-emerald-950 text-emerald-300 border border-emerald-800/70 shrink-0">
+          <span
+            class="text-xs font-mono px-3 py-1 rounded-xl bg-emerald-950 text-emerald-300 border border-emerald-800/70 shrink-0">
             Production Build • v1.2.0
           </span>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-xs">
-          <div class="p-3.5 rounded-xl bg-[#091811] border border-emerald-900/60">
-            <span class="text-[10px] uppercase font-bold text-rose-400 block mb-1">Compute & Backend</span>
-            <strong class="text-white block text-sm">Flask / Cloud Run</strong>
-            <p class="text-[11px] text-slate-400 mt-1">Lightweight Python microservice with asynchronous REST controllers.</p>
-          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 text-xs">
+            <div class="p-3.5 rounded-xl bg-[#091811] border border-emerald-900/60">
+              <span class="text-[10px] uppercase font-bold text-rose-400 block mb-1">Compute & Backend</span>
+              <strong class="text-white block text-sm">Flask / Cloud Run</strong>
+              <p class="text-[11px] text-slate-400 mt-1">Lightweight Python microservice with asynchronous REST
+                controllers.</p>
+            </div>
 
             <div class="p-3.5 rounded-xl bg-[#091811] border border-emerald-900/60">
               <span class="text-[10px] uppercase font-bold text-teal-400 block mb-1">Key Management</span>
@@ -1205,7 +1237,8 @@
   <!-- Settings & API Key Modal -->
   <div id="settingsModal"
     class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
-    <div class="bg-[#0b1c15] border border-rose-500/50 rounded-2xl sm:rounded-3xl max-w-md w-full p-4 sm:p-6 shadow-2xl relative shrine-roof">
+    <div
+      class="bg-[#0b1c15] border border-rose-500/50 rounded-2xl sm:rounded-3xl max-w-md w-full p-4 sm:p-6 shadow-2xl relative shrine-roof">
       <button id="closeSettingsModalBtn"
         class="absolute top-4 right-4 p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-[#122e23] transition">
         <i data-lucide="x" class="w-5 h-5"></i>
@@ -1251,6 +1284,79 @@
           <button id="saveSettingsBtn"
             class="omamori-btn px-5 py-2.5 rounded-2xl text-white font-semibold text-xs transition">
             Save Configuration
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scientific Calculation Methodology Modal -->
+  <div id="methodologyModal"
+    class="fixed inset-0 z-50 bg-black/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4">
+    <div
+      class="bg-[#0b1c15] border border-emerald-500/50 rounded-2xl sm:rounded-3xl max-w-2xl w-full max-h-[90vh] overflow-y-auto p-5 sm:p-8 shadow-2xl relative shrine-roof">
+      <button id="closeMethodologyModalBtn"
+        class="absolute top-5 right-5 p-2.5 rounded-xl text-slate-400 hover:text-white hover:bg-[#122e23] transition">
+        <i data-lucide="x" class="w-5 h-5"></i>
+      </button>
+
+      <div class="flex items-center gap-3 mb-4">
+        <div
+          class="w-10 h-10 rounded-2xl bg-emerald-500/20 flex items-center justify-center text-emerald-400 border border-emerald-500/40">
+          <i data-lucide="calculator" class="w-5 h-5"></i>
+        </div>
+        <div>
+          <h3 class="font-bold text-white text-xl font-['Outfit']">Scientific Calculation Methodology</h3>
+          <p class="text-xs text-slate-400">Peer-reviewed formulas, emission factors, and environmental health conversions.</p>
+        </div>
+      </div>
+
+      <div class="space-y-4 text-xs text-slate-200">
+        <!-- 1. Carbon Savings -->
+        <div class="p-3.5 rounded-2xl bg-[#07130e] border border-emerald-900/70">
+          <h4 class="font-bold text-emerald-300 text-sm flex items-center gap-2 mb-1">
+            <i data-lucide="leaf" class="w-4 h-4 text-emerald-400"></i>
+            <span>1. CO₂ Offset & Smartphone Charging Equivalency</span>
+          </h4>
+          <p class="text-slate-300 leading-relaxed">
+            • <strong>Baseline Solo Car Emission:</strong> 0.170 kg CO₂ per km (Central Pollution Control Board & EPA Light Vehicle Standard).<br>
+            • <strong>Modal Factors:</strong> Metro Rail: 0.15× baseline &bull; EV/E-Bus: 0.20-0.30× &bull; Carpool (3+): 0.35× &bull; Remote WFH: 0.00×.<br>
+            • <strong>Formula:</strong> CO₂ Saved (kg) = Distance (km) × 0.170 × (1.0 - Mode Factor).<br>
+            • <strong>Smartphone Charges:</strong> EPA Greenhouse Gas equivalency factor (1 kg CO₂ ≈ 118 full smartphone recharges of a standard 12Wh battery).
+          </p>
+        </div>
+
+        <!-- 2. Inhaled PM2.5 & Cigarettes -->
+        <div class="p-3.5 rounded-2xl bg-[#07130e] border border-emerald-900/70">
+          <h4 class="font-bold text-amber-300 text-sm flex items-center gap-2 mb-1">
+            <i data-lucide="flame" class="w-4 h-4 text-amber-400"></i>
+            <span>2. PM2.5 Toxicity & Cigarettes Equivalent</span>
+          </h4>
+          <p class="text-slate-300 leading-relaxed">
+            • <strong>Berkeley Earth Rule:</strong> 22 µg/m³ ambient PM2.5 exposure equates to smoking <strong>1 cigarette</strong> of toxic fine particulate burden over average human daily ventilation volume (15 m³/day).<br>
+            • <strong>Indoor Filtration Component:</strong> Purifier Hours × 0.625 m³/h × (Ambient PM2.5 × 0.85).<br>
+            • <strong>Commute Shielding:</strong> Street-level exhaust micro-climate creates 1.35× ambient PM2.5 on open roadways. Enclosed Metro, EV, and WFH shield 70%–85% of this direct tailpipe exposure.
+          </p>
+        </div>
+
+        <!-- 3. Dynamic Health Risk Drop -->
+        <div class="p-3.5 rounded-2xl bg-[#07130e] border border-emerald-900/70">
+          <h4 class="font-bold text-rose-300 text-sm flex items-center gap-2 mb-1">
+            <i data-lucide="heart-pulse" class="w-4 h-4 text-rose-400"></i>
+            <span>3. Dynamic Health Risk Reduction Percentage</span>
+          </h4>
+          <p class="text-slate-300 leading-relaxed">
+            • Synthesizes indoor HEPA air cleaning hours (0-24h), cleaner commute mode, and roundtrip distance.<br>
+            • Dynamically calculated between <strong>18%</strong> and <strong>95%</strong>, ensuring zero static numbers and instantaneous synchronization with all slider movements.
+          </p>
+        </div>
+
+        <!-- Action button inside modal -->
+        <div class="pt-2 flex justify-end gap-3">
+          <button id="askKazeFromModalBtn"
+            class="omamori-btn px-5 py-2.5 rounded-xl text-white font-bold text-xs flex items-center gap-2 shadow-lg">
+            <i data-lucide="bot" class="w-4 h-4"></i>
+            <span>Ask Kaze AI to Analyze My Footprint</span>
           </button>
         </div>
       </div>

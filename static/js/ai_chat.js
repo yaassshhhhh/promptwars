@@ -21,7 +21,7 @@ window.AIChat = {
     if (SpeechRecognition) {
       this.recognition = new SpeechRecognition();
       this.recognition.continuous = false;
-      this.recognition.interimResults = false;
+      this.recognition.interimResults = true;
       this.recognition.lang = 'en-US';
 
       this.recognition.onstart = () => {
@@ -30,19 +30,35 @@ window.AIChat = {
         const btn = document.getElementById('voiceInputBtn');
         const input = document.getElementById('chatInput');
         if (statusEl) {
-          statusEl.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-rose-500 animate-ping mr-1"></span>🎙️ Listening... speak your query`;
+          statusEl.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-rose-500 animate-ping mr-1"></span>🎙️ Listening... speak your query now`;
           statusEl.classList.remove('hidden');
         }
-        if (btn) btn.classList.add('bg-rose-600', 'text-white', 'animate-pulse');
+        if (btn) {
+          btn.classList.add('bg-rose-600', 'text-white', 'animate-pulse');
+          btn.classList.remove('bg-[#122c1f]', 'text-rose-300');
+        }
         if (input) input.placeholder = "🎙️ Listening... speak your query";
       };
 
       this.recognition.onresult = (event) => {
-        const transcript = event.results[0][0].transcript;
+        let transcript = '';
+        for (let i = event.resultIndex; i < event.results.length; i++) {
+          transcript += event.results[i][0].transcript;
+        }
         const input = document.getElementById('chatInput');
-        if (input) {
+        if (input && transcript) {
           input.value = transcript;
-          this.sendMessage(transcript);
+        }
+        if (event.results[0] && event.results[0].isFinal) {
+          const finalPrompt = transcript.trim();
+          if (finalPrompt) {
+            setTimeout(() => {
+              if (this.isRecording) {
+                try { this.recognition.stop(); } catch(e) {}
+              }
+              this.sendMessage(finalPrompt);
+            }, 500);
+          }
         }
       };
 
@@ -52,8 +68,13 @@ window.AIChat = {
         const btn = document.getElementById('voiceInputBtn');
         const input = document.getElementById('chatInput');
         if (statusEl) statusEl.classList.add('hidden');
-        if (btn) btn.classList.remove('bg-rose-600', 'text-white', 'animate-pulse');
-        if (input) input.placeholder = "Ask Kaze about routines, DIY purifiers, school runs, or smog impact...";
+        if (btn) {
+          btn.classList.remove('bg-rose-600', 'text-white', 'animate-pulse');
+          btn.classList.add('bg-[#122c1f]', 'text-rose-300');
+        }
+        if (input && !input.value) {
+          input.placeholder = "Ask Kaze about routines, DIY purifiers, school runs, or smog impact...";
+        }
       };
 
       this.recognition.onerror = (err) => {
@@ -62,12 +83,24 @@ window.AIChat = {
         const statusEl = document.getElementById('voiceStatus');
         const btn = document.getElementById('voiceInputBtn');
         const input = document.getElementById('chatInput');
-        if (statusEl) statusEl.classList.add('hidden');
-        if (btn) btn.classList.remove('bg-rose-600', 'text-white', 'animate-pulse');
+        if (btn) {
+          btn.classList.remove('bg-rose-600', 'text-white', 'animate-pulse');
+          btn.classList.add('bg-[#122c1f]', 'text-rose-300');
+        }
         if (input) input.placeholder = "Ask Kaze about routines, DIY purifiers, school runs, or smog impact...";
-        
-        if (err.error === 'not-allowed') {
-          alert("Microphone permission was denied. Please allow microphone access in your browser settings to use voice input.");
+
+        if (statusEl) {
+          statusEl.classList.remove('hidden');
+          if (err.error === 'not-allowed') {
+            statusEl.innerHTML = `<span class="text-amber-400">⚠️ Mic permission denied. Please allow microphone in browser settings.</span>`;
+            alert("Microphone permission was denied. Please click the camera/lock icon in your browser address bar to allow microphone access.");
+          } else if (err.error === 'no-speech') {
+            statusEl.innerHTML = `<span class="text-slate-400">No speech detected. Tap mic to try again.</span>`;
+            setTimeout(() => statusEl.classList.add('hidden'), 3500);
+          } else {
+            statusEl.innerHTML = `<span class="text-amber-400">⚠️ Voice recognition notice: ${err.error}. Please type query.</span>`;
+            setTimeout(() => statusEl.classList.add('hidden'), 4000);
+          }
         }
       };
     }
@@ -111,21 +144,54 @@ window.AIChat = {
       });
     }
 
-    // Voice button
+    // Voice button with permission check and speech start
     const voiceBtn = document.getElementById('voiceInputBtn');
     if (voiceBtn) {
-      voiceBtn.addEventListener('click', () => {
-        if (!this.recognition) {
-          alert("Speech recognition is not supported in this browser. Please type your message.");
+      voiceBtn.addEventListener('click', async () => {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        if (!SpeechRecognition) {
+          alert("Web Speech recognition is not supported in this browser. Please type your query in the chat input.");
           return;
         }
+
         if (this.isRecording) {
-          this.recognition.stop();
-        } else {
           try {
-            this.recognition.start();
-          } catch (e) {
-            console.warn("Recognition already started or error:", e);
+            this.recognition.stop();
+          } catch(e) {}
+          return;
+        }
+
+        const statusEl = document.getElementById('voiceStatus');
+        if (statusEl) {
+          statusEl.innerHTML = `<span class="inline-block w-2 h-2 rounded-full bg-amber-400 animate-ping mr-1"></span>🎙️ Requesting microphone access...`;
+          statusEl.classList.remove('hidden');
+        }
+
+        // Try explicitly requesting mic permission first
+        if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+          try {
+            const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+            // Release stream immediately so SpeechRecognition has full microphone ownership
+            stream.getTracks().forEach(track => track.stop());
+          } catch (err) {
+            console.warn("getUserMedia error:", err);
+            if (statusEl) {
+              statusEl.innerHTML = `<span class="text-amber-400">⚠️ Microphone permission needed. Please allow in browser.</span>`;
+            }
+            alert("Microphone permission was denied or unavailable. Please click the lock icon in your address bar and allow microphone access.");
+            return;
+          }
+        }
+
+        try {
+          this.recognition.start();
+        } catch (e) {
+          console.warn("Recognition start error:", e);
+          try {
+            this.recognition.stop();
+            setTimeout(() => this.recognition.start(), 200);
+          } catch(err2) {
+            console.error("Failed to restart recognition:", err2);
           }
         }
       });
@@ -199,10 +265,12 @@ Welcome! I am **Kaze**, your autonomous environmental advisor for navigating win
 
     // Gather contextual parameters
     const cityData = window.CurrentCityData || { name: 'Delhi NCR', aqi: 348, category: 'Hazardous' };
+    const purifierHours = parseInt(document.getElementById('purifierHoursInput')?.value || 10);
     const context = {
       city: cityData.name,
       aqi: cityData.aqi,
       category: cityData.category,
+      purifier_hours: purifierHours,
       profile: {
         infants: document.getElementById('profileInfants')?.checked || false,
         elderly: document.getElementById('profileElderly')?.checked || false,
@@ -211,7 +279,8 @@ Welcome! I am **Kaze**, your autonomous environmental advisor for navigating win
       },
       commute: {
         mode: window.ImpactCalculator ? window.ImpactCalculator.getSelectedTransitMode() : 'metro',
-        distance_km: parseFloat(document.getElementById('commuteKmInput')?.value || 14)
+        distance_km: parseFloat(document.getElementById('commuteKmInput')?.value || 14),
+        purifier_hours: purifierHours
       }
     };
 

@@ -90,15 +90,15 @@ def generate_groq_response(api_key: str, prompt: str, context: dict) -> str:
         return None
 
 
-def calculate_impact_metrics(aqi: int, commute_km: float, transit_mode: str, carpool_count: int = 1, air_purifier_hours: int = 8) -> dict:
+def calculate_impact_metrics(aqi: int, commute_km: float, transit_mode: str, carpool_count: int = 1, air_purifier_hours: int = 10) -> dict:
     """
     Computes direct personal and community impact:
     - CO2 saved vs solo petrol car
     - PM2.5 tailpipe avoided
     - Inhaled PM2.5 avoided (micrograms)
-    - Equivalent cigarettes avoided
+    - Equivalent cigarettes avoided (responds dynamically to AQI, commute distance, and filtration hours)
     - Smartphone charges equivalent (~118 charges per 1 kg CO2)
-    - Dynamic health risk reduction percentage
+    - Dynamic health risk reduction percentage (responds dynamically between 20% and 95%)
     """
     # Baseline solo petrol car: ~170g CO2/km, 0.04g PM2.5/km
     baseline_co2_per_km = 0.170  # kg CO2
@@ -136,28 +136,34 @@ def calculate_impact_metrics(aqi: int, commute_km: float, transit_mode: str, car
     smartphone_charges = int(round(co2_saved_kg * 118))
     
     # Breathing volume per day: ~15 m^3 / day (~0.625 m^3 / hour)
-    # Berkeley Earth rule: 22 ug/m3 PM2.5 roughly equates to 1 cigarette's particulate toxicity
     avg_pm25 = max(20.0, aqi * 0.72)
-    purifier_filtered_ug = round(air_purifier_hours * 0.625 * (avg_pm25 * 0.85), 1)
+    purifier_filtered_ug = air_purifier_hours * 0.625 * (avg_pm25 * 0.85)
     
-    # Unified Cigarettes Avoided Formula:
-    # Based on daily inhaled microgram reduction through filtration + cleaner transit
-    transit_protection = 0.25 if transit_mode in ["metro", "wfh", "ev"] else (0.12 if transit_mode == "carpool" else 0.04)
-    filtration_fraction = (purifier_filtered_ug / max(avg_pm25 * 15.0, 1.0))
-    daily_cig_equiv = round((aqi / 22.0) * (filtration_fraction * 0.75 + transit_protection), 1)
-    cigs_avoided = max(0.3, daily_cig_equiv)
+    # Commute exposure avoided:
+    # Cleaner modes (metro/ev/wfh) shield commuters from street-level tailpipe PM2.5 intake
+    commute_hours = total_km / 25.0
+    street_pm25_intake = commute_hours * 0.625 * (avg_pm25 * 1.35)
+    transit_protection = 0.85 if transit_mode in ["metro", "wfh"] else (0.70 if transit_mode in ["ev", "electric_bus"] else (0.40 if transit_mode == "carpool" else 0.05))
+    commute_shielded_ug = street_pm25_intake * transit_protection
+    
+    # Total PM2.5 avoided (indoor filtration + commute shielding)
+    total_pm_avoided_ug = purifier_filtered_ug + commute_shielded_ug
+    
+    # Berkeley Earth rule: ~175 ug daily PM2.5 avoidance equates to 1 cigarette equivalent toxicity
+    cigs_avoided = round(max(0.3, total_pm_avoided_ug / 175.0), 1)
 
-    # Dynamic Health Risk Reduction Percentage (dynamically responds between 20% and 92%)
-    base_reduction = 22
-    purifier_boost = min(46, int(air_purifier_hours * 4.2))
-    mode_boost = 24 if transit_mode in ["metro", "wfh"] else (18 if transit_mode in ["ev", "electric_bus"] else (12 if transit_mode == "carpool" else 5))
-    health_risk_reduction = min(92, max(20, base_reduction + purifier_boost + mode_boost))
+    # Dynamic Health Risk Reduction Percentage (dynamically responds with purifier hours, mode, and distance)
+    base_reduction = 20
+    purifier_boost = min(44, int(air_purifier_hours * 4.0))
+    mode_boost = 22 if transit_mode in ["metro", "wfh"] else (16 if transit_mode in ["ev", "electric_bus"] else (10 if transit_mode == "carpool" else 4))
+    distance_factor = min(12, int(total_km * 0.35)) if transit_mode in ["metro", "wfh", "ev", "electric_bus"] else -min(8, int(total_km * 0.25))
+    health_risk_reduction = min(95, max(18, base_reduction + purifier_boost + mode_boost + distance_factor))
 
     return {
         "co2_saved_kg": max(0.0, co2_saved_kg),
         "pm25_avoided_g": max(0.0, pm25_avoided_g),
         "smartphone_charges": smartphone_charges,
-        "purifier_filtered_ug": purifier_filtered_ug,
+        "purifier_filtered_ug": round(purifier_filtered_ug, 1),
         "cigarettes_avoided": cigs_avoided,
         "health_risk_reduction_pct": health_risk_reduction
     }
@@ -244,7 +250,8 @@ With a current AQI of **{aqi}** in **{city}**, air quality meets safe environmen
     if any(k in p_lower for k in ["impact", "saving", "co2", "emissions", "cigarette", "health risk"]):
         km = float(commute.get("distance_km", 14.0))
         mode = commute.get("mode", "metro")
-        metrics = calculate_impact_metrics(aqi, km, mode, air_purifier_hours=10)
+        purifier_hours = int(context.get("purifier_hours") or commute.get("purifier_hours") or 10)
+        metrics = calculate_impact_metrics(aqi, km, mode, air_purifier_hours=purifier_hours)
         return f"""### 📊 Direct Impact Analysis: Your Personal & Community Footprint
 
 By optimizing your daily routine and transit in **{city}** (AQI: {aqi} • {category}):
@@ -255,7 +262,7 @@ By optimizing your daily routine and transit in **{city}** (AQI: {aqi} • {cate
 - **Why this matters**: In severe winter smog, ground-level thermal inversion traps localized tailpipe emissions within a 50m blanket. Your mode shift directly spares adjacent pedestrians and morning commuters.
 
 #### 2. 🫁 Personal Respiratory Protection
-- **Particulate Filtered**: **{metrics['purifier_filtered_ug']} µg** of PM2.5 prevented from penetrating deep alveolar lung tissue.
+- **Particulate Filtered**: **{metrics['purifier_filtered_ug']} µg** of PM2.5 prevented from penetrating deep alveolar lung tissue over {purifier_hours} hours.
 - **Equivalent Toxic Dose Avoided**: Equal to **{metrics['cigarettes_avoided']} cigarettes** of toxic particulate load avoided today.
 - **Overall Health Risk Reduction**: **{metrics['health_risk_reduction_pct']}%** lower acute cardiovascular and bronchial inflammation.
 
@@ -422,11 +429,12 @@ def query_assistant(prompt: str, context: dict, user_api_key: str = None) -> dic
         response_text = built_in_expert_reasoner(prompt, context)
         
     # Also attach impact metrics for the current context
-    aqi = context.get("aqi", 312)
+    aqi = int(context.get("aqi", 312))
     commute = context.get("commute", {})
     km = float(commute.get("distance_km", 14.0))
     mode = commute.get("mode", "metro")
-    impact_metrics = calculate_impact_metrics(aqi, km, mode)
+    purifier_hours = int(context.get("purifier_hours") or commute.get("purifier_hours") or 10)
+    impact_metrics = calculate_impact_metrics(aqi, km, mode, air_purifier_hours=purifier_hours)
     
     return {
         "reply": response_text,

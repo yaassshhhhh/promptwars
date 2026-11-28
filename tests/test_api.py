@@ -168,5 +168,14 @@ class TestUrbanAirQualityAssistant(unittest.TestCase):
         self.assertIn("Thermal Inversion", data["reply"])
         self.assertIn("1:30 PM - 3:30 PM", data["reply"])
 
+    def test_distance_modulates_cigarettes_and_risk_drop(self):
+        """Test that changing commute distance alters cigarettes avoided and health risk reduction."""
+        metrics_14km = calculate_impact_metrics(348, 14.0, "metro", air_purifier_hours=10)
+        metrics_28km = calculate_impact_metrics(348, 28.0, "metro", air_purifier_hours=10)
+        self.assertNotEqual(metrics_14km["cigarettes_avoided"], metrics_28km["cigarettes_avoided"])
+        self.assertGreater(metrics_28km["cigarettes_avoided"], metrics_14km["cigarettes_avoided"])
+        self.assertNotEqual(metrics_14km["health_risk_reduction_pct"], metrics_28km["health_risk_reduction_pct"])
+        self.assertGreater(metrics_28km["health_risk_reduction_pct"], metrics_14km["health_risk_reduction_pct"])
+
 if __name__ == "__main__":
     unittest.main()
